@@ -9,7 +9,8 @@ Heros.prototype.constructor = Heros;
 
 
 //Move le Hero
-Heros.prototype.move = function (){	
+Heros.prototype.move = function (){
+	//en fonction du nombre de case de déplacement du player (movePoint)	
 };
 
 //Hero is selected
@@ -23,6 +24,16 @@ Heros.prototype.deselected = function (){
 
 //Hero get Item
 Heros.prototype.getItem = function (){
+	//ramasse item
+};
+
+//Hero release Item
+Heros.prototype.releaseItem = function (){
+	//ramasse item
+};
+
+//Hero get Damage
+Heros.prototype.getDamage = function (){
 };
 
 //Dessine le Hero
@@ -36,6 +47,7 @@ function Archer(){
 	this.hp = 10;
 	this.movePoint = 4;
 	this.damage = 2;
+	this.currentItem = '';
   	//Write Stuff
   	Heros.call(this);
 };
@@ -56,6 +68,7 @@ function Voleur(){
 	this.hp = 20;
 	this.movePoint = 4;
 	this.damage = 2;
+	this.currentItem = '';
   	//Write Stuff
   	Heros.call(this);
 };
@@ -75,6 +88,7 @@ function Guerrier(){
 	this.hp = 30;
 	this.movePoint = 4;
 	this.damage = 2;
+	this.currentItem = '';
   	//Write Stuff
   	Heros.call(this);
 };
@@ -94,6 +108,7 @@ function Mage(){
 	this.hp = 10;
 	this.movePoint = 4;
 	this.damage = 2;
+	this.currentItem = '';
   	//Write Stuff
   	Heros.call(this);
 };
