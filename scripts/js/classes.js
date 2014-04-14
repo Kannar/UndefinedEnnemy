@@ -2,6 +2,8 @@
 //   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes) ||
 //====================================================================
 function Heros(){
+
+	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
 
@@ -18,6 +20,7 @@ Heros.prototype.render = function(){
 //              CLASSE ARCHER              ||
 //==========================================
 function Archer(){
+
   //Write Stuff
   Heros.call(this);
 }
@@ -34,6 +37,7 @@ Archer.prototype.constructor = Archer;
 //               CLASSE VOLEUR             ||
 //==========================================
 function Voleur(){
+
   //Write Stuff
   Heros.call(this);
 }
@@ -51,6 +55,7 @@ Voleur.prototype.constructor = Voleur;
 //              CLASSE GUERRIER            ||
 //==========================================
 function Guerrier(){
+
   //Write Stuff
   Heros.call(this);
 }
@@ -67,6 +72,7 @@ Guerrier.prototype.constructor = Guerrier;
 //                CLASSE MAGE              ||
 //==========================================
 function Mage(){
+
   //Write Stuff
   Heros.call(this);
 }
