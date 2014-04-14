@@ -12,9 +12,6 @@ Heros.prototype.constructor = Heros;
 Heros.prototype.move = function (){
 }
 
-//Dessine le Hero
-Heros.prototype.render = function(){
-}
 
 //Hero is selected
 Heros.prototype.selected = function (){
@@ -27,6 +24,10 @@ Heros.prototype.deselected = function (){
 
 //Hero get Item
 Heros.prototype.getItem = function (){
+};
+
+//Dessine le Hero
+Heros.prototype.render = function(){
 };
 
 
