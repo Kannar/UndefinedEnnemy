@@ -17,7 +17,7 @@ Heros.prototype.render = function(){
 //==========================================
 //              CLASSE ARCHER              ||
 //==========================================
-function Archer(config,x,y,images,frame,missile,spline,speed){
+function Archer(){
   //Write Stuff
   Heros.call(this);
 }
@@ -33,7 +33,7 @@ Archer.prototype.constructor = Archer;
 //==========================================
 //               CLASSE VOLEUR             ||
 //==========================================
-function Voleur(config,x,y,images,frame,missile,spline,speed){
+function Voleur(){
   //Write Stuff
   Heros.call(this);
 }
@@ -50,7 +50,7 @@ Voleur.prototype.constructor = Voleur;
 //==========================================
 //              CLASSE GUERRIER            ||
 //==========================================
-function Guerrier(config,x,y,images,frame,missile,spline,speed){
+function Guerrier(){
   //Write Stuff
   Heros.call(this);
 }
@@ -66,7 +66,7 @@ Guerrier.prototype.constructor = Guerrier;
 //==========================================
 //                CLASSE MAGE              ||
 //==========================================
-function Mage(config,x,y,images,frame,missile,spline,speed){
+function Mage(){
   //Write Stuff
   Heros.call(this);
 }
