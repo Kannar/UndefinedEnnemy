@@ -26,4 +26,3 @@ function gameloop()
     }
 	frame++;
 }
-
