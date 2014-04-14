@@ -12,7 +12,7 @@ var Map = function(matrice){
     {
      context.fillStyle="rgb(255,255,255)";
     }
-    context.fillRect(0+j*66,0+i*66,65,65);
+    context.fillRect(0+j*mapParams[tileSize],0+i*mapParams[tileSize],65,65);
    };
   };
  }

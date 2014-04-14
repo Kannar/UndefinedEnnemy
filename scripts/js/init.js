@@ -19,6 +19,11 @@ window.requestAnimFrame =     (
 *******************************/
 var state = "IN_GAME";
 var frame=0;
+var mapParams{
+            tileSize : 66,
+            nbTileX : 13,
+            nbTileY : 12,
+}
 var matrix = [
     [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
     [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0],
@@ -59,7 +64,7 @@ function init() //Init général
     window.canvas  = document.getElementById("mainCanvas");
     window.context = canvas.getContext("2d");
     gameObjects[2].push(new Map(matrix))
-    canvas.width  = 66*13;
-    canvas.height = 660;
+    canvas.width  = mapParams[tileSize]*mapParams[nbTileX];
+    canvas.height = mapParams[tileSize]*mapParams[nbTileY];
     run();
 }
