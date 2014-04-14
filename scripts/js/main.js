@@ -6,7 +6,7 @@
 
 function run()
 {
-    stats.begin();
+   // stats.begin();
     switch(state)
     {
         case "SELEC_PERSO":
@@ -15,11 +15,15 @@ function run()
             gameloop();
         break;
     }
-	stats.end();
+//	stats.end();
     requestAnimFrame(run);
 }
 function gameloop()
 {
+    for(var i = 0;i<gameObjects[2].length;i++)
+    {
+        gameObjects[2][i].constructMap();
+    }
 	frame++;
 }
 
