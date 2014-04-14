@@ -2,11 +2,7 @@
 //   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes) ||
 //====================================================================
 function Heros(){
-<<<<<<< HEAD
 	this.isSelected =false;
-=======
-
->>>>>>> e81c6bf0ec51584e04810b1742dc0cb2ec862409
 	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
@@ -37,19 +33,13 @@ Heros.prototype.render = function(){
 //              CLASSE ARCHER              ||
 //==========================================
 function Archer(){
-<<<<<<< HEAD
 	this.hp = 10;
 	this.movePoint = 4;
 	this.damage = 2;
   	//Write Stuff
   	Heros.call(this);
 };
-=======
 
-  //Write Stuff
-  Heros.call(this);
-}
->>>>>>> e81c6bf0ec51584e04810b1742dc0cb2ec862409
 
 //Attaque Archer
 Archer.prototype.attack = function(){
@@ -63,20 +53,12 @@ Archer.prototype.constructor = Archer;
 //               CLASSE VOLEUR             ||
 //==========================================
 function Voleur(){
-<<<<<<< HEAD
 	this.hp = 20;
 	this.movePoint = 4;
 	this.damage = 2;
   	//Write Stuff
   	Heros.call(this);
 };
-=======
-
-  //Write Stuff
-  Heros.call(this);
-}
->>>>>>> e81c6bf0ec51584e04810b1742dc0cb2ec862409
-
 //Attaque Voleur
 Voleur.prototype.attack = function(){
 };
@@ -90,19 +72,12 @@ Voleur.prototype.constructor = Voleur;
 //              CLASSE GUERRIER            ||
 //==========================================
 function Guerrier(){
-<<<<<<< HEAD
 	this.hp = 30;
 	this.movePoint = 4;
 	this.damage = 2;
   	//Write Stuff
   	Heros.call(this);
 };
-=======
-
-  //Write Stuff
-  Heros.call(this);
-}
->>>>>>> e81c6bf0ec51584e04810b1742dc0cb2ec862409
 
 //Attaque Guerrier
 Guerrier.prototype.attack = function(){
@@ -116,19 +91,13 @@ Guerrier.prototype.constructor = Guerrier;
 //                CLASSE MAGE              ||
 //==========================================
 function Mage(){
-<<<<<<< HEAD
 	this.hp = 10;
 	this.movePoint = 4;
 	this.damage = 2;
   	//Write Stuff
   	Heros.call(this);
 };
-=======
 
-  //Write Stuff
-  Heros.call(this);
-}
->>>>>>> e81c6bf0ec51584e04810b1742dc0cb2ec862409
 
 //Attaque Mage
 Mage.prototype.attack = function(){
