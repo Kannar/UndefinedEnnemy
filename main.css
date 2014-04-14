@@ -1,0 +1,13 @@
+#mainCanvas{
+    border: white solid 1px;
+    margin-left:50%;
+    position : relative;
+    left:-429px;
+	
+}
+
+body{
+    background-color: black;
+	
+}
+
