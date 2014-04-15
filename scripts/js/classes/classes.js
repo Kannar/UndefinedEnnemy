@@ -1,8 +1,10 @@
 //====================================================================
 //   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes) ||
 //====================================================================
-function Heros(){
-	this.isSelected =false;
+function Heros(x,y){
+	this.pos = {x : x, y : y};
+	this.status = '';
+	this.isSelected = false;
 	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
@@ -26,25 +28,40 @@ Heros.prototype.deselected = function (){
 Heros.prototype.getItem = function (){
 };
 
+//Hero Attaque 
+Archer.prototype.attack = function(){
+};
+
 //Dessine le Hero
-Heros.prototype.render = function(){
+Heros.prototype.render = function(context){
+	context.fillRect(this.pos.x*mapParams.tileSize,this.pos.y*mapParams.tileSize,this.width,this.height);
 };
 
 
 //==========================================
 //              CLASSE ARCHER              ||
 //==========================================
-function Archer(){
-	this.hp = 10;
+function Archer(x,y){
+	this.name = 'Archer';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 13;
+	this.damage = 5;
+	this.magic = 1;
+	this.Resist = 3;
+	this.magicResist = 5;
+	this.accuracy = 7;
 	this.movePoint = 4;
-	this.damage = 2;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
 
 
-//Attaque Archer
-Archer.prototype.attack = function(){
+//loop Archer
+Archer.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Archer
@@ -54,15 +71,25 @@ Archer.prototype.constructor = Archer;
 //==========================================
 //               CLASSE VOLEUR             ||
 //==========================================
-function Voleur(){
-	this.hp = 20;
-	this.movePoint = 4;
-	this.damage = 2;
+function Voleur(x,y){
+	this.name = 'Voleur';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 12;
+	this.damage = 4;
+	this.magic = 2;
+	this.Resist = 3;
+	this.magicResist = 4;
+	this.accuracy = 5;
+	this.movePoint = 6;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
-//Attaque Voleur
-Voleur.prototype.attack = function(){
+//loop Voleur
+Voleur.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Voleur
@@ -72,16 +99,26 @@ Voleur.prototype.constructor = Voleur;
 //==========================================
 //              CLASSE GUERRIER            ||
 //==========================================
-function Guerrier(){
-	this.hp = 30;
-	this.movePoint = 4;
-	this.damage = 2;
+function Guerrier(x,y){
+	this.name = 'Guerrier';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 20;
+	this.damage = 6;
+	this.magic = 2;
+	this.Resist = 6;
+	this.magicResist = 5;
+	this.accuracy = 4;
+	this.movePoint = 3;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
 
-//Attaque Guerrier
-Guerrier.prototype.attack = function(){
+//loop Guerrier
+Guerrier.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Guerrier
@@ -91,19 +128,87 @@ Guerrier.prototype.constructor = Guerrier;
 //==========================================
 //                CLASSE MAGE              ||
 //==========================================
-function Mage(){
-	this.hp = 10;
-	this.movePoint = 4;
+function Mage(x,y){
+	this.name = 'Mage';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 13;
 	this.damage = 2;
+	this.magic = 6;
+	this.Resist = 3;
+	this.magicResist = 6;
+	this.accuracy = 5;
+	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
 
 
-//Attaque Mage
-Mage.prototype.attack = function(){
+//loop Mage
+Mage.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Mage
 Mage.prototype = Object.create(Heros.prototype); 
 Mage.prototype.constructor = Mage;
+
+//==========================================
+//              CLASSE OVNI               ||
+//==========================================
+function Ovni(x,y){
+	this.name = 'Ovni';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 20;
+	this.damage = 3;
+	this.magic = 3;
+	this.Resist = 4;
+	this.magicResist = 4;
+	this.accuracy = 3;
+	this.movePoint = 8;
+  	//Write Stuff
+  	Heros.call(this,x,y);
+};
+
+//loop Ovni
+Ovni.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
+};
+
+//Definition de l'heritage du Ovni
+Ovni.prototype = Object.create(Heros.prototype); 
+Ovni.prototype.constructor = Ovni;
+
+//==========================================
+//              CLASSE PRETRE                ||
+//==========================================
+function Pretre(x,y){
+	this.name = 'Pretre';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 10;
+	this.damage = 1;
+	this.magic = 5;
+	this.Resist = 5;
+	this.magicResist = 5;
+	this.accuracy = 3;
+	this.movePoint = 4;
+  	//Write Stuff
+  	Heros.call(this,x,y);
+};
+
+//loop Pretre
+Pretre.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
+};
+
+//Definition de l'heritage du Pretre
+Pretre.prototype = Object.create(Heros.prototype); 
+Pretre.prototype.constructor = Pretre;

@@ -24,5 +24,6 @@ function gameloop()
     {
         gameObjects[2][i].constructMap(posX,posY);
     }
+
 	frame++;
 }
