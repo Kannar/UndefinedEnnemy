@@ -29,10 +29,8 @@ var mapParams = {
 
 var frame=0;
 var mouse;
-<<<<<<< HEAD
 var keyboard;
 var posX,posY;
-=======
 var path;
 var mouseVars={
     mapPosX:0,
@@ -40,8 +38,6 @@ var mouseVars={
     selectCase1:0,
     selectCase2:0
 };
-var keyboard;
->>>>>>> origin/master
 var matrix = [
     [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
     [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0],
