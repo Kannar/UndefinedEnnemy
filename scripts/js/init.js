@@ -17,7 +17,7 @@ window.requestAnimFrame =     (
 *   Globals
 *
 *******************************/
-var state = "IN_GAME";
+var state = "LOADING";
 var frame = 0;
 var mapParams = {
                 tileSize : 66,
@@ -32,6 +32,7 @@ var mouse;
 var keyboard;
 var posX,posY;
 var path;
+var images;
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
@@ -81,6 +82,14 @@ function init() //Init général
 {
     window.canvas  = document.getElementById("mainCanvas");
     window.context = canvas.getContext("2d");
+    canvas.width  = mapParams.tileSize*mapParams.nbTileX;
+    canvas.height = mapParams.tileSize*mapParams.nbTileY;
+    images = loadImages(imgSrc);
+    run();
+}
+
+function startGame(){
+    
     gameObjects[2].push(new Map(matrix));
     gameObjects[1].push(new Player(canvas,'Player2'));
     gameObjects[0].push(new Player(canvas,'Player1'));
@@ -99,8 +108,6 @@ function init() //Init général
         }
     }
 
-    canvas.width  = mapParams.tileSize*mapParams.nbTileX;
-    canvas.height = mapParams.tileSize*mapParams.nbTileY;
     eventInit();
     mouse = new Mouse(canvas);
 
@@ -114,6 +121,4 @@ function init() //Init général
         38: [gameObjects[2][0].scroll, "top"],  //Scroll haut
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
-
-    run();
 }

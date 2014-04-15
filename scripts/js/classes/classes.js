@@ -1,13 +1,20 @@
 //====================================================================
 //   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes)  ||
 //====================================================================
-function Heros(x,y,image){
+var Heros = function(x,y,player){
+	this.player = player;
 	this.pos = {x : x, y : y};
-	this.image = image;
+	this.image = images[this.name+''+this.player];
 	this.status = '';
 	this.isSelected = false;
+<<<<<<< HEAD
 	// var get = httpGetData("scripts/js/json/animConfig.json");
 	// this.configImage = get[this.name];
+=======
+	this.config = animsConfig[this.name+'AnimConfig'];
+	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
+	this.config.frameHeight = this.image.height/this.config.nbRows;
+>>>>>>> origin/dev/fed
 	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
@@ -101,19 +108,19 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 
 //Dessine le Hero
 Heros.prototype.render = function(context){
-	this.animFrame++;
-	if (this.animFrame % Math.floor(60 / this.currentAnimation[this.animation].fps) == 0){
-		this.currentFrame++;
-		if (this.currentFrame == this.currentAnimation[this.animation].nbFrame){
-			this.currentFrame = 0;
+	this.config.animFrame++;
+	if (this.config.animFrame % Math.floor(60 / this.config.currentAnimation[this.config.animation].fps) == 0){
+		this.config.currentFrame++;
+		if (this.config.currentFrame == this.config.currentAnimation[this.config.animation].nbFrame){
+			this.config.currentFrame = 0;
 		}
 	}
-
 	context.drawImage(this.image,
-		this.currentFrame * this.frameWidth, 
-		this.currentAnimation[this.animation].nbRow * this.frameHeight,
-		this.frameWidth, this.frameHeight,
-		this.pos.x*mapParams.tileSize, this.pos.y*mapParams.tileSize, this.frameWidth, this.frameHeight);
+		this.config.currentFrame * this.config.frameWidth, 
+		this.config.currentAnimation[this.config.animation].nbRow * this.config.frameHeight,
+		this.config.frameWidth, this.config.frameHeight,
+		(this.pos.x-mapParams.viewX)*mapParams.tileSize, (this.pos.y-mapParams.viewY)*mapParams.tileSize, this.config.frameWidth, this.config.frameHeight);
+	//debugger;
 };
 
 //Attaque Hero
@@ -123,7 +130,7 @@ Heros.prototype.attack = function(){
 //==========================================
 //              CLASSE ARCHER              ||
 //==========================================
-function Archer(x,y,image){
+var Archer = function(x,y,player){
 	this.name = 'Archer';
 	this.width = 66;
 	this.height = 66;
@@ -135,7 +142,7 @@ function Archer(x,y,image){
 	this.accuracy = 7;
 	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this,x,y,image);
+  	Heros.call(this,x,y,player);
 };
 
 
@@ -153,7 +160,7 @@ Archer.prototype.constructor = Archer;
 //==========================================
 //               CLASSE VOLEUR             ||
 //==========================================
-function Voleur(x,y,image){
+var Thief = function(x,y,player){
 	this.name = 'Voleur';
 	this.width = 66;
 	this.height = 66;
@@ -165,23 +172,23 @@ function Voleur(x,y,image){
 	this.accuracy = 5;
 	this.movePoint = 6;
   	//Write Stuff
-  	Heros.call(this,x,y,image);
+  	Heros.call(this,x,y,player);
 };
 //loop Voleur
-Voleur.prototype.loop = function(context){
+Thief.prototype.loop = function(context){
 
 	// -- Draw -- \\
 	this.render(context);
 };
 
 //Definition de l'heritage du Voleur
-Voleur.prototype = Object.create(Heros.prototype); 
-Voleur.prototype.constructor = Voleur;
+Thief.prototype = Object.create(Heros.prototype); 
+Thief.prototype.constructor = Thief;
 
 //==========================================
 //              CLASSE GUERRIER            ||
 //==========================================
-function Guerrier(x,y,image){
+var Knight = function(x,y,player){
 	this.name = 'Guerrier';
 	this.width = 66;
 	this.height = 66;
@@ -193,24 +200,24 @@ function Guerrier(x,y,image){
 	this.accuracy = 4;
 	this.movePoint = 3;
   	//Write Stuff
-  	Heros.call(this,x,y,image);
+  	Heros.call(this,x,y,player);
 };
 
 //loop Guerrier
-Guerrier.prototype.loop = function(context){
+Knight.prototype.loop = function(context){
 
 	// -- Draw -- \\
 	this.render(context);
 };
 
-//Definition de l'heritage du Guerrier
-Guerrier.prototype = Object.create(Heros.prototype); 
-Guerrier.prototype.constructor = Guerrier;
+//Definition de l'heritage du Knight
+Knight.prototype = Object.create(Heros.prototype); 
+Knight.prototype.constructor = Knight;
 
 //==========================================
 //                CLASSE MAGE              ||
 //==========================================
-function Mage(x,y,image){
+var Mage = function(x,y,player){
 	this.name = 'Mage';
 	this.width = 66;
 	this.height = 66;
@@ -222,7 +229,7 @@ function Mage(x,y,image){
 	this.accuracy = 5;
 	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this,x,y,image);
+  	Heros.call(this,x,y,player);
 };
 
 
@@ -240,8 +247,8 @@ Mage.prototype.constructor = Mage;
 //==========================================
 //              CLASSE OVNI               ||
 //==========================================
-function Ovni(x,y,image){
-	this.name = 'Ovni';
+var Dragon = function(x,y,player){
+	this.name = 'Dragon';
 	this.width = 66;
 	this.height = 66;
 	this.hp = 20;
@@ -252,25 +259,25 @@ function Ovni(x,y,image){
 	this.accuracy = 3;
 	this.movePoint = 8;
   	//Write Stuff
-  	Heros.call(this,x,y,image);
+  	Heros.call(this,x,y,player);
 };
 
 //loop Ovni
-Ovni.prototype.loop = function(context){
+Dragon.prototype.loop = function(context){
 
 	// -- Draw -- \\
 	this.render(context);
 };
 
 //Definition de l'heritage du Ovni
-Ovni.prototype = Object.create(Heros.prototype); 
-Ovni.prototype.constructor = Ovni;
+Dragon.prototype = Object.create(Heros.prototype); 
+Dragon.prototype.constructor = Dragon;
 
 //==========================================
 //              CLASSE PRETRE                ||
 //==========================================
-function Pretre(x,y,image){
-	this.name = 'Pretre';
+var Priest = function(x,y,player){
+	this.name = 'Priest';
 	this.width = 66;
 	this.height = 66;
 	this.hp = 10;
@@ -281,17 +288,17 @@ function Pretre(x,y,image){
 	this.accuracy = 3;
 	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this,x,y,image);
+  	Heros.call(this,x,y,player);
 };
 
 //loop Pretre
-Pretre.prototype.loop = function(context){
+Priest.prototype.loop = function(context){
 
 	// -- Draw -- \\
 	this.render(context);
 };
 
 //Definition de l'heritage du Pretre
-Pretre.prototype = Object.create(Heros.prototype); 
-Pretre.prototype.constructor = Pretre;
+Priest.prototype = Object.create(Heros.prototype); 
+Priest.prototype.constructor = Priest;
 
