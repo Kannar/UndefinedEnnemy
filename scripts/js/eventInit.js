@@ -18,7 +18,7 @@ function eventInit(){
 }
 
 function getMouseOnMap(e){
-        var getPos=mouse.updatePos(e.clientX, e.clientY);
+        var getPos=findCaseWithCamera(e.clientX, e.clientY);
         mouseVars.mapPosX=getPos.x;
         mouseVars.mapPosY=getPos.y;
 }
