@@ -14,18 +14,17 @@ Heros.prototype.constructor = Heros;
 
 //Contient toutes les variables relatives aux effets de cases
 Heros.prototype.variableEffects = {
-	"invincible": false,
-	"multiplicatorDgtTook": 1,
-	"multiplicatorDgtDealt": 1,
-	"canAtk": true,
+	"invincible": false,	//done
+	"multiplicatorDgtTook": 1,	//done
+	"multiplicatorDgtDealt": 1,	//done
+	"canAtk": true,	//done
 	"hpGain": 0,
-	"atkTwice": false,
-	"takeDgts": false,
+	"atkTwice": false,	//done
+	"takeDgts": false,	//done
 	"firstToAtk": false,
-	"lastToAtk": false,
+	"lastToAtk": false,	
 	"accuracyMultiplicator": 1
 };
-
 
 //Move le Hero
 Heros.prototype.move = function (){
@@ -58,7 +57,45 @@ Heros.prototype.getDamage = function (){
 };
 
 //Hero Attaque 
-Archer.prototype.attack = function(){
+Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (objet)
+
+	if(this.variableEffects.canAtk)
+	{
+		//Insert animation d'attack de l'attaquant
+
+		if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
+		{
+			target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+			//Insert animation prise de dégât defenseur
+		}
+		else
+		{
+			//Insert animation de block ou quoi
+
+			if(this.variableEffects.takeDgts)
+				this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+				//Insert anim de prend chère
+		}
+		
+		if(this.variableEffects.atkTwice)
+		{
+			//Insert animation d'attaque
+
+			if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
+			{	
+				target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+				//Insert animation prise de dégât defenseur
+			}
+			else
+			{
+				//Insert animation de block
+
+				if(this.variableEffects.takeDgts)
+					this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+					//Insert anim de prend chère
+			}
+		}
+	}
 };
 
 //Dessine le Hero
