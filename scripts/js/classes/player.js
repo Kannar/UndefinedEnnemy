@@ -1,19 +1,22 @@
-var Player = function(x,y){
+var Player = function(){
 	this.army = [];
 	this.status = '';
 	this.turn = false;
-	this.turnTimer = 30; //secondes
+	this.turnTimer = 1; //secondes
 	this.actualTimer = 0;
 	this.lastUpdate;
+	this.otherPlayer;
   	//Write Stuff
 };
 
-
+Player.prototype.addOtherPlayer = function(otherPlayer){
+	this.otherPlayer = otherPlayer;
+}
 //loop Player
 Player.prototype.loop = function(context){
-	if(this.turn){
-		
-		timerTurn(context);
+	console.log(this.turn)
+	if(this.turn){	
+		this.timerTurn(context);
 	}
 };
 
@@ -26,12 +29,13 @@ Player.prototype.startTurn = function(){
 Player.prototype.stopTurn = function(){
 	this.turnTimer = 30;
 	this.turn = false;
+	this.otherPlayer.turn = true;
 };
 
 Player.prototype.timerTurn = function(){
-	var cd = Math.floor(timerCD - (new Date().getTime()/1000));
+	var cd = Math.floor(this.actualTimer - (new Date().getTime()/1000));
 	if(this.actualTimer<0 && this.turn){
-		stopTurn();
+		this.stopTurn();
 	}
 	// context.fillText(cd+"second Left",0,0);
 };
