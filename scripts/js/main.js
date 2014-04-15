@@ -30,6 +30,10 @@ function gameloop()
     }
     gameObjects[0][0].loop(context);
     gameObjects[1][0].loop(context);
+    for(var i=0; i<gameObjects[3].length; i++)
+    {
+        gameObjects[3][i].render();        
+    }
 	frame++;
 }
 

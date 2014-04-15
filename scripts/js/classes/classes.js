@@ -14,6 +14,20 @@ var Heros = function(x,y,player){
 };
 Heros.prototype.constructor = Heros;
 
+//Contient toutes les variables relatives aux effets de cases
+Heros.prototype.variableEffects = {
+
+	"invincible": false,	//done
+	"multiplicatorDgtTook": 1,	//done
+	"multiplicatorDgtDealt": 1,	//done
+	"canAtk": true,	//done
+	"hpGain": 0,
+	"atkTwice": false,	//done
+	"takeDgts": false,	//done
+	"firstToAtk": false,
+	"lastToAtk": false,	
+	"accuracyMultiplicator": 1
+};
 
 //Move le Hero
 Heros.prototype.move = function (){
@@ -21,7 +35,9 @@ Heros.prototype.move = function (){
 		this.pos.x = path[path.length-1][0];
 		this.pos.y = path[path.length-1][1];
 	}
-	//en fonction du nombre de case de déplacement du player (movePoint)	
+	//si l'on se trouve de base sur une case spéciale on retire l'effet de la dite case
+	//en fonction du nombre de case de déplacement du player (movePoint)
+	//une fois sur la case, on regarde s'il s'agit d'une case spéciale et si oui alors on applique l'effet
 };
 
 //Hero is selected
@@ -48,7 +64,7 @@ Heros.prototype.getItem = function (){
 
 //Hero release Item
 Heros.prototype.releaseItem = function (){
-//ramasse item
+	//ramasse item
 };
 
 //Hero get Damage
@@ -56,7 +72,45 @@ Heros.prototype.getDamage = function (){
 };
 
 //Hero Attaque 
-Heros.prototype.attack = function(){
+Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (objet)
+
+	if(this.variableEffects.canAtk)
+	{
+		//Insert animation d'attack de l'attaquant
+
+		if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
+		{
+			target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+			//Insert animation prise de dégât defenseur
+		}
+		else
+		{
+			//Insert animation de block ou quoi
+
+			if(this.variableEffects.takeDgts)
+				this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+				//Insert anim de prend chère
+		}
+		
+		if(this.variableEffects.atkTwice)
+		{
+			//Insert animation d'attaque
+
+			if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
+			{	
+				target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+				//Insert animation prise de dégât defenseur
+			}
+			else
+			{
+				//Insert animation de block
+
+				if(this.variableEffects.takeDgts)
+					this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+					//Insert anim de prend chère
+			}
+		}
+	}
 };
 
 //Dessine le Hero
