@@ -24,6 +24,11 @@ function gameloop()
     {
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
     }
+    drawMyPath();
+	frame++;
+}
+
+function drawMyPath(){
     if(path)
     {
         var x;
@@ -35,10 +40,8 @@ function gameloop()
             x=path[i][0];
             y=path[i][1];
             // console.log(x,y);
-            context.fillStyle="rgb(255,0,0)";
-            context.fillRect(0+x*66,0+y*66,65,65);
+            context.fillStyle="rgb(255,255,0)";
+            context.fillRect((x-mapParams.viewX)*66,(y-mapParams.viewY)*66,65,65);
         }
     }
-
-	frame++;
 }

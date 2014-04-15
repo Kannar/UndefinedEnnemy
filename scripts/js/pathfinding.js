@@ -14,7 +14,7 @@ function drawPath()
 	grid.setWalkableAt(0, 1, false);
 	var finder = new PF.AStarFinder();
 	var gridBackup = grid.clone();
-	path = finder.findPath(mouseVars.selectCase1.x, mouseVars.selectCase1.y, mouseVars.mapPosX, mouseVars.mapPosY, grid);
+	path = finder.findPath(mouseVars.selectCase1.x, mouseVars.selectCase1.y, mouseVars.mapPosX+mapParams.viewX, mouseVars.mapPosY+mapParams.viewY, grid);
 	grid = gridBackup;
 	return path;
 }

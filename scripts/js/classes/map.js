@@ -10,7 +10,6 @@ var Map = function(matrice){
     if(mouseY>mapParams.nbTileY-1 && frame>=this.scrollSpeed && mapParams.viewY<matrice.length-mapParams.nbTileY)
     {
       frame=0;
-      this.viewY+=1;
       mapParams.viewY+=1;
     }
     if(mouseX<=0 && frame>=this.scrollSpeed && mapParams.viewX>0)
