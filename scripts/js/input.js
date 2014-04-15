@@ -110,3 +110,54 @@ function Mouse(objects_data)   //objects_data -> tableau des objets à parcourir
 // var lawl = new Lolilol(250, 300, matrix);
 
 //Equivalent à un player
+
+/****************************************
+*   Inputs clavier:
+*
+*       => obj: objet contenant des key/callback
+****************************************/
+var Keyboard = function(obj)
+{
+    //Liste des touches suivi de leur callback
+    this.keys = {
+        //Exemple => 37 : myFunction()
+    };
+
+    //Lancé à l'init
+    this.init = function()
+    {
+        //Création de l'event listener pour l'appuie d'une touche
+        var self = this;
+        document.addEventListener("keydown", function(event){self.playCallback(event);}, true);
+
+        //Push des keys donnés à l'init s'il y en a
+        this.keys = obj;
+    }
+
+    //Pour jouer le callback correspondant à une touche
+    this.playCallback = function(event)
+    {
+        if(typeof this.keys[event.keyCode] != "undefined")
+            this.keys[event.keyCode]();
+    }
+
+    //Pour ajouter une nouvelle touche à la liste
+    this.addNewKey = function(params)
+    {
+        if(typeof this.keys[params.key] === "undefined")
+            this.keys[params.key] = params.callback;
+        else
+            console.error("KEYBOARD_ERROR: key("+params.key+") already exist.");
+    }
+
+    //Pour modifier le callback d'un bouton à la volé
+    this.modifyKey = function(params)
+    {
+        if(typeof this.keys[params.key] != "undefined")
+            this.keys[params.key] = params.callback;
+        else
+            console.error("KEYBOARD_ERROR: key("+params.key+") doesn't exist.");
+    }
+
+    this.init();
+}

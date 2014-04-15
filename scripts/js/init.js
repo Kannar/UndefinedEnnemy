@@ -29,6 +29,7 @@ var mapParams = {
 
 var frame=0;
 var mouse;
+var keyboard;
 var posX,posY;
 var matrix = [
     [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
@@ -77,6 +78,9 @@ function init() //Init général
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     eventInit();
-    mouse = new Mouse(canvas);   
+    mouse = new Mouse(canvas);
+
+    keyboard = new Keyboard({});
+
     run();
 }
