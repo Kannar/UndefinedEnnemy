@@ -29,6 +29,10 @@ function gameloop()
 }
 
 function drawMyPath(){
+    if(showRange)
+    {
+        showCharRange(mouseVars.selectCase1)
+    }
     if(path)
     {
         var x;

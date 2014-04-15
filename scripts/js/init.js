@@ -32,6 +32,7 @@ var mouse;
 var keyboard;
 var posX,posY;
 var path;
+var showRange=false;
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
@@ -81,7 +82,7 @@ function init() //Init général
 {
     window.canvas  = document.getElementById("mainCanvas");
     window.context = canvas.getContext("2d");
-    gameObjects[2].push(new Map(matrix))
+    gameObjects[2].push(new Map(map1))
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     eventInit();
