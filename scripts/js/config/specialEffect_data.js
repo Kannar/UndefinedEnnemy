@@ -3,7 +3,7 @@
 **************************************************/
 var specialEffect_data = [
     {
-        type: "resistance",
+        name: "resistance",
         multiplicatorDgtTook: 2,
         onGoodEffect: function(target){
             target.variableEffects.invincible = true;
@@ -19,7 +19,7 @@ var specialEffect_data = [
         }
     },
     {
-        type: "forceMelee",
+        name: "forceMelee",
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Ovni" || target.name === "Pretre")
@@ -39,7 +39,7 @@ var specialEffect_data = [
         }  
     },
     {
-        type: "forceDist",
+        name: "forceDist",
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Mage" || target.name === "Archer")
@@ -59,7 +59,7 @@ var specialEffect_data = [
         }
     },
     {
-        type: "forceMag",
+        name: "forceMag",
         multiplicatorDgtSpell: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Mage" || target.name === "Pretre")
@@ -79,7 +79,7 @@ var specialEffect_data = [
         } 
     },
     {
-        type: "hp",
+        name: "hp",
         gainHp: 2,
         loseHp: 3,
         onGoodEffect: function(target){
@@ -96,7 +96,7 @@ var specialEffect_data = [
         }
     },
     {
-        type: "atk",
+        name: "atk",
         atkTurns: 2,
         onGoodEffect: function(target){
              target.variableEffects.atkTwice = true;
@@ -112,7 +112,7 @@ var specialEffect_data = [
         }
     },
     {
-        type: "priorite",
+        name: "priorite",
         onGoodEffect: function(target){
             target.variableEffects.firstToAtk = true;
         },
@@ -127,7 +127,7 @@ var specialEffect_data = [
         }
     },
     {
-        type: "precision",
+        name: "precision",
         gainAccuracy: 1.3,
         loseAccuracy: 1.4,
         onGoodEffect: function(target){

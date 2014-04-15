@@ -4,13 +4,19 @@ var Tile = function(params)
 
     this.player = params.player;    //Quel player à déposé cette case ?
 
-    this.pos = {x: params.xCase, y: params.yCase};
+    this.pos = {x: params.x, y: params.y};  //En case
 
-    this.onGood = params.onGoodEffect;
-    this.outGood = params.outGoodEffect;
+    this.onGood = this.type.onGoodEffect;
+    this.outGood = this.type.offGoodEffect;
 
-    this.onBad = params.onBadEffect;
-    this.outBad = params.outBadEffect;
+    this.onBad = this.type.onBadEffect;
+    this.outBad = this.type.offBadEffect;
+
+    this.render = function()
+    {
+        context.fillStyle = "rgb(25, 250, 25)";
+        context.fillRect(this.pos.x*66, this.pos.y*66, 65, 65);
+    }
 }
 
 /*************
