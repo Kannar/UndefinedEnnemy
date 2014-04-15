@@ -1,8 +1,10 @@
 //====================================================================
 //   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes)  ||
 //====================================================================
-function Heros(){
-	this.isSelected =false;
+function Heros(x,y){
+	this.pos = {x : x, y : y};
+	this.status = '';
+	this.isSelected = false;
 	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
@@ -36,37 +38,43 @@ Heros.prototype.releaseItem = function (){
 Heros.prototype.getDamage = function (){
 };
 
+//Hero Attaque 
+Archer.prototype.attack = function(){
+};
+
 //Dessine le Hero
-Heros.prototype.render = function(){
+Heros.prototype.render = function(context){
+	context.fillRect(this.pos.x*mapParams.tileSize,this.pos.y*mapParams.tileSize,this.width,this.height);
 };
 
 //Attaque Hero
 Heros.prototype.attack = function(){
 };
 
-
 //==========================================
 //              CLASSE ARCHER              ||
 //==========================================
-function Archer(){
-	this.x = 0;
-	this.y = 0;
+function Archer(x,y){
+	this.name = 'Archer';
+	this.width = 66;
+	this.height = 66;
 	this.hp = 13;
-	this.movePoint = 4;
 	this.damage = 5;
 	this.magic = 1;
-	this.resist = 3;
+	this.Resist = 3;
 	this.magicResist = 5;
 	this.accuracy = 7;
-	this.speed = 5;
-	this.currentItem = '';
+	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
 
 
-//Attaque Archer
-Archer.prototype.attack = function(){
+//loop Archer
+Archer.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Archer
@@ -76,31 +84,26 @@ Archer.prototype.constructor = Archer;
 //==========================================
 //               CLASSE VOLEUR             ||
 //==========================================
-function Voleur(){
-	this.x = 0;
-	this.y = 0;
+function Voleur(x,y){
+	this.name = 'Voleur';
+	this.width = 66;
+	this.height = 66;
 	this.hp = 12;
-	this.movePoint = 6;
 	this.damage = 4;
 	this.magic = 2;
-	this.resist = 3;
+	this.Resist = 3;
 	this.magicResist = 4;
 	this.accuracy = 5;
-	this.speed = 7;
-	this.currentItem = '';
+	this.movePoint = 6;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
-//Compe Initiative  Voleur
-Voleur.prototype.initiative = function(){
-};
-//Compe Double Guerrier
-Voleur.prototype.double = function(){
-};
-//Compe Pas Rapide Guerrier
-Voleur.prototype.boost = function(){
-};
+//loop Voleur
+Voleur.prototype.loop = function(context){
 
+	// -- Draw -- \\
+	this.render(context);
+};
 
 //Definition de l'heritage du Voleur
 Voleur.prototype = Object.create(Heros.prototype); 
@@ -109,30 +112,26 @@ Voleur.prototype.constructor = Voleur;
 //==========================================
 //              CLASSE GUERRIER            ||
 //==========================================
-function Guerrier(){
-	this.x = 0;
-	this.y = 0;
+function Guerrier(x,y){
+	this.name = 'Guerrier';
+	this.width = 66;
+	this.height = 66;
 	this.hp = 20;
-	this.movePoint = 4;
 	this.damage = 6;
-	this.magic = 0;
-	this.resist = 6;
+	this.magic = 2;
+	this.Resist = 6;
 	this.magicResist = 5;
 	this.accuracy = 4;
-	this.speed = 3;
-	this.currentItem = '';
+	this.movePoint = 3;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
 
-//Compe Contre Guerrier
-Guerrier.prototype.block = function(){
-};
-//Compe Snare Guerrier
-Guerrier.prototype.snare = function(){
-};
-//Compe Bousculade Guerrier
-Guerrier.prototype.bump = function(){
+//loop Guerrier
+Guerrier.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Guerrier
@@ -142,27 +141,27 @@ Guerrier.prototype.constructor = Guerrier;
 //==========================================
 //                CLASSE MAGE              ||
 //==========================================
-function Mage(){
-	this.x = 0;
-	this.y = 0;
+function Mage(x,y){
+	this.name = 'Mage';
+	this.width = 66;
+	this.height = 66;
 	this.hp = 13;
-	this.movePoint = 4;
 	this.damage = 2;
-	this.resist = 3
 	this.magic = 6;
+	this.Resist = 3;
 	this.magicResist = 6;
 	this.accuracy = 5;
-	this.speed = 2;
-	this.currentItem = '';
+	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
 
-//Compe Brulure Mage
-Mage.prototype.burn = function(){
-};
-//Compe Etourdissement Mage
-Mage.prototype.stun = function(){
+
+//loop Mage
+Mage.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Mage
@@ -170,57 +169,60 @@ Mage.prototype = Object.create(Heros.prototype);
 Mage.prototype.constructor = Mage;
 
 //==========================================
-//              CLASSE PRETRE              ||
+//              CLASSE OVNI               ||
 //==========================================
-function Pretre(){
-	this.x = 0;
-	this.y = 0;
-	this.hp = 10;
-	this.movePoint = 4;
-	this.damage = 1;
-	this.magic = 5;
-	this.magicResist = 5;
+function Ovni(x,y){
+	this.name = 'Ovni';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 20;
+	this.damage = 3;
+	this.magic = 3;
+	this.Resist = 4;
+	this.magicResist = 4;
 	this.accuracy = 3;
-	this.speed = 3;
-	this.currentItem = '';
+	this.movePoint = 8;
   	//Write Stuff
-  	Heros.call(this);
+  	Heros.call(this,x,y);
 };
 
-//Compe Soin Pretre
-Pretre.prototype.heal = function(){
+//loop Ovni
+Ovni.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
-//Compe Buff Pretre
-Pretre.prototype.buff = function(){
+
+//Definition de l'heritage du Ovni
+Ovni.prototype = Object.create(Heros.prototype); 
+Ovni.prototype.constructor = Ovni;
+
+//==========================================
+//              CLASSE PRETRE                ||
+//==========================================
+function Pretre(x,y){
+	this.name = 'Pretre';
+	this.width = 66;
+	this.height = 66;
+	this.hp = 10;
+	this.damage = 1;
+	this.magic = 5;
+	this.Resist = 5;
+	this.magicResist = 5;
+	this.accuracy = 3;
+	this.movePoint = 4;
+  	//Write Stuff
+  	Heros.call(this,x,y);
+};
+
+//loop Pretre
+Pretre.prototype.loop = function(context){
+
+	// -- Draw -- \\
+	this.render(context);
 };
 
 //Definition de l'heritage du Pretre
 Pretre.prototype = Object.create(Heros.prototype); 
 Pretre.prototype.constructor = Pretre;
 
-//==========================================
-//              CLASSE OVNI                ||
-//==========================================
-function Ovni(){
-	this.x = 0;
-	this.y = 0;
-	this.hp = 20;
-	this.movePoint = 8;
-	this.damage = 3;
-	this.magic = 3;
-	this.rest = 4;
-	this.magicResist = 4;
-	this.accuracy = 3;
-	this.speed = 4;
-	this.currentItem = '';
-  	//Write Stuff
-  	Heros.call(this);
-};
-
-//Compe Compe Ovni
-Ovni.prototype.competence = function(){
-};
-
-//Definition de l'heritage du Ovni
-Ovni.prototype = Object.create(Heros.prototype); 
-Ovni.prototype.constructor = Ovni;
