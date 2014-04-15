@@ -54,8 +54,8 @@ var matrix = [
     [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
     [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0]
 ];
-//player1,player2,neutre
-var gameObjects=[[],[],[]];
+//player1,player2,neutre,cases spéciales
+var gameObjects=[[],[],[],[]];
 /*******************************
 *
 *   Varibles d'UI

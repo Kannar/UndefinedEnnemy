@@ -14,7 +14,6 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 }
 //loop Player
 Player.prototype.loop = function(context){
-	console.log(this.turn)
 	if(this.turn){	
 		this.timerTurn(context);
 	}

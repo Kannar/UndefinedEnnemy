@@ -9,6 +9,6 @@ var imgSrc = {
 *   Tableau des objets images (rempli une   *
 *   fois le loading terminé                 *
 ********************************************/
-var imgSObj = {
+var imgObj = {
     // "guerrier" : objet JS image
 };
