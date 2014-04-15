@@ -80,7 +80,16 @@ function init() //Init général
     eventInit();
     mouse = new Mouse(canvas);
 
-    keyboard = new Keyboard({});
+    keyboard = new Keyboard({
+        81: [gameObjects[2][0].scroll, "left"], //Scroll gauche
+        68: [gameObjects[2][0].scroll, "right"],//Scroll droite
+        90: [gameObjects[2][0].scroll, "top"],  //Scroll haut
+        83: [gameObjects[2][0].scroll, "bot"],   //Scroll bas
+        37: [gameObjects[2][0].scroll, "left"], //Scroll gauche
+        39: [gameObjects[2][0].scroll, "right"],//Scroll droite
+        38: [gameObjects[2][0].scroll, "top"],  //Scroll haut
+        40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
+    });
 
     run();
 }

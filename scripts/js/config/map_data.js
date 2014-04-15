@@ -8,8 +8,6 @@
 *   specials: matrice des bonus/malus à seter au début de la game
 *************************************/
 var map1 = {    //Map type pour test
-    //Layers
-    "layers": {
         "collisions": [
             [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
             [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0],
@@ -46,5 +44,4 @@ var map1 = {    //Map type pour test
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]
-    }
 };

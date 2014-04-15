@@ -120,7 +120,8 @@ var Keyboard = function(obj)
 {
     //Liste des touches suivi de leur callback
     this.keys = {
-        //Exemple => 37 : myFunction()
+        //Exemple => 37 : [myFunction, param]
+        //!\\ NE PEUT PRENDRE QU'UN SEUL PARAMETRE, A MODIFIER SI ON VEUT EN METTRE PLUS //!\\
     };
 
     //Lancé à l'init
@@ -137,8 +138,12 @@ var Keyboard = function(obj)
     //Pour jouer le callback correspondant à une touche
     this.playCallback = function(event)
     {
+        console.log(event.keyCode);
+
         if(typeof this.keys[event.keyCode] != "undefined")
-            this.keys[event.keyCode]();
+        {
+            this.keys[event.keyCode][0](this.keys[event.keyCode][1]);
+        }
     }
 
     //Pour ajouter une nouvelle touche à la liste
