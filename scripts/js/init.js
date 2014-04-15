@@ -23,6 +23,8 @@ var mapParams = {
                 tileSize : 66,
                 nbTileX : 13,
                 nbTileY : 10,
+                nbCaseMapX : 14,
+                nbCaseMapY : 17,
                 viewX : 0,
                 viewY : 0,          
                 }; 

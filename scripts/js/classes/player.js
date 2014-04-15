@@ -23,9 +23,27 @@ Player.prototype.loop = function(context){
 		this.timerTurn(context);
 	}
 	for (var i = this.army.length - 1; i >= 0; i--) {
+		if(this.army[i].isSelected){
+			this.army[i].loop(context);
+		}
 		this.army[i].render(context);
 	};
 };
+
+Player.prototype.onclick = function(x,y){
+	var caseSelected = findCaseWithCamera(x,y);
+	for (var i = 0; i < this.army.length; i++) {
+		if(this.army[i].pos.x == caseSelected.x && this.army[i].pos.y == caseSelected.y){
+			if(!this.army[i].isSelected){
+				this.army[i].selected();
+			}
+		} 
+		else if(this.army[i].isSelected) {
+			this.army[i].move();
+			this.army[i].isSelected = false;
+		}
+	};
+}
 
 Player.prototype.startTurn = function(){
 	this.turn = true;

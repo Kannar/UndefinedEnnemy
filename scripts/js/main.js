@@ -28,7 +28,6 @@ function gameloop()
     {
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
     }
-    drawMyPath();
     gameObjects[0][0].loop(context);
     gameObjects[1][0].loop(context);
 	frame++;
@@ -50,4 +49,9 @@ function drawMyPath(){
             context.fillRect((x-mapParams.viewX)*mapParams.tileSize,(y-mapParams.viewY)*mapParams.tileSize,65,65);
         }
     }
+}
+
+function findCaseWithCamera(x,y){
+    var mapCase = mouse.findCase(x,y);
+    return {x:mapCase.x+mapParams.viewX, y:mapCase.y+mapParams.viewY}
 }
