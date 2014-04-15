@@ -32,15 +32,11 @@ var mouse;
 var keyboard;
 var posX,posY;
 var path;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 var showRange=false;
-=======
+
 var images;
->>>>>>> ac4e9de8234d3184e1d52069db1ae6ff1e08f31b
-=======
-var images;
->>>>>>> ac4e9de8234d3184e1d52069db1ae6ff1e08f31b
+
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
@@ -90,10 +86,9 @@ function init() //Init général
 {
     window.canvas  = document.getElementById("mainCanvas");
     window.context = canvas.getContext("2d");
-<<<<<<< HEAD
+
     gameObjects[2].push(new Map(map1))
-=======
->>>>>>> ac4e9de8234d3184e1d52069db1ae6ff1e08f31b
+
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     images = loadImages(imgSrc);
