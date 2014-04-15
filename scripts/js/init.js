@@ -27,7 +27,12 @@ var mapParams = {
 
 var frame=0;
 var mouse;
-var posX,posY;
+var mouseVars={
+    mapPosX:0,
+    mapPosY:0,
+    selectCase1:0,
+    selectCase2:0
+};
 var matrix = [
     [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
     [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0],

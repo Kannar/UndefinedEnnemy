@@ -22,7 +22,7 @@ function gameloop()
 {
     for(var i = 0;i<gameObjects[2].length;i++)
     {
-        gameObjects[2][i].constructMap(posX,posY);
+        gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
     }
 	frame++;
 }
