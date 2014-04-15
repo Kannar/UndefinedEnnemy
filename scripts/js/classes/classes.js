@@ -6,16 +6,32 @@ function Heros(x,y,image){
 	this.image = image;
 	this.status = '';
 	this.isSelected = false;
-	var get = httpGetData("scripts/js/json/animConfig.json");
-	this.configImage = get[this.name];
+	// var get = httpGetData("scripts/js/json/animConfig.json");
+	// this.configImage = get[this.name];
 	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
 
+//Contient toutes les variables relatives aux effets de cases
+Heros.prototype.variableEffects = {
+	"invincible": false,
+	"multiplicatorDgtTook": 1,
+	"multiplicatorDgtDealt": 1,
+	"canAtk": true,
+	"hpGain": 0,
+	"atkTwice": false,
+	"takeDgts": false,
+	"firstToAtk": false,
+	"lastToAtk": false,
+	"accuracyMultiplicator": 1
+};
+
 
 //Move le Hero
 Heros.prototype.move = function (){
-	//en fonction du nombre de case de déplacement du player (movePoint)	
+	//si l'on se trouve de base sur une case spéciale on retire l'effet de la dite case
+	//en fonction du nombre de case de déplacement du player (movePoint)
+	//une fois sur la case, on regarde s'il s'agit d'une case spéciale et si oui alors on applique l'effet
 };
 
 //Hero is selected
@@ -34,7 +50,7 @@ Heros.prototype.getItem = function (){
 
 //Hero release Item
 Heros.prototype.releaseItem = function (){
-//ramasse item
+	//ramasse item
 };
 
 //Hero get Damage
