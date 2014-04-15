@@ -9,6 +9,9 @@ function run()
    // stats.begin();
     switch(state)
     {
+        case "LOADING":
+        console.log('load')
+        break;
         case "SELEC_PERSO":
         break;
         case "IN_GAME":
@@ -18,6 +21,7 @@ function run()
 //	stats.end();
     requestAnimFrame(run);
 }
+
 function gameloop()
 {
     for(var i = 0;i<gameObjects[2].length;i++)

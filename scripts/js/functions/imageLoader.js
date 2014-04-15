@@ -22,6 +22,10 @@ function loadImages(imagesTable)
 
         _images[src].onload = function(){   //Une fois chargé 
             _imagesLoaded = _imagesLoaded + 1;  //On dit qu'on l'a chargé
+            if(_imagesLoaded>=_nbImages){
+                startGame();
+                state = 'IN_GAME';
+            }
         };
 
     }

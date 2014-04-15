@@ -1,8 +1,10 @@
 var Player = function(canvas,name){
 	this.name = name;
+	this.images = images;
 	document.getElementById(this.name).visible = true;
 	this.timerBox = document.getElementById('countdown')
 	this.army = [];
+	this.army.push(new Dragon(3,4,this.name))
 	this.status = '';
 	this.turn = false;
 	this.turnTimer = 30; //secondes
@@ -20,6 +22,9 @@ Player.prototype.loop = function(context){
 	if(this.turn){	
 		this.timerTurn(context);
 	}
+	for (var i = this.army.length - 1; i >= 0; i--) {
+		this.army[i].render(context);
+	};
 };
 
 Player.prototype.startTurn = function(){
