@@ -1,10 +1,13 @@
 //====================================================================
-//   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes) ||
+//   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes)  ||
 //====================================================================
-function Heros(x,y){
+function Heros(x,y,image){
 	this.pos = {x : x, y : y};
+	this.image = image;
 	this.status = '';
 	this.isSelected = false;
+	var get = httpGetData("scripts/js/json/animConfig.json");
+	this.configImage = get[this.name];
 	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
@@ -12,8 +15,8 @@ Heros.prototype.constructor = Heros;
 
 //Move le Hero
 Heros.prototype.move = function (){
-}
-
+	//en fonction du nombre de case de déplacement du player (movePoint)	
+};
 
 //Hero is selected
 Heros.prototype.selected = function (){
@@ -26,6 +29,16 @@ Heros.prototype.deselected = function (){
 
 //Hero get Item
 Heros.prototype.getItem = function (){
+	//ramasse item
+};
+
+//Hero release Item
+Heros.prototype.releaseItem = function (){
+//ramasse item
+};
+
+//Hero get Damage
+Heros.prototype.getDamage = function (){
 };
 
 //Hero Attaque 
@@ -34,14 +47,29 @@ Archer.prototype.attack = function(){
 
 //Dessine le Hero
 Heros.prototype.render = function(context){
-	context.fillRect(this.pos.x*mapParams.tileSize,this.pos.y*mapParams.tileSize,this.width,this.height);
+	this.animFrame++;
+	if (this.animFrame % Math.floor(60 / this.currentAnimation[this.animation].fps) == 0){
+		this.currentFrame++;
+		if (this.currentFrame == this.currentAnimation[this.animation].nbFrame){
+			this.currentFrame = 0;
+		}
+	}
+
+	context.drawImage(this.image,
+		this.currentFrame * this.frameWidth, 
+		this.currentAnimation[this.animation].nbRow * this.frameHeight,
+		this.frameWidth, this.frameHeight,
+		this.pos.x*mapParams.tileSize, this.pos.y*mapParams.tileSize, this.frameWidth, this.frameHeight);
 };
 
+//Attaque Hero
+Heros.prototype.attack = function(){
+};
 
 //==========================================
 //              CLASSE ARCHER              ||
 //==========================================
-function Archer(x,y){
+function Archer(x,y,image){
 	this.name = 'Archer';
 	this.width = 66;
 	this.height = 66;
@@ -53,7 +81,7 @@ function Archer(x,y){
 	this.accuracy = 7;
 	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this,x,y);
+  	Heros.call(this,x,y,image);
 };
 
 
@@ -71,7 +99,7 @@ Archer.prototype.constructor = Archer;
 //==========================================
 //               CLASSE VOLEUR             ||
 //==========================================
-function Voleur(x,y){
+function Voleur(x,y,image){
 	this.name = 'Voleur';
 	this.width = 66;
 	this.height = 66;
@@ -83,7 +111,7 @@ function Voleur(x,y){
 	this.accuracy = 5;
 	this.movePoint = 6;
   	//Write Stuff
-  	Heros.call(this,x,y);
+  	Heros.call(this,x,y,image);
 };
 //loop Voleur
 Voleur.prototype.loop = function(context){
@@ -99,7 +127,7 @@ Voleur.prototype.constructor = Voleur;
 //==========================================
 //              CLASSE GUERRIER            ||
 //==========================================
-function Guerrier(x,y){
+function Guerrier(x,y,image){
 	this.name = 'Guerrier';
 	this.width = 66;
 	this.height = 66;
@@ -111,7 +139,7 @@ function Guerrier(x,y){
 	this.accuracy = 4;
 	this.movePoint = 3;
   	//Write Stuff
-  	Heros.call(this,x,y);
+  	Heros.call(this,x,y,image);
 };
 
 //loop Guerrier
@@ -128,7 +156,7 @@ Guerrier.prototype.constructor = Guerrier;
 //==========================================
 //                CLASSE MAGE              ||
 //==========================================
-function Mage(x,y){
+function Mage(x,y,image){
 	this.name = 'Mage';
 	this.width = 66;
 	this.height = 66;
@@ -140,7 +168,7 @@ function Mage(x,y){
 	this.accuracy = 5;
 	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this,x,y);
+  	Heros.call(this,x,y,image);
 };
 
 
@@ -158,7 +186,7 @@ Mage.prototype.constructor = Mage;
 //==========================================
 //              CLASSE OVNI               ||
 //==========================================
-function Ovni(x,y){
+function Ovni(x,y,image){
 	this.name = 'Ovni';
 	this.width = 66;
 	this.height = 66;
@@ -170,7 +198,7 @@ function Ovni(x,y){
 	this.accuracy = 3;
 	this.movePoint = 8;
   	//Write Stuff
-  	Heros.call(this,x,y);
+  	Heros.call(this,x,y,image);
 };
 
 //loop Ovni
@@ -187,7 +215,7 @@ Ovni.prototype.constructor = Ovni;
 //==========================================
 //              CLASSE PRETRE                ||
 //==========================================
-function Pretre(x,y){
+function Pretre(x,y,image){
 	this.name = 'Pretre';
 	this.width = 66;
 	this.height = 66;
@@ -199,7 +227,7 @@ function Pretre(x,y){
 	this.accuracy = 3;
 	this.movePoint = 4;
   	//Write Stuff
-  	Heros.call(this,x,y);
+  	Heros.call(this,x,y,image);
 };
 
 //loop Pretre
@@ -212,3 +240,4 @@ Pretre.prototype.loop = function(context){
 //Definition de l'heritage du Pretre
 Pretre.prototype = Object.create(Heros.prototype); 
 Pretre.prototype.constructor = Pretre;
+

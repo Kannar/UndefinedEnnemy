@@ -25,6 +25,8 @@ function gameloop()
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
     }
     drawMyPath();
+    gameObjects[0][0].loop(context);
+    gameObjects[1][0].loop(context);
 	frame++;
 }
 

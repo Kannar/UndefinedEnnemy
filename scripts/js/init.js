@@ -81,7 +81,12 @@ function init() //Init général
 {
     window.canvas  = document.getElementById("mainCanvas");
     window.context = canvas.getContext("2d");
-    gameObjects[2].push(new Map(matrix))
+    gameObjects[2].push(new Map(matrix));
+    gameObjects[1].push(new Player());
+    gameObjects[0].push(new Player());
+    gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
+    gameObjects[1][0].addOtherPlayer(gameObjects[0][0])
+    gameObjects[0][0].turn = true;
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     eventInit();
