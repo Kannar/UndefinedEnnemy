@@ -2,6 +2,12 @@ function eventInit(){
     //****Mouse****//
         //OnClick
     canvas.addEventListener("click", function(e){
+        if(gameObjects[0][0].turn=true){
+            gameObjects[0][0].onclick(e.clientX, e.clientY);
+        }
+        else{
+            gameObjects[0][0].onclick();
+        }
         endPathFinding(e);
         startPathFinding(e);
         resetClick(e);
@@ -13,11 +19,9 @@ function eventInit(){
 }
 
 function getMouseOnMap(e){
-        var getPos=mouse.updatePos(e.clientX, e.clientY);
+        var getPos=findCaseWithCamera(e.clientX, e.clientY);
         mouseVars.mapPosX=getPos.x;
         mouseVars.mapPosY=getPos.y;
-        if(mouseVars.selectCase1)
-         drawPath();
 }
 
 function startPathFinding(e){
@@ -27,6 +31,7 @@ function startPathFinding(e){
             console.log(matrix[mouseVars.selectCase1.x][mouseVars.selectCase1.y])
         mouseVars.selectCase1.x+=mapParams.viewX;
         mouseVars.selectCase1.y+=mapParams.viewY;
+<<<<<<< HEAD
         if(map1["collisions"][mouseVars.selectCase1.y][mouseVars.selectCase1.x]==1)
         {
             mouseVars.selectCase1=0;
@@ -36,6 +41,8 @@ function startPathFinding(e){
             showRange=true;
         }
         console.log(mouseVars.selectCase1);
+=======
+>>>>>>> 689925b78fcc9c251abfe50cb95321cb0ad4c3c0
     }
 }
 function endPathFinding(e){
@@ -44,11 +51,11 @@ function endPathFinding(e){
         mouseVars.selectCase2=mouse.findCase(e.clientX, e.clientY);
         mouseVars.selectCase2.x+=mapParams.viewX;
         mouseVars.selectCase2.y+=mapParams.viewY;
-        console.log(mouseVars.selectCase2);
     }
     
 }
 function resetClick(e){
+<<<<<<< HEAD
     if(mouseVars.selectCase1 && mouseVars.selectCase2)
     {
         mouseVars.selectCase1=0;
@@ -93,3 +100,7 @@ function showCharRange(case1){
             }
         }
 }
+=======
+    //if(mouse.findCase(e.clientX, e.clientY).x ||)
+}
+>>>>>>> 689925b78fcc9c251abfe50cb95321cb0ad4c3c0
