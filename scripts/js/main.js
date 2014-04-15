@@ -39,5 +39,6 @@ function gameloop()
             context.fillRect(0+x*66,0+y*66,65,65);
         }
     }
+
 	frame++;
 }

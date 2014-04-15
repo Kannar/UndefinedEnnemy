@@ -22,7 +22,9 @@ var frame = 0;
 var mapParams = {
                 tileSize : 66,
                 nbTileX : 13,
-                nbTileY : 10
+                nbTileY : 10,
+                viewX : 0,
+                viewY : 0,          
                 }; 
 
 var frame=0;
@@ -34,6 +36,7 @@ var mouseVars={
     selectCase1:0,
     selectCase2:0
 };
+var keyboard;
 var matrix = [
     [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
     [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0],
@@ -81,6 +84,9 @@ function init() //Init général
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     eventInit();
-    mouse = new Mouse(canvas);   
+    mouse = new Mouse(canvas);
+
+    keyboard = new Keyboard({});
+
     run();
 }
