@@ -17,7 +17,7 @@ window.requestAnimFrame =     (
 *   Globals
 *
 *******************************/
-var state = "IN_GAME";
+var state = "LOADING";
 var frame = 0;
 var mapParams = {
                 tileSize : 66,
@@ -32,6 +32,15 @@ var mouse;
 var keyboard;
 var posX,posY;
 var path;
+<<<<<<< HEAD
+<<<<<<< HEAD
+var showRange=false;
+=======
+var images;
+>>>>>>> ac4e9de8234d3184e1d52069db1ae6ff1e08f31b
+=======
+var images;
+>>>>>>> ac4e9de8234d3184e1d52069db1ae6ff1e08f31b
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
@@ -54,8 +63,8 @@ var matrix = [
     [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
     [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0]
 ];
-//player1,player2,neutre
-var gameObjects=[[],[],[]];
+//player1,player2,neutre,cases spéciales
+var gameObjects=[[],[],[],[]];
 /*******************************
 *
 *   Varibles d'UI
@@ -81,9 +90,36 @@ function init() //Init général
 {
     window.canvas  = document.getElementById("mainCanvas");
     window.context = canvas.getContext("2d");
-    gameObjects[2].push(new Map(matrix))
+<<<<<<< HEAD
+    gameObjects[2].push(new Map(map1))
+=======
+>>>>>>> ac4e9de8234d3184e1d52069db1ae6ff1e08f31b
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
+    images = loadImages(imgSrc);
+    run();
+}
+
+function startGame(){
+    
+    gameObjects[2].push(new Map(matrix));
+    gameObjects[1].push(new Player(canvas,'Player2'));
+    gameObjects[0].push(new Player(canvas,'Player1'));
+    gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
+    gameObjects[1][0].addOtherPlayer(gameObjects[0][0])
+
+    gameObjects[0][0].startTurn();
+    document.getElementById("EndTurn").onclick = function(){
+        if(gameObjects[0][0].turn){
+            gameObjects[0][0].stopTurn();
+            gameObjects[1][0].startTurn();
+        }
+        else{
+            gameObjects[1][0].stopTurn();
+            gameObjects[0][0].startTurn();
+        }
+    }
+
     eventInit();
     mouse = new Mouse(canvas);
 
@@ -97,6 +133,4 @@ function init() //Init général
         38: [gameObjects[2][0].scroll, "top"],  //Scroll haut
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
-
-    run();
 }
