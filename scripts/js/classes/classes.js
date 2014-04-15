@@ -7,14 +7,9 @@ var Heros = function(x,y,player){
 	this.image = images[this.name+''+this.player];
 	this.status = '';
 	this.isSelected = false;
-<<<<<<< HEAD
-	// var get = httpGetData("scripts/js/json/animConfig.json");
-	// this.configImage = get[this.name];
-=======
 	this.config = animsConfig[this.name+'AnimConfig'];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
 	this.config.frameHeight = this.image.height/this.config.nbRows;
->>>>>>> origin/dev/fed
 	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
