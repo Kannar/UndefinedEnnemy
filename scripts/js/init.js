@@ -27,6 +27,7 @@ var mapParams = {
 
 var frame=0;
 var mouse;
+var path;
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
