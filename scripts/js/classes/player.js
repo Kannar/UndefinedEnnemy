@@ -1,5 +1,6 @@
 var Player = function(x,y){
 	this.army = [];
+	this.status = '';
 	this.turn = false;
 	this.turnTimer = 30; //secondes
 	this.actualTimer = 0;
@@ -11,7 +12,9 @@ var Player = function(x,y){
 //loop Player
 Player.prototype.loop = function(context){
 	if(this.turn){
-		stopTurn();
+		
+		timerTurn(context);
+	}
 };
 
 Player.prototype.startTurn = function(){
@@ -29,5 +32,6 @@ Player.prototype.timerTurn = function(){
 	var cd = Math.floor(timerCD - (new Date().getTime()/1000));
 	if(this.actualTimer<0 && this.turn){
 		stopTurn();
-	// context.fillText(this.turnTimer+"second Left",0,0);
+	}
+	// context.fillText(cd+"second Left",0,0);
 };
