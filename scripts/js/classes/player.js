@@ -2,6 +2,7 @@ var Player = function(x,y){
 	this.army = [];
 	this.turn = false;
 	this.turnTimer = 30; //secondes
+	this.actualTimer = 0;
 	this.lastUpdate;
   	//Write Stuff
 };
@@ -9,16 +10,13 @@ var Player = function(x,y){
 
 //loop Player
 Player.prototype.loop = function(context){
-	if(this.turnTimer<0 && this.turn){
+	if(this.turn){
 		stopTurn();
-	}
-	else{
-
-	}
 };
 
 Player.prototype.startTurn = function(){
 	this.turn = true;
+	this.actualTimer = (new Date().getTime()/1000)+this.turnTimer;
 	this.lastUpdate = Date.now()/1000;
 };
 
@@ -28,9 +26,8 @@ Player.prototype.stopTurn = function(){
 };
 
 Player.prototype.timerTurn = function(){
-	var now = Date.now()/1000;
-	var dt = now - lastUpdate;
-	this.turnTimer -= dt;
-	this.lastUpdate = now;
+	var cd = Math.floor(timerCD - (new Date().getTime()/1000));
+	if(this.actualTimer<0 && this.turn){
+		stopTurn();
 	// context.fillText(this.turnTimer+"second Left",0,0);
 };
