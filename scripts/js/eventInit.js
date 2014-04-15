@@ -31,7 +31,6 @@ function startPathFinding(e){
             console.log(matrix[mouseVars.selectCase1.x][mouseVars.selectCase1.y])
         mouseVars.selectCase1.x+=mapParams.viewX;
         mouseVars.selectCase1.y+=mapParams.viewY;
-<<<<<<< HEAD
         if(map1["collisions"][mouseVars.selectCase1.y][mouseVars.selectCase1.x]==1)
         {
             mouseVars.selectCase1=0;
@@ -40,9 +39,6 @@ function startPathFinding(e){
         {
             showRange=true;
         }
-        console.log(mouseVars.selectCase1);
-=======
->>>>>>> 689925b78fcc9c251abfe50cb95321cb0ad4c3c0
     }
 }
 function endPathFinding(e){
@@ -55,7 +51,6 @@ function endPathFinding(e){
     
 }
 function resetClick(e){
-<<<<<<< HEAD
     if(mouseVars.selectCase1 && mouseVars.selectCase2)
     {
         mouseVars.selectCase1=0;
@@ -100,7 +95,3 @@ function showCharRange(case1){
             }
         }
 }
-=======
-    //if(mouse.findCase(e.clientX, e.clientY).x ||)
-}
->>>>>>> 689925b78fcc9c251abfe50cb95321cb0ad4c3c0

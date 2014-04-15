@@ -31,17 +31,13 @@ Heros.prototype.variableEffects = {
 
 //Move le Hero
 Heros.prototype.move = function (){
-<<<<<<< HEAD
 	//si l'on se trouve de base sur une case spéciale on retire l'effet de la dite case
 	//en fonction du nombre de case de déplacement du player (movePoint)
 	//une fois sur la case, on regarde s'il s'agit d'une case spéciale et si oui alors on applique l'effet
-=======
 	if(path.length<this.movePoint+2){
 		this.pos.x = path[path.length-1][0];
 		this.pos.y = path[path.length-1][1];
 	}
-	//en fonction du nombre de case de déplacement du player (movePoint)	
->>>>>>> 689925b78fcc9c251abfe50cb95321cb0ad4c3c0
 };
 
 //Hero is selected
