@@ -1,33 +1,35 @@
 var Map = function(matrice){
   this.matrice = matrice;
-  this.x=0;
-  this.y=1;
+  this.viewX=0;
+  this.viewY=0;
   this.constructMap=function(mouseX,mouseY){
-    if(mouseX>12 && frame>=10 && this.x<4)
+    if(mouseX>12 && frame>=10 && this.viewX<4)
     {
       frame=0;
-      this.x+=1;
+      console.log(this.viewX);
+      this.viewX+=1;
     }
-    if(mouseY>9 && frame>=10 && this.y<3)
+    if(mouseY>9 && frame>=10 && this.viewY<3)
     {
       frame=0;
-      this.y+=1;
+      console.log(this.viewY);
+      this.viewY+=1;
     }
-    if(mouseX<=0 && frame>=10 && this.x>0)
+    if(mouseX<=0 && frame>=10 && this.viewX>0)
     {
       frame=0;
-    console.log(mouseX)
-      this.x-=1;
+      console.log(mouseX)
+      this.viewX-=1;
     }
-    if(mouseY<=0 && frame>=10 && this.y>0)
+    if(mouseY<=0 && frame>=10 && this.viewY>0)
     {
       frame=0;
       console.log(mouseY)
-      this.y-=1;
+      this.viewY-=1;
     }
-    for (var i = this.y; i < 10+this.y; i++) {
-      for (var j = this.x; j < 13+this.x; j++) {
-        if(matrice[i][j]==1)
+    for (var i = this.viewY; i < mapParams.nbTileY+this.viewY; i++) {
+      for (var j = this.viewX; j < mapParams.nbTileX+this.viewX; j++) {
+        if(this.matrice[i][j]==1)
         {
           context.fillStyle="rgb(255,0,0)";
         }
@@ -35,7 +37,8 @@ var Map = function(matrice){
         {
           context.fillStyle="rgb(255,255,255)";
         }
-        context.fillRect(j*mapParams.tileSize,i*mapParams.tileSize,65,65);
+      //  console.log(this.viewX)
+        context.fillRect((j-this.viewX)*mapParams.tileSize,(i-this.viewY)*mapParams.tileSize,65,65);
       };
     };
   }
