@@ -43,7 +43,7 @@ function drawMyPath(){
             y=path[i][1];
             // console.log(x,y);
             context.fillStyle="rgb(255,255,0)";
-            context.fillRect((x-mapParams.viewX)*66,(y-mapParams.viewY)*66,65,65);
+            context.fillRect((x-mapParams.viewX)*mapParams.tileSize,(y-mapParams.viewY)*mapParams.tileSize,65,65);
         }
     }
 }

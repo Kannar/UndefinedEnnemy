@@ -82,11 +82,23 @@ function init() //Init général
     window.canvas  = document.getElementById("mainCanvas");
     window.context = canvas.getContext("2d");
     gameObjects[2].push(new Map(matrix));
-    gameObjects[1].push(new Player());
-    gameObjects[0].push(new Player());
+    gameObjects[1].push(new Player(canvas,'Player2'));
+    gameObjects[0].push(new Player(canvas,'Player1'));
     gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
     gameObjects[1][0].addOtherPlayer(gameObjects[0][0])
-    gameObjects[0][0].turn = true;
+
+    gameObjects[0][0].startTurn();
+    document.getElementById("EndTurn").onclick = function(){
+        if(gameObjects[0][0].turn){
+            gameObjects[0][0].stopTurn();
+            gameObjects[1][0].startTurn();
+        }
+        else{
+            gameObjects[1][0].stopTurn();
+            gameObjects[0][0].startTurn();
+        }
+    }
+
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     eventInit();
