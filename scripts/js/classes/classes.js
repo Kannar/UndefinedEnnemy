@@ -1,5 +1,5 @@
 //====================================================================
-//   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes) ||
+//   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes)  ||
 //====================================================================
 function Heros(){
 	this.isSelected =false;
@@ -29,7 +29,7 @@ Heros.prototype.getItem = function (){
 
 //Hero release Item
 Heros.prototype.releaseItem = function (){
-	//ramasse item
+//ramasse item
 };
 
 //Hero get Damage
@@ -49,6 +49,8 @@ Heros.prototype.attack = function(){
 //              CLASSE ARCHER              ||
 //==========================================
 function Archer(){
+	this.x = 0;
+	this.y = 0;
 	this.hp = 13;
 	this.movePoint = 4;
 	this.damage = 5;
@@ -75,6 +77,8 @@ Archer.prototype.constructor = Archer;
 //               CLASSE VOLEUR             ||
 //==========================================
 function Voleur(){
+	this.x = 0;
+	this.y = 0;
 	this.hp = 12;
 	this.movePoint = 6;
 	this.damage = 4;
@@ -106,6 +110,8 @@ Voleur.prototype.constructor = Voleur;
 //              CLASSE GUERRIER            ||
 //==========================================
 function Guerrier(){
+	this.x = 0;
+	this.y = 0;
 	this.hp = 20;
 	this.movePoint = 4;
 	this.damage = 6;
@@ -137,6 +143,8 @@ Guerrier.prototype.constructor = Guerrier;
 //                CLASSE MAGE              ||
 //==========================================
 function Mage(){
+	this.x = 0;
+	this.y = 0;
 	this.hp = 13;
 	this.movePoint = 4;
 	this.damage = 2;
@@ -162,9 +170,11 @@ Mage.prototype = Object.create(Heros.prototype);
 Mage.prototype.constructor = Mage;
 
 //==========================================
-//              CLASSE PRETRE            ||
+//              CLASSE PRETRE              ||
 //==========================================
 function Pretre(){
+	this.x = 0;
+	this.y = 0;
 	this.hp = 10;
 	this.movePoint = 4;
 	this.damage = 1;
@@ -189,9 +199,11 @@ Pretre.prototype = Object.create(Heros.prototype);
 Pretre.prototype.constructor = Pretre;
 
 //==========================================
-//              CLASSE OVNI            ||
+//              CLASSE OVNI                ||
 //==========================================
 function Ovni(){
+	this.x = 0;
+	this.y = 0;
 	this.hp = 20;
 	this.movePoint = 8;
 	this.damage = 3;
