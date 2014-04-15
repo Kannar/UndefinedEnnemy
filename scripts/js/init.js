@@ -22,7 +22,9 @@ var frame = 0;
 var mapParams = {
                 tileSize : 66,
                 nbTileX : 13,
-                nbTileY : 10
+                nbTileY : 10,
+                viewX : 0,
+                viewY : 0,          
                 }; 
 
 var frame=0;
