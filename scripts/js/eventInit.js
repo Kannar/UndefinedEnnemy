@@ -6,7 +6,7 @@ function eventInit()
 		var case1=mouse.findCase(e.clientX,e.clientY);
 		console.log(case1);
 	});
-        //MouseMove
+        //MouseMove pour déplacer le canvas
     canvas.addEventListener("mousemove", function(e){	
     	var getPos=mouse.updatePos(e.clientX, e.clientY);
     	posX=getPos.x;
