@@ -1,20 +1,20 @@
 function findPath()
 {
-	var grid = new PF.Grid(13, 10, matrix);
+	var grid = new PF.Grid(17, 14, matrix);
 	grid.setWalkableAt(0, 1, false);
 	var finder = new PF.AStarFinder();
 	var gridBackup = grid.clone();
-	path = finder.findPath(click1.x, click1.y, click2.x, click2.y, grid);
+	path = finder.findPath(mouseVars.selectCase1.x, mouseVars.selectCase1.y, mouseVars.mapPosX, mouseVars.mapPosY, grid);
 	grid = gridBackup;
 	return path;
 }
 function drawPath()
 {
-	var grid = new PF.Grid(13, 10, matrix);
+	var grid = new PF.Grid(17, 14, matrix);
 	grid.setWalkableAt(0, 1, false);
 	var finder = new PF.AStarFinder();
 	var gridBackup = grid.clone();
-	path = finder.findPath(click1.x, click1.y, pos2.x, pos2.y, grid);
+	path = finder.findPath(mouseVars.selectCase1.x, mouseVars.selectCase1.y, mouseVars.mapPosX+mapParams.viewX, mouseVars.mapPosY+mapParams.viewY, grid);
 	grid = gridBackup;
 	return path;
 }

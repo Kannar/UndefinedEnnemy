@@ -138,8 +138,6 @@ var Keyboard = function(obj)
     //Pour jouer le callback correspondant à une touche
     this.playCallback = function(event)
     {
-        console.log(event.keyCode);
-
         if(typeof this.keys[event.keyCode] != "undefined")
         {
             this.keys[event.keyCode][0](this.keys[event.keyCode][1]);
