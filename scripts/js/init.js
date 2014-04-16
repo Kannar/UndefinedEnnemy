@@ -91,7 +91,7 @@ function init() //Init général
 }
 
 function startGame(){
-    
+    context.clearRect(0,0,canvas.width,canvas.height);
     gameObjects[2].push(new Map(matrix));
     gameObjects[1].push(new Player(canvas,'Player2'));
     gameObjects[0].push(new Player(canvas,'Player1'));
