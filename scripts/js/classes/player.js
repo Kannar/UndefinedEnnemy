@@ -4,9 +4,10 @@ var Player = function(canvas,name){
 	document.getElementById(this.name).visible = true;
 	this.timerBox = document.getElementById('countdown')
 	this.army = [];
-	this.army.push(new Archer(8,4,this.name))
-	this.army.push(new Thief(5,3,this.name))
+	this.army.push(new Archer(8,4,this.name,this))
+	this.army.push(new Thief(5,3,this.name,this))
 	this.status = '';
+	this.isSelecting = false;
 	this.turn = false;
 	this.turnTimer = 30; //secondes
 	this.actualTimer = 0;
@@ -46,11 +47,13 @@ Player.prototype.onclick = function(x,y){
 	var caseSelected = findCaseWithCamera(x,y);
 	for (var i = 0; i < this.army.length; i++) {
 		if(this.army[i].pos.x == caseSelected.x && this.army[i].pos.y == caseSelected.y){
-			if(!this.army[i].isSelected){
-				this.army[i].selected();
-			}
-			else{
-				this.army[i].deselected();
+			if(!this.isSelecting){
+				if(!this.army[i].isSelected){
+					this.army[i].selected();
+				}
+				else{
+					this.army[i].deselected();
+				}
 			}
 		} 
 		else if(this.army[i].isSelected) {

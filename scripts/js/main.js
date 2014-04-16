@@ -35,7 +35,7 @@ function gameloop()
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
         gameObjects[2][i].renderMap();
     }
-    
+
     if(gameObjects[0][0].turn){
         gameObjects[0][0].loop(context);
     }
@@ -90,11 +90,23 @@ function loading(nb,target){
 /********************************
 *
 *   Boucle pose des cases
-*
+*   layer == quel layer
+*   x == caseX
+*   y == caseY
+*   insert == true=setLobstacle false=removeLobstacle
 ********************************/
-function setTiles()
+function manageTiles(layer,x,y,insert)
 {
-    
+    if(insert)
+        map1[layer][x][y] = 1;
+    else
+        map1[layer][x][y] = 0;
+}
+
+function checkTiles(layer,x,y)
+{
+    return map1[layer][x][y];
+
 }
 
 /********************************

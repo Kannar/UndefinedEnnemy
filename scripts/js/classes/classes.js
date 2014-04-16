@@ -2,6 +2,7 @@
 //   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes)  ||
 //====================================================================
 var Heros = function(x,y,player){
+	manageTiles('players',x,y,true);
 	this.player = player;
 	this.pos = {x : x, y : y};
 	this.image = images[this.name+''+this.player];
@@ -40,13 +41,16 @@ Heros.prototype.variableEffects = {
 Heros.prototype.move = function (){
 	if(!this.hasMoved && !this.isMoving){
 		if(path.length<this.movePoint+2){
-			this.path = path;
-			// this.pos.x = path[path.length-1][0];
-			// this.pos.y = path[path.length-1][1];
-			// this.CheckCase();
-			this.isMoving = true;
-			this.hasMoved = true;
-			this.changeAnim('walk')
+			if(checkTiles('players',path[path.length-1][0],path[path.length-1][1]) == 0){
+				manageTiles('players',this.pos.x,this.pos.y,false);
+				this.path = path;
+				// this.pos.x = path[path.length-1][0];
+				// this.pos.y = path[path.length-1][1];
+				// this.CheckCase();
+				this.isMoving = true;
+				this.hasMoved = true;
+				this.changeAnim('walk')
+			}
 		}
 		this.deselected();
 	}
@@ -72,6 +76,7 @@ Heros.prototype.move = function (){
 			else{
 				this.pos.x = this.path[0][0];
 				this.pos.y = this.path[0][1];
+				manageTiles('players',this.pos.x,this.pos.y,true);
 				this.path;
 				this.changeAnim('normal');
 				this.isMoving = false;
@@ -92,8 +97,16 @@ Heros.prototype.CheckCase = function (){
 
 //Hero is selected
 Heros.prototype.selected = function (){
-	if(this.canBeSelected)
+	if(this.canBeSelected){
 		this.isSelected = true;
+		this.parent.isSelecting = true;
+	}
+};
+
+//Hero is deselection
+Heros.prototype.deselected = function (){
+	this.isSelected = false;
+	this.parent.isSelecting = false;
 };
 
 Heros.prototype.newTurn = function (){
@@ -117,11 +130,6 @@ Heros.prototype.findPath = function (){
 			drawMyPath();
 		}
 	}
-};
-
-//Hero is deselection
-Heros.prototype.deselected = function (){
-	this.isSelected = false;
 };
 
 //Hero get Item
@@ -220,7 +228,8 @@ Heros.prototype.attack = function(){
 //==========================================
 //              CLASSE ARCHER              ||
 //==========================================
-var Archer = function(x,y,player){
+var Archer = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Archer';
 	this.width = 66;
 	this.height = 66;
@@ -251,7 +260,8 @@ Archer.prototype.constructor = Archer;
 //==========================================
 //               CLASSE VOLEUR             ||
 //==========================================
-var Thief = function(x,y,player){
+var Thief = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Thief';
 	this.width = 66;
 	this.height = 66;
@@ -282,7 +292,8 @@ Thief.prototype.constructor = Thief;
 //==========================================
 //              CLASSE GUERRIER            ||
 //==========================================
-var Knight = function(x,y,player){
+var Knight = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Knight';
 	this.width = 66;
 	this.height = 66;
@@ -313,7 +324,8 @@ Knight.prototype.constructor = Knight;
 //==========================================
 //                CLASSE MAGE              ||
 //==========================================
-var Mage = function(x,y,player){
+var Mage = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Mage';
 	this.width = 66;
 	this.height = 66;
@@ -344,7 +356,8 @@ Mage.prototype.constructor = Mage;
 //==========================================
 //              CLASSE OVNI               ||
 //==========================================
-function Dragon(x,y,player){
+function Dragon(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Dragon';
 	this.width = 66;
 	this.height = 66;
@@ -375,7 +388,8 @@ Dragon.prototype.constructor = Dragon;
 //==========================================
 //              CLASSE PRETRE                ||
 //==========================================
-var Priest = function(x,y,player){
+var Priest = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Priest';
 	this.width = 66;
 	this.height = 66;
