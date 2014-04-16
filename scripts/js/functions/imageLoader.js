@@ -24,7 +24,6 @@ function loadImages(imagesTable)
             _imagesLoaded = _imagesLoaded + 1;  //On dit qu'on l'a chargé
             if(_imagesLoaded>=_nbImages){
                 startGame();
-                state = 'IN_GAME';
             }
             else{
                 loading(_imagesLoaded,_nbImages);

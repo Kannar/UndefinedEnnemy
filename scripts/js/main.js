@@ -61,10 +61,9 @@ function findCaseWithCamera(x,y){
 
 function loading(nb,target){
     var pour = nb/target *100
-    context.fillStyle = '#ffffff';
     context.clearRect(0,0,canvas.width,canvas.height);
-    context.fillStyle = '#000000';
+    context.fillStyle = '#ffffff';
     context.font="30px Verdana";
-    context.fillText('Loading',canvas.width/2-context.measureText("Loading").width,canvas.height/2);
-    context.fillText(Math.floor(pour)+"%",canvas.width/2-context.measureText(Math.floor(pour)+"%").width,canvas.height/2+5);
+    context.fillText('Loading :',canvas.width/2-context.measureText("Loading").width,canvas.height/2);
+    context.fillText(Math.floor(pour)+"%",canvas.width/2-context.measureText(Math.floor(pour)+"%").width,canvas.height/2+50);
 }

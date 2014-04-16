@@ -121,4 +121,5 @@ function startGame(){
         38: [gameObjects[2][0].scroll, "top"],  //Scroll haut
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
+    state = 'IN_GAME';
 }
