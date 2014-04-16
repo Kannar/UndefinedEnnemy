@@ -1,35 +1,42 @@
 var Map = function(matrice)
-{
-    this.matrice = matrice["collisions"];
-    this.scrollSpeed = 10;
-
-    this.constructMap=function(mouseX,mouseY)
-    {
+{   
+    this.map = matrice;
+    this.matrice = matrice['collisions'];
     this.scrollSpeed = 50;
     this.scrollCount = 0;
-
+    this.image = images['tilesSheet'];
+    this.constructMap=function(mouseX,mouseY)
+    {
+        this.matrice = map['collisions'];
         if(mouseX>=mapParams.nbTileX-1 && mapParams.viewX<this.matrice[0].length-mapParams.nbTileX){
             this.scrollCount++;
-            if(this.scrollCount>=this.scrollSpeed)
-                this.scroll("right");
+
+            if(this.scrollCount>=this.scrollSpeed){
+                //this.scroll("right");
+            }
         }
         else if(mouseY>=mapParams.nbTileY-1 && mapParams.viewY<this.matrice.length-mapParams.nbTileY)
         {
           this.scrollCount++;
           if(this.scrollCount>=this.scrollSpeed)
-            this.scroll("bot");
+          {
+            // this.scroll("bot");
+          }
         }
         else if(mouseX<=mapParams.viewX && mapParams.viewX>0)
         {
           this.scrollCount++;
-          if(this.scrollCount>=this.scrollSpeed) 
-            this.scroll("left");
+          if(this.scrollCount>=this.scrollSpeed)
+          { 
+            // this.scroll("left");
+          }
         }
         else if(mouseY<=mapParams.viewY && mapParams.viewY>0)
         {
           this.scrollCount++; 
-          if(this.scrollCount>=this.scrollSpeed)
-            this.scroll("top");
+          if(this.scrollCount>=this.scrollSpeed){
+            // this.scroll("top");
+         }
         }
         else{
             this.scrollCount=0; 
@@ -39,6 +46,7 @@ var Map = function(matrice)
     //Pour input clavier (tempo, le temps de mettre ce qui est plus haut au propre)
     this.scroll = function(sens)
     {
+        this.matrice = map['collisions'];
         if(sens == "left" && mapParams.viewX>0)
         {
             mapParams.viewX-=1;
@@ -63,16 +71,11 @@ var Map = function(matrice)
         {
             for (var j = mapParams.viewX; j < mapParams.nbTileX+mapParams.viewX; j++)
             {
-                if(this.matrice[i][j]==1)
-                {
-                  context.fillStyle="rgb(255,0,0)";
-                }
-                else
-                {
-                  context.fillStyle="rgb(255,255,255)";
-                }
-                //  console.log(mapParams.viewX)
-                context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                context.drawImage(this.image,
+                    (this.map['terrains'][i][j]-1)*mapParams.tileSize,0,
+                    mapParams.tileSize,mapParams.tileSize,
+                    (j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,
+                    65,65);
             };
         };
     }

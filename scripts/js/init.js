@@ -23,41 +23,29 @@ var mapParams = {
                 tileSize : 66,
                 nbTileX : 13,
                 nbTileY : 10,
-                nbCaseMapX : 14,
-                nbCaseMapY : 17,
+                nbCaseMapX : 20,
+                nbCaseMapY : 16,
                 viewX : 0,
                 viewY : 0,          
                 }; 
 
 var frame=0;
 var mouse;
+var c=[];
 var keyboard;
 var posX,posY;
 var path;
+var map;
 var showRange=false;
 var images;
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
+    mapPosWithoutCamX:0,
+    mapPosWithoutCamY:0,
     selectCase1:0,
     selectCase2:0
 };
-var matrix = [
-    [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0],
-    [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0]
-];
 //player1,player2,neutre,cases spéciales
 var gameObjects=[[],[],[],[]];
 /*******************************
@@ -93,7 +81,8 @@ function init() //Init général
 
 function startGame(){
     context.clearRect(0,0,canvas.width,canvas.height);
-    gameObjects[2].push(new Map(map1));
+    map = initMap(map1);
+    gameObjects[2].push(new Map(map));
     gameObjects[1].push(new Player(canvas,'Player2'));
     gameObjects[0].push(new Player(canvas,'Player1'));
     gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
