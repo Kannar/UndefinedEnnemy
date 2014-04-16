@@ -36,9 +36,11 @@ Heros.prototype.move = function (){
 		this.pos.y = path[path.length-1][1];
 		this.deselected();
 	}
-	//si l'on se trouve de base sur une case spéciale on retire l'effet de la dite case
-	//en fonction du nombre de case de déplacement du player (movePoint)
-	//une fois sur la case, on regarde s'il s'agit d'une case spéciale et si oui alors on applique l'effet
+	this.CheckCase();
+};
+
+Heros.prototype.CheckCase = function (){
+	//checklacase si y a bonus/malus.
 };
 
 //Hero is selected

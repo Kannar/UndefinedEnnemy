@@ -42,10 +42,12 @@ Player.prototype.onclick = function(x,y){
 			if(!this.army[i].isSelected){
 				this.army[i].selected();
 			}
+			else{
+				this.army[i].deselected();
+			}
 		} 
 		else if(this.army[i].isSelected) {
 			this.army[i].move();
-			this.army[i].isSelected = false;
 		}
 	};
 }

@@ -1,31 +1,62 @@
 var Map = function(matrice)
 {
     this.matrice = matrice;
-    this.scrollSpeed = 10;
+    this.scrollSpeed = 50;
+    this.scrollCount = 0;
 
     this.constructMap=function(mouseX,mouseY)
     {
-        if(mouseX>mapParams.nbTileX-1 && frame>=this.scrollSpeed && mapParams.viewX<matrice[0].length-mapParams.nbTileX)
+        if(mouseX>=mapParams.nbTileX-1 && mapParams.viewX<matrice[0].length-mapParams.nbTileX)
         {
-          frame=0;
-          mapParams.viewX+=1;
+          this.scrollCount++;
+          if(this.scrollCount>=this.scrollSpeed)
+            this.scroll("right");
         }
-        if(mouseY>mapParams.nbTileY-1 && frame>=this.scrollSpeed && mapParams.viewY<matrice.length-mapParams.nbTileY)
+        else if(mouseY>=mapParams.nbTileY-1 && mapParams.viewY<matrice.length-mapParams.nbTileY)
         {
-          frame=0;
-          mapParams.viewY+=1;
+          this.scrollCount++;
+          if(this.scrollCount>=this.scrollSpeed)
+            this.scroll("bot");
         }
-        if(mouseX<=0 && frame>=this.scrollSpeed && mapParams.viewX>0)
+        else if(mouseX<=mapParams.viewX && mapParams.viewX>0)
         {
-          frame=0;
-          mapParams.viewX-=1;
+          this.scrollCount++;
+          if(this.scrollCount>=this.scrollSpeed) 
+            this.scroll("left");
         }
-        if(mouseY<=0 && frame>=this.scrollSpeed && mapParams.viewY>0)
+        else if(mouseY<=mapParams.viewY && mapParams.viewY>0)
         {
-          frame=0;
-          mapParams.viewY-=1;
+          this.scrollCount++; 
+          if(this.scrollCount>=this.scrollSpeed)
+            this.scroll("top");
         }
+        else{
+            this.scrollCount=0; 
+        }
+    }
 
+    //Pour input clavier (tempo, le temps de mettre ce qui est plus haut au propre)
+    this.scroll = function(sens)
+    {
+        if(sens == "left" && mapParams.viewX>0)
+        {
+            mapParams.viewX-=1;
+        }
+        if(sens == "right" && mapParams.viewX<matrice[0].length-mapParams.nbTileX)
+        {
+            mapParams.viewX+=1;
+        }
+        if(sens == "bot" && mapParams.viewY<matrice.length-mapParams.nbTileY)
+        {
+            mapParams.viewY+=1;
+        }
+        if(sens == "top" && mapParams.viewY>0)
+        {
+            mapParams.viewY-=1;
+        }
+        this.scrollCount=0;
+    }
+    this.renderMap = function(){     
         for (var i = mapParams.viewY; i < mapParams.nbTileY+mapParams.viewY; i++)
         {
             for (var j = mapParams.viewX; j < mapParams.nbTileX+mapParams.viewX; j++)
@@ -42,31 +73,6 @@ var Map = function(matrice)
                 context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
             };
         };
-    }
-
-    //Pour input clavier (tempo, le temps de mettre ce qui est plus haut au propre)
-    this.scroll = function(sens)
-    {
-        if(sens == "left" && mapParams.viewX>0)
-        {
-            frame=0;
-            mapParams.viewX-=1;
-        }
-        if(sens == "right" && mapParams.viewX<matrice[0].length-mapParams.nbTileX)
-        {
-            frame=0;
-            mapParams.viewX+=1;
-        }
-        if(sens == "bot" && mapParams.viewY<matrice.length-mapParams.nbTileY)
-        {
-            frame=0;
-            mapParams.viewY+=1;
-        }
-        if(sens == "top" && mapParams.viewY>0)
-        {
-            frame=0;
-            mapParams.viewY-=1;
-        }
     }
 
     //Appliquer des effets liés au case spéciales
