@@ -6,10 +6,14 @@ var Heros = function(x,y,player){
 	this.pos = {x : x, y : y};
 	this.image = images[this.name+''+this.player];
 	this.status = '';
+	this.moveSpeed = 0.07;
 	this.hasMoved = false;
 	this.hasAttacked = false;
 	this.canBeSelected = false;
 	this.isSelected = false;
+	this.isMoving = false;
+	this.flipped = false;
+	this.path;
 	this.config = animsConfig[this.name+'AnimConfig'];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
 	this.config.frameHeight = this.image.height/this.config.nbRows;
@@ -34,15 +38,52 @@ Heros.prototype.variableEffects = {
 
 //Move le Hero
 Heros.prototype.move = function (){
-	if(!this.hasMoved){
+	if(!this.hasMoved && !this.isMoving){
 		if(path.length<this.movePoint+2){
-			this.pos.x = path[path.length-1][0];
-			this.pos.y = path[path.length-1][1];
-			this.CheckCase();
+			this.path = path;
+			// this.pos.x = path[path.length-1][0];
+			// this.pos.y = path[path.length-1][1];
+			// this.CheckCase();
+			this.isMoving = true;
 			this.hasMoved = true;
+			this.changeAnim('walk')
 		}
 		this.deselected();
 	}
+	else if(this.isMoving){
+		if(this.path[0][0]<this.pos.x-this.moveSpeed){
+			this.flipped = true;
+			this.pos.x-=this.moveSpeed;
+		}
+		else if(this.path[0][0]>this.pos.x+this.moveSpeed){
+			this.flipped = false;
+			this.pos.x+=this.moveSpeed;
+		}
+		if(this.path[0][1]<this.pos.y-this.moveSpeed){
+			this.pos.y-=this.moveSpeed;
+		}
+		if(this.path[0][1]>this.pos.y+this.moveSpeed){	
+			this.pos.y+=this.moveSpeed;
+		}
+		if( (this.path[0][0]>=(this.pos.x-this.moveSpeed) && this.path[0][0]<=(this.pos.x+this.moveSpeed)) && (this.path[0][1]>=(this.pos.y-this.moveSpeed) && this.path[0][1]<=(this.pos.y+this.moveSpeed)) ) {
+			if(this.path.length>1){
+				this.path.splice(0,1);
+			}
+			else{
+				this.pos.x = this.path[0][0];
+				this.pos.y = this.path[0][1];
+				this.path;
+				this.changeAnim('normal');
+				this.isMoving = false;
+			}
+		}
+	}
+};
+Heros.prototype.changeAnim = function (name){
+	this.config.animation = name;
+	this.config.animFrame = 0;
+	this.config.currentFrame = 0;
+	//checklacase si y a bonus/malus.
 };
 
 Heros.prototype.CheckCase = function (){
@@ -152,12 +193,24 @@ Heros.prototype.render = function(context){
 			this.config.currentFrame = 0;
 		}
 	}
+	if(this.flipped){
+		context.save();
+		context.translate((this.pos.x*mapParams.tileSize)+this.config.frameWidth,(this.pos.y*mapParams.tileSize));
+		context.scale(-1,1);
+		context.drawImage(this.image,
+		this.config.currentFrame * this.config.frameWidth, 
+		this.config.currentAnimation[this.config.animation].nbRow * this.config.frameHeight,
+		this.config.frameWidth, this.config.frameHeight,
+		0,0, this.config.frameWidth, this.config.frameHeight);
+		context.restore();
+	}
+	else{
 	context.drawImage(this.image,
 		this.config.currentFrame * this.config.frameWidth, 
 		this.config.currentAnimation[this.config.animation].nbRow * this.config.frameHeight,
 		this.config.frameWidth, this.config.frameHeight,
 		(this.pos.x-mapParams.viewX)*mapParams.tileSize, (this.pos.y-mapParams.viewY)*mapParams.tileSize, this.config.frameWidth, this.config.frameHeight);
-	//debugger;
+	}
 };
 
 //Attaque Hero
@@ -181,6 +234,9 @@ var Archer = function(x,y,player){
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}
@@ -210,6 +266,9 @@ var Thief = function(x,y,player){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
 		}
+		if(this.isMoving){
+			this.move();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -237,6 +296,9 @@ var Knight = function(x,y,player){
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}
@@ -266,6 +328,9 @@ var Mage = function(x,y,player){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
 		}
+		if(this.isMoving){
+			this.move();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -294,6 +359,9 @@ function Dragon(x,y,player){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
 		}
+		if(this.isMoving){
+			this.move();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -321,6 +389,9 @@ var Priest = function(x,y,player){
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}

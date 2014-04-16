@@ -35,8 +35,13 @@ function gameloop()
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
         gameObjects[2][i].renderMap();
     }
-    gameObjects[0][0].loop(context);
-    gameObjects[1][0].loop(context);
+    
+    if(gameObjects[0][0].turn){
+        gameObjects[0][0].loop(context);
+    }
+    else{
+        gameObjects[1][0].loop(context);
+    }
 
     for(var i=0; i<gameObjects[3].length; i++)
     {
