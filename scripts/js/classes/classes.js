@@ -124,7 +124,7 @@ Heros.prototype.EndTurn = function (){
 
 Heros.prototype.findPath = function (){
 	if(!this.hasMoved){
-		showCharRange(this.pos,(this.movePoint));
+		showCharRange(this.pos,(this.movePoint),this.attackRange);
 		var deplacement = findPath(this.pos.x,this.pos.y)
 		if(deplacement.length<this.movePoint+2){
 			drawMyPath();
@@ -240,6 +240,7 @@ var Archer = function(x,y,player,parent){
 	this.magicResist = 5;
 	this.accuracy = 7;
 	this.movePoint = 4;
+	this.attackRange = 2;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -272,6 +273,7 @@ var Thief = function(x,y,player,parent){
 	this.magicResist = 4;
 	this.accuracy = 5;
 	this.movePoint = 6;
+	this.attackRange = 1;	
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -304,6 +306,7 @@ var Knight = function(x,y,player,parent){
 	this.magicResist = 5;
 	this.accuracy = 4;
 	this.movePoint = 3;
+	this.attackRange = 2;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -336,6 +339,7 @@ var Mage = function(x,y,player,parent){
 	this.magicResist = 6;
 	this.accuracy = 5;
 	this.movePoint = 4;
+	this.attackRange = 2;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -368,6 +372,7 @@ function Dragon(x,y,player,parent){
 	this.magicResist = 4;
 	this.accuracy = 3;
 	this.movePoint = 3;
+	this.attackRange = 1;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -400,6 +405,7 @@ var Priest = function(x,y,player,parent){
 	this.magicResist = 5;
 	this.accuracy = 3;
 	this.movePoint = 4;
+	this.attackRange = 2;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();

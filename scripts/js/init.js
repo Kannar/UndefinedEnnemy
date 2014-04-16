@@ -31,6 +31,7 @@ var mapParams = {
 
 var frame=0;
 var mouse;
+var c=[];
 var keyboard;
 var posX,posY;
 var path;
@@ -39,6 +40,8 @@ var images;
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
+    mapPosWithoutCamX:0,
+    mapPosWithoutCamY:0,
     selectCase1:0,
     selectCase2:0
 };
