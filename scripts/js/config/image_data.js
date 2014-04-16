@@ -10,18 +10,10 @@ var imgSrc = {
 	"DragonPlayer2" : "images/Heros/Dragon2.png",
 	"KnightPlayer1" : "images/Heros/Knight1.png",
 	"KnightPlayer2" : "images/Heros/Knight2.png",
-<<<<<<< HEAD
 	"PriestPlayer1" : "images/Heros/Priest1.png",
 	"PriestPlayer2" : "images/Heros/Priest2.png",
 	"MagePlayer1" : "images/Heros/Mage1.png",
-	"MagePlayer2" : "images/Heros/Mage2.png",
-=======
-	"MagePlayer1" : "images/Heros/Mage1.png",
-	"MagePlayer2" : "images/Heros/Mage2.png",
-	"PriestPlayer1" : "images/Heros/Priest1.png",
-	"PriestPlayer2" : "images/Heros/Priest2.png",
->>>>>>> origin/dev/fed
-
+	"MagePlayer2" : "images/Heros/Mage2.png"
 };
 
 /********************************************
