@@ -2,6 +2,12 @@ function eventInit(){
     //****Mouse****//
         //OnClick
     canvas.addEventListener("click", function(e){
+        if(gameObjects[0][0].turn=true){
+            gameObjects[0][0].onclick(e.clientX, e.clientY);
+        }
+        else{
+            gameObjects[0][0].onclick();
+        }
         endPathFinding(e);
         startPathFinding(e);
         resetClick(e);
@@ -13,11 +19,9 @@ function eventInit(){
 }
 
 function getMouseOnMap(e){
-        var getPos=mouse.updatePos(e.clientX, e.clientY);
+        var getPos=findCaseWithCamera(e.clientX, e.clientY);
         mouseVars.mapPosX=getPos.x;
         mouseVars.mapPosY=getPos.y;
-        if(mouseVars.selectCase1)
-         drawPath();
 }
 
 function startPathFinding(e){
@@ -44,7 +48,6 @@ function endPathFinding(e){
         mouseVars.selectCase2=mouse.findCase(e.clientX, e.clientY);
         mouseVars.selectCase2.x+=mapParams.viewX;
         mouseVars.selectCase2.y+=mapParams.viewY;
-        console.log(mouseVars.selectCase2);
     }
     
 }
@@ -93,3 +96,4 @@ function showCharRange(case1){
             }
         }
 }
+

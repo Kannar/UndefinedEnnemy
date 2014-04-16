@@ -34,12 +34,25 @@ Heros.prototype.move = function (){
 	//si l'on se trouve de base sur une case spéciale on retire l'effet de la dite case
 	//en fonction du nombre de case de déplacement du player (movePoint)
 	//une fois sur la case, on regarde s'il s'agit d'une case spéciale et si oui alors on applique l'effet
+	if(path.length<this.movePoint+2){
+		this.pos.x = path[path.length-1][0];
+		this.pos.y = path[path.length-1][1];
+	}
+	//en fonction du nombre de case de déplacement du player (movePoint)	
 };
 
 //Hero is selected
 Heros.prototype.selected = function (){
 	this.isSelected = true;
 };
+
+Heros.prototype.findPath = function (){
+	var deplacement = findPath(this.pos.x,this.pos.y)
+	if(deplacement.length<this.movePoint+2){
+		drawMyPath();
+	}
+};
+
 //Hero is deselection
 Heros.prototype.deselected = function (){
 	this.isSelected = false;
@@ -136,16 +149,11 @@ var Archer = function(x,y,player){
 	this.magicResist = 5;
 	this.accuracy = 7;
 	this.movePoint = 4;
+	this.loop = function(){
+		this.findPath();
+	}
   	//Write Stuff
   	Heros.call(this,x,y,player);
-};
-
-
-//loop Archer
-Archer.prototype.loop = function(context){
-
-	// -- Draw -- \\
-	this.render(context);
 };
 
 //Definition de l'heritage du Archer
@@ -166,14 +174,11 @@ var Thief = function(x,y,player){
 	this.magicResist = 4;
 	this.accuracy = 5;
 	this.movePoint = 6;
+	this.loop = function(){
+		this.findPath();
+	}
   	//Write Stuff
   	Heros.call(this,x,y,player);
-};
-//loop Voleur
-Thief.prototype.loop = function(context){
-
-	// -- Draw -- \\
-	this.render(context);
 };
 
 //Definition de l'heritage du Voleur
@@ -194,15 +199,11 @@ var Knight = function(x,y,player){
 	this.magicResist = 5;
 	this.accuracy = 4;
 	this.movePoint = 3;
+	this.loop = function(){
+		this.findPath();
+	}
   	//Write Stuff
   	Heros.call(this,x,y,player);
-};
-
-//loop Guerrier
-Knight.prototype.loop = function(context){
-
-	// -- Draw -- \\
-	this.render(context);
 };
 
 //Definition de l'heritage du Knight
@@ -223,16 +224,11 @@ var Mage = function(x,y,player){
 	this.magicResist = 6;
 	this.accuracy = 5;
 	this.movePoint = 4;
+	this.loop = function(){
+		this.findPath();
+	}
   	//Write Stuff
   	Heros.call(this,x,y,player);
-};
-
-
-//loop Mage
-Mage.prototype.loop = function(context){
-
-	// -- Draw -- \\
-	this.render(context);
 };
 
 //Definition de l'heritage du Mage
@@ -242,7 +238,7 @@ Mage.prototype.constructor = Mage;
 //==========================================
 //              CLASSE OVNI               ||
 //==========================================
-var Dragon = function(x,y,player){
+function Dragon(x,y,player){
 	this.name = 'Dragon';
 	this.width = 66;
 	this.height = 66;
@@ -253,15 +249,11 @@ var Dragon = function(x,y,player){
 	this.magicResist = 4;
 	this.accuracy = 3;
 	this.movePoint = 8;
+	this.loop = function(){
+		this.findPath();
+	}
   	//Write Stuff
   	Heros.call(this,x,y,player);
-};
-
-//loop Ovni
-Dragon.prototype.loop = function(context){
-
-	// -- Draw -- \\
-	this.render(context);
 };
 
 //Definition de l'heritage du Ovni
@@ -282,15 +274,11 @@ var Priest = function(x,y,player){
 	this.magicResist = 5;
 	this.accuracy = 3;
 	this.movePoint = 4;
+	this.loop = function(){
+		this.findPath();
+	}
   	//Write Stuff
   	Heros.call(this,x,y,player);
-};
-
-//loop Pretre
-Priest.prototype.loop = function(context){
-
-	// -- Draw -- \\
-	this.render(context);
 };
 
 //Definition de l'heritage du Pretre
