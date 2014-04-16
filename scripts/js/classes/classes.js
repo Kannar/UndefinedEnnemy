@@ -20,6 +20,7 @@ Heros.prototype.move = function (){
 	if(path.length<this.movePoint+2){
 		this.pos.x = path[path.length-1][0];
 		this.pos.y = path[path.length-1][1];
+		this.deselected();
 	}
 	//en fonction du nombre de case de déplacement du player (movePoint)	
 };

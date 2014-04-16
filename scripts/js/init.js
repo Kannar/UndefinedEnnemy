@@ -102,11 +102,9 @@ function startGame(){
     document.getElementById("EndTurn").onclick = function(){
         if(gameObjects[0][0].turn){
             gameObjects[0][0].stopTurn();
-            gameObjects[1][0].startTurn();
         }
         else{
             gameObjects[1][0].stopTurn();
-            gameObjects[0][0].startTurn();
         }
     }
 
