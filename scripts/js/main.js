@@ -32,7 +32,7 @@ function gameloop()
 {
     for(var i = 0;i<gameObjects[2].length;i++)
     {
-        gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
+        gameObjects[2][i].constructMap(mouseVars.mapPosWithoutCamX,mouseVars.mapPosWithoutCamY);
         gameObjects[2][i].renderMap();
     }
     gameObjects[0][0].loop(context);

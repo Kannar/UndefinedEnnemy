@@ -39,6 +39,8 @@ var images;
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
+    mapPosWithoutCamX:0,
+    mapPosWithoutCamY:0,
     selectCase1:0,
     selectCase2:0
 };

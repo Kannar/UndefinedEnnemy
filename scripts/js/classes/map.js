@@ -1,17 +1,17 @@
 var Map = function(matrice)
 {
     this.matrice = matrice["collisions"];
-    this.scrollSpeed = 10;
-
-    this.constructMap=function(mouseX,mouseY)
-    {
     this.scrollSpeed = 50;
     this.scrollCount = 0;
-
+    this.constructMap=function(mouseX,mouseY)
+    {
+        this.matrice = matrice["collisions"];
         if(mouseX>=mapParams.nbTileX-1 && mapParams.viewX<this.matrice[0].length-mapParams.nbTileX){
             this.scrollCount++;
-            if(this.scrollCount>=this.scrollSpeed)
+
+            if(this.scrollCount>=this.scrollSpeed){
                 this.scroll("right");
+            }
         }
         else if(mouseY>=mapParams.nbTileY-1 && mapParams.viewY<this.matrice.length-mapParams.nbTileY)
         {
@@ -34,11 +34,13 @@ var Map = function(matrice)
         else{
             this.scrollCount=0; 
         }
+        this.matrice = matrice["collisions"];
     }
 
     //Pour input clavier (tempo, le temps de mettre ce qui est plus haut au propre)
     this.scroll = function(sens)
     {
+  this.matrice = matrice["collisions"];
         if(sens == "left" && mapParams.viewX>0)
         {
             mapParams.viewX-=1;
