@@ -5,7 +5,7 @@
 *         "couches" de la map
 *   collisions: matrice de pathfinding
 *   terrains: matrice des terrains (plaine, montagnes, etc..)
-*   specials: matrice des bonus/malus à seter au début de la game
+*   specials: matrice des bonus/malus à seter au début de la game (0: on ne peut rien poser, 1: on peut y poser une case, 2: premier type de case, 3: etc..)
 *************************************/
 var map1 = {    //Map type pour test
     "collisions": [

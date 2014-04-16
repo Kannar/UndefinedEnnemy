@@ -7,8 +7,25 @@
 	</head>
 	<body>
 		<div id="screen"></div>
-		<div id="Player1">Player 1</div>
-		<div id="Player2">Player 2</div>
+
+		<div id="p1Part">
+			<div id="Player1">Player 1</div>
+			<div id="specialTilePartP1">
+				<div class="specialTile" id="specialTile1P1"></div>
+				<div class="specialTile" id="specialTile2P1"></div>
+				<div class="specialTile" id="specialTile3P1"></div>
+			</div>
+		</div>
+
+		<div id="p2Part">
+			<div id="Player2">Player 2</div>
+			<div id="specialTilePartP2">
+				<div class="specialTile" id="specialTile1P2"></div>
+				<div class="specialTile" id="specialTile2P2"></div>
+				<div class="specialTile" id="specialTile3P2"></div>
+			</div>
+		</div>
+
 		<div id="Timer">
 			<div id="countdown"></div>
 			<button type="button" id="EndTurn">End turn</button>
@@ -37,6 +54,7 @@
 		<!-- Libs -->
 		<script type="text/javascript" src="scripts/lib/pathfinding-browser.min.js"></script>
 		<script type="text/javascript" src="scripts/lib/stats.min.js"></script>
+		<script type="text/javascript" src="scripts/lib/jQuery.1.9.js"></script>
 
 		<!-- Main -->
 		<script type="text/javascript" src="scripts/js/main.js"></script>
