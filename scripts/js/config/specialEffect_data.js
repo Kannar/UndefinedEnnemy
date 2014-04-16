@@ -62,19 +62,19 @@ var specialEffect_data = [
         name: "forceMag",
         multiplicatorDgtSpell: 1.5,
         onGoodEffect: function(target){
-            if(target.name === "Mage" || target.name === "Pretre")
+            if(target.name === "Mage" || target.name === "Priest")
                 target.variableEffects.multiplicatorDgtSpell = 1.5;
         },
         offGoodEffect: function(target){
-            if(target.name === "Mage" || target.name === "Pretre")
+            if(target.name === "Mage" || target.name === "Priest")
                 target.variableEffects.multiplicatorDgtSpell = 1;
         },
         onBadEffect: function(target){
-            if(target.name === "Mage" || target.name === "Pretre")
+            if(target.name === "Mage" || target.name === "Priest")
                 target.variableEffects.canAtk = false;
         },
         offBadEffect: function(target){
-            if(target.name === "Mage" || target.name === "Pretre")
+            if(target.name === "Mage" || target.name === "Priest")
                 target.variableEffects.canAtk = true;
         } 
     },

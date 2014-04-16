@@ -1,15 +1,17 @@
 /****************************
 *
-*   Gameloop
+*   Mainloop
 *
 ****************************/
-
 function run()
 {
    // stats.begin();
     switch(state)
     {
         case "LOADING":
+        break;
+        case "SET_TILES":
+            setTiles();
         break;
         case "SELEC_PERSO":
         break;
@@ -21,6 +23,11 @@ function run()
     requestAnimFrame(run);
 }
 
+/******************************
+*
+*   Boucle in game
+*
+******************************/
 function gameloop()
 {
     for(var i = 0;i<gameObjects[2].length;i++)
@@ -29,14 +36,15 @@ function gameloop()
     }
     gameObjects[0][0].loop(context);
     gameObjects[1][0].loop(context);
+
     for(var i=0; i<gameObjects[3].length; i++)
     {
-        gameObjects[3][i].render();        
+        gameObjects[3][i].update();        
     }
 	frame++;
 }
 
-function drawMyPath(){
+function drawMyPath(){  //A dégager
     if(path)
     {
         var x;
@@ -54,16 +62,41 @@ function drawMyPath(){
     }
 }
 
-function findCaseWithCamera(x,y){
+function findCaseWithCamera(x,y){   //A dégager
     var mapCase = mouse.findCase(x,y);
     return {x:mapCase.x+mapParams.viewX, y:mapCase.y+mapParams.viewY}
 }
 
-function loading(nb,target){
+/********************************
+*
+*   Boucle de chargement
+*
+********************************/
+function loading(nb,target){    
     var pour = nb/target *100
     context.clearRect(0,0,canvas.width,canvas.height);
     context.fillStyle = '#ffffff';
     context.font="30px Verdana";
     context.fillText('Loading :',canvas.width/2-context.measureText("Loading").width,canvas.height/2);
     context.fillText(Math.floor(pour)+"%",canvas.width/2-context.measureText(Math.floor(pour)+"%").width,canvas.height/2+50);
+}
+
+/********************************
+*
+*   Boucle pose des cases
+*
+********************************/
+function setTiles()
+{
+    
+}
+
+/********************************
+*
+*   Boucle de création des équipes
+*
+********************************/
+function teamMaking()
+{
+
 }
