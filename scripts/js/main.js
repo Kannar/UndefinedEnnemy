@@ -33,6 +33,7 @@ function gameloop()
     for(var i = 0;i<gameObjects[2].length;i++)
     {
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
+        gameObjects[2][i].renderMap();
     }
     gameObjects[0][0].loop(context);
     gameObjects[1][0].loop(context);
@@ -41,6 +42,7 @@ function gameloop()
     {
         gameObjects[3][i].update();        
     }
+
 	frame++;
 }
 
@@ -55,7 +57,6 @@ function drawMyPath(){  //A dégager
         {
             x=path[i][0];
             y=path[i][1];
-            // console.log(x,y);
             context.fillStyle="rgb(255,255,0)";
             context.fillRect((x-mapParams.viewX)*mapParams.tileSize,(y-mapParams.viewY)*mapParams.tileSize,65,65);
         }

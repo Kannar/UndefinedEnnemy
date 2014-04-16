@@ -6,6 +6,9 @@ var Heros = function(x,y,player){
 	this.pos = {x : x, y : y};
 	this.image = images[this.name+''+this.player];
 	this.status = '';
+	this.hasMoved = false;
+	this.hasAttacked = false;
+	this.canBeSelected = false;
 	this.isSelected = false;
 	this.config = animsConfig[this.name+'AnimConfig'];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
@@ -31,25 +34,46 @@ Heros.prototype.variableEffects = {
 
 //Move le Hero
 Heros.prototype.move = function (){
-	if(path.length<this.movePoint+2){
-		this.pos.x = path[path.length-1][0];
-		this.pos.y = path[path.length-1][1];
-		this.deselected();
+	if(!this.hasMoved){
+		if(path.length<this.movePoint+2){
+			this.pos.x = path[path.length-1][0];
+			this.pos.y = path[path.length-1][1];
+			this.deselected();
+		}
+		this.CheckCase();
+		this.hasMoved = true;
 	}
-	//si l'on se trouve de base sur une case spéciale on retire l'effet de la dite case
-	//en fonction du nombre de case de déplacement du player (movePoint)
-	//une fois sur la case, on regarde s'il s'agit d'une case spéciale et si oui alors on applique l'effet
+};
+
+Heros.prototype.CheckCase = function (){
+	//checklacase si y a bonus/malus.
 };
 
 //Hero is selected
 Heros.prototype.selected = function (){
-	this.isSelected = true;
+	if(this.canBeSelected)
+		this.isSelected = true;
+};
+
+Heros.prototype.newTurn = function (){
+	this.hasMoved = false;
+	this.hasAttacked = false;
+	this.canBeSelected = true;
+};
+
+Heros.prototype.EndTurn = function (){
+	this.hasMoved = true;
+	this.hasAttacked = true;
+	this.canBeSelected = false;
 };
 
 Heros.prototype.findPath = function (){
-	var deplacement = findPath(this.pos.x,this.pos.y)
-	if(deplacement.length<this.movePoint+2){
-		drawMyPath();
+	if(!this.hasMoved){
+		showCharRange(this.pos,(this.movePoint));
+		var deplacement = findPath(this.pos.x,this.pos.y)
+		if(deplacement.length<this.movePoint+2){
+			drawMyPath();
+		}
 	}
 };
 
@@ -112,6 +136,10 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 			}
 		}
 	}
+	this.hasAttacked=true;
+};
+Heros.prototype.pushSomeone = function(target){
+	this.hasAttacked=true;
 };
 
 //Dessine le Hero
@@ -150,6 +178,9 @@ var Archer = function(x,y,player){
 	this.accuracy = 7;
 	this.movePoint = 4;
 	this.loop = function(){
+		if(this.hasAttacked && this.hasMoved){
+			this.EndTurn();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -164,7 +195,7 @@ Archer.prototype.constructor = Archer;
 //               CLASSE VOLEUR             ||
 //==========================================
 var Thief = function(x,y,player){
-	this.name = 'Voleur';
+	this.name = 'Thief';
 	this.width = 66;
 	this.height = 66;
 	this.hp = 12;
@@ -175,6 +206,9 @@ var Thief = function(x,y,player){
 	this.accuracy = 5;
 	this.movePoint = 6;
 	this.loop = function(){
+		if(this.hasAttacked && this.hasMoved){
+			this.EndTurn();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -189,7 +223,7 @@ Thief.prototype.constructor = Thief;
 //              CLASSE GUERRIER            ||
 //==========================================
 var Knight = function(x,y,player){
-	this.name = 'Guerrier';
+	this.name = 'Knight';
 	this.width = 66;
 	this.height = 66;
 	this.hp = 20;
@@ -200,6 +234,9 @@ var Knight = function(x,y,player){
 	this.accuracy = 4;
 	this.movePoint = 3;
 	this.loop = function(){
+		if(this.hasAttacked && this.hasMoved){
+			this.EndTurn();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -225,6 +262,9 @@ var Mage = function(x,y,player){
 	this.accuracy = 5;
 	this.movePoint = 4;
 	this.loop = function(){
+		if(this.hasAttacked && this.hasMoved){
+			this.EndTurn();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -248,8 +288,11 @@ function Dragon(x,y,player){
 	this.Resist = 4;
 	this.magicResist = 4;
 	this.accuracy = 3;
-	this.movePoint = 8;
+	this.movePoint = 3;
 	this.loop = function(){
+		if(this.hasAttacked && this.hasMoved){
+			this.EndTurn();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -275,6 +318,9 @@ var Priest = function(x,y,player){
 	this.accuracy = 3;
 	this.movePoint = 4;
 	this.loop = function(){
+		if(this.hasAttacked && this.hasMoved){
+			this.EndTurn();
+		}
 		this.findPath();
 	}
   	//Write Stuff

@@ -78,14 +78,14 @@ var animsConfig = {
 
 	KnightAnimConfig : {
 		animation : 'normal',
-		nbRows : 0,
-		nbFrameMax : 15,
+		nbRows : 1,
+		nbFrameMax : 1,
 		animFrame : 0,
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :15,
-										nbFrame : 12,
+										fps :0,
+										nbFrame : 0,
 										nbRow : 0,
 										minFrame : 0
 										},
