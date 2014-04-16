@@ -1,15 +1,27 @@
 var animsConfig = {
-	ThieftAnimConfig : {
+	ThiefAnimConfig : {
 		animation : 'normal',
-		nbRows : 0,
-		nbFrameMax : 15,
+		nbRows : 3,
+		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :15,
-										nbFrame : 12,
+										fps :2,
+										nbFrame : 2,
 										nbRow : 0,
+										minFrame : 0
+										},
+								walk : {
+										fps :2,
+										nbFrame : 4,
+										nbRow : 1,
+										minFrame : 0
+										},
+								attack : {
+										fps :2,
+										nbFrame : 3,
+										nbRow : 2,
 										minFrame : 0
 										},
 							}
@@ -17,44 +29,83 @@ var animsConfig = {
 
 	ArcherAnimConfig : {
 		animation : 'normal',
-		nbRows : 0,
-		nbFrameMax : 15,
+		nbRows : 3,
+		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :15,
-										nbFrame : 12,
+										fps :2,
+										nbFrame : 2,
 										nbRow : 0,
+										minFrame : 0
+										},
+								walk : {
+										fps :2,
+										nbFrame : 4,
+										nbRow : 1,
+										minFrame : 0
+										},
+								attack : {
+										fps :2,
+										nbFrame : 3,
+										nbRow : 2,
 										minFrame : 0
 										},
 							}
 	},
 
 	PriestAnimConfig : {
-		animFrame : 0,
-		currentFrame : 0,
-		currentAnimation : {
-								normal : {
-										fps :15,
-										nbFrame : 12,
-										minFrame : 0
-										},
-							},
-		nbFrameMax : 15
-	},
-
-	MageAnimConfig : {
 		animation : 'normal',
-		nbRows : 0,
-		nbFrameMax : 15,
+		nbRows : 3,
+		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :15,
-										nbFrame : 12,
+										fps :2,
+										nbFrame : 2,
 										nbRow : 0,
+										minFrame : 0
+										},
+								walk : {
+										fps :2,
+										nbFrame : 4,
+										nbRow : 1,
+										minFrame : 0
+										},
+								attack : {
+										fps :2,
+										nbFrame : 3,
+										nbRow : 2,
+										minFrame : 0
+										},
+							}
+	},
+
+	MageAnimConfig : {
+		animation : 'normal',
+		nbRows : 3,
+		nbFrameMax : 4,
+		animFrame : 0,
+		currentFrame : 0,
+		currentAnimation :{
+								normal : {
+										fps :2,
+										nbFrame : 2,
+										nbRow : 0,
+										minFrame : 0
+										},
+								walk : {
+										fps :2,
+										nbFrame : 4,
+										nbRow : 1,
+										minFrame : 0
+										},
+								attack : {
+										fps :2,
+										nbFrame : 3,
+										nbRow : 2,
 										minFrame : 0
 										},
 							}
@@ -62,15 +113,27 @@ var animsConfig = {
 
 	DragonAnimConfig : {
 		animation : 'normal',
-		nbRows : 1,
-		nbFrameMax : 1,
+		nbRows : 3,
+		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :0,
-										nbFrame : 0,
+										fps :2,
+										nbFrame : 2,
 										nbRow : 0,
+										minFrame : 0
+										},
+								walk : {
+										fps :2,
+										nbFrame : 4,
+										nbRow : 1,
+										minFrame : 0
+										},
+								attack : {
+										fps :2,
+										nbFrame : 3,
+										nbRow : 2,
 										minFrame : 0
 										},
 							}
@@ -78,15 +141,27 @@ var animsConfig = {
 
 	KnightAnimConfig : {
 		animation : 'normal',
-		nbRows : 1,
-		nbFrameMax : 1,
+		nbRows : 3,
+		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :0,
-										nbFrame : 0,
+										fps :2,
+										nbFrame : 2,
 										nbRow : 0,
+										minFrame : 0
+										},
+								walk : {
+										fps :2,
+										nbFrame : 4,
+										nbRow : 1,
+										minFrame : 0
+										},
+								attack : {
+										fps :2,
+										nbFrame : 3,
+										nbRow : 2,
 										minFrame : 0
 										},
 							}

@@ -41,6 +41,13 @@ function gameloop()
     gameObjects[0][0].loop(context);
     gameObjects[1][0].loop(context);
 
+    if(gameObjects[0][0].turn){
+        gameObjects[0][0].loop(context);
+    }
+    else{
+        gameObjects[1][0].loop(context);
+    }
+
     for(var i=0; i<gameObjects[3].length; i++)
     {
         gameObjects[3][i].update();        
@@ -88,25 +95,23 @@ function loading(nb,target){
 /********************************
 *
 *   Boucle pose des cases
+*   layer == quel layer
+*   x == caseX
+*   y == caseY
+*   insert == true=setLobstacle false=removeLobstacle
 *
 ********************************/
-function setTiles()
+function manageTiles(layer,x,y,insert)
 {
-    for(var i = 0;i<gameObjects[2].length;i++)
-    {
-        gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
-        gameObjects[2][i].renderMap();
-    }
+    if(insert)
+        map1[layer][x][y] = 1;
+    else
+        map1[layer][x][y] = 0;
 }
 
-/********************************
-*
-*   Boucle de création des équipes
-*
-********************************/
-function teamMaking()
+function checkTiles(layer,x,y)
 {
-
+    return map1[layer][x][y];
 }
 
 /********************************
@@ -124,4 +129,12 @@ function pause()
     context.fillStyle = 'rgba(0, 0, 0, 1)';
     context.font="30px Verdana";
     context.fillText("PAUSE", canvas.width/2 - 50, canvas.height/2);
+}
+/********************************
+*   Boucle de création des équipes
+*
+********************************/
+function teamMaking()
+{
+
 }

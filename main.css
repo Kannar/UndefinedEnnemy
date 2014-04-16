@@ -40,6 +40,13 @@
 	background-color: green;
 }
 
+#specialTilePartP1{
+	position: relative;
+	margin-top: 25px;
+	width: 150px;
+	height: 635px;
+}
+
 #Player2{
 	text-align: center;
 	color : #0000ff;
@@ -73,7 +80,6 @@
 #confirmSpeTilePlayer2{
 	background-color: green;
 }
-
 
 .specialTilePlayer1{
 	position: relative;

@@ -2,14 +2,19 @@
 //   CLASSE HEROS MERE DES HERO (ici toutes les fonctions communes)  ||
 //====================================================================
 var Heros = function(x,y,player){
+	manageTiles('players',x,y,true);
 	this.player = player;
 	this.pos = {x : x, y : y};
 	this.image = images[this.name+''+this.player];
 	this.status = '';
+	this.moveSpeed = 0.07;
 	this.hasMoved = false;
 	this.hasAttacked = false;
 	this.canBeSelected = false;
 	this.isSelected = false;
+	this.isMoving = false;
+	this.flipped = false;
+	this.path;
 	this.config = animsConfig[this.name+'AnimConfig'];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
 	this.config.frameHeight = this.image.height/this.config.nbRows;
@@ -34,15 +39,56 @@ Heros.prototype.variableEffects = {
 
 //Move le Hero
 Heros.prototype.move = function (){
-	if(!this.hasMoved){
+	if(!this.hasMoved && !this.isMoving){
 		if(path.length<this.movePoint+2){
-			this.pos.x = path[path.length-1][0];
-			this.pos.y = path[path.length-1][1];
-			this.deselected();
+			if(checkTiles('players',path[path.length-1][0],path[path.length-1][1]) == 0){
+				manageTiles('players',this.pos.x,this.pos.y,false);
+				this.path = path;
+				// this.pos.x = path[path.length-1][0];
+				// this.pos.y = path[path.length-1][1];
+				// this.CheckCase();
+				this.isMoving = true;
+				this.hasMoved = true;
+				this.changeAnim('walk')
+			}
 		}
-		this.CheckCase();
-		this.hasMoved = true;
+		this.deselected();
 	}
+	else if(this.isMoving){
+		if(this.path[0][0]<this.pos.x-this.moveSpeed){
+			this.flipped = true;
+			this.pos.x-=this.moveSpeed;
+		}
+		else if(this.path[0][0]>this.pos.x+this.moveSpeed){
+			this.flipped = false;
+			this.pos.x+=this.moveSpeed;
+		}
+		if(this.path[0][1]<this.pos.y-this.moveSpeed){
+			this.pos.y-=this.moveSpeed;
+		}
+		if(this.path[0][1]>this.pos.y+this.moveSpeed){	
+			this.pos.y+=this.moveSpeed;
+		}
+		if( (this.path[0][0]>=(this.pos.x-this.moveSpeed) && this.path[0][0]<=(this.pos.x+this.moveSpeed)) && (this.path[0][1]>=(this.pos.y-this.moveSpeed) && this.path[0][1]<=(this.pos.y+this.moveSpeed)) ) {
+			if(this.path.length>1){
+				this.path.splice(0,1);
+			}
+			else{
+				this.pos.x = this.path[0][0];
+				this.pos.y = this.path[0][1];
+				manageTiles('players',this.pos.x,this.pos.y,true);
+				this.path;
+				this.changeAnim('normal');
+				this.isMoving = false;
+			}
+		}
+	}
+};
+Heros.prototype.changeAnim = function (name){
+	this.config.animation = name;
+	this.config.animFrame = 0;
+	this.config.currentFrame = 0;
+	//checklacase si y a bonus/malus.
 };
 
 Heros.prototype.CheckCase = function (){
@@ -51,8 +97,16 @@ Heros.prototype.CheckCase = function (){
 
 //Hero is selected
 Heros.prototype.selected = function (){
-	if(this.canBeSelected)
+	if(this.canBeSelected){
 		this.isSelected = true;
+		this.parent.isSelecting = true;
+	}
+};
+
+//Hero is deselection
+Heros.prototype.deselected = function (){
+	this.isSelected = false;
+	this.parent.isSelecting = false;
 };
 
 Heros.prototype.newTurn = function (){
@@ -64,22 +118,18 @@ Heros.prototype.newTurn = function (){
 Heros.prototype.EndTurn = function (){
 	this.hasMoved = true;
 	this.hasAttacked = true;
+	this.isSelected= false;
 	this.canBeSelected = false;
 };
 
 Heros.prototype.findPath = function (){
 	if(!this.hasMoved){
-		showCharRange(this.pos,(this.movePoint));
+		showCharRange(this.pos,(this.movePoint),this.attackRange);
 		var deplacement = findPath(this.pos.x,this.pos.y)
 		if(deplacement.length<this.movePoint+2){
 			drawMyPath();
 		}
 	}
-};
-
-//Hero is deselection
-Heros.prototype.deselected = function (){
-	this.isSelected = false;
 };
 
 //Hero get Item
@@ -151,12 +201,24 @@ Heros.prototype.render = function(context){
 			this.config.currentFrame = 0;
 		}
 	}
+	if(this.flipped){
+		context.save();
+		context.translate((this.pos.x*mapParams.tileSize)+this.config.frameWidth,(this.pos.y*mapParams.tileSize));
+		context.scale(-1,1);
+		context.drawImage(this.image,
+		this.config.currentFrame * this.config.frameWidth, 
+		this.config.currentAnimation[this.config.animation].nbRow * this.config.frameHeight,
+		this.config.frameWidth, this.config.frameHeight,
+		0,0, this.config.frameWidth, this.config.frameHeight);
+		context.restore();
+	}
+	else{
 	context.drawImage(this.image,
 		this.config.currentFrame * this.config.frameWidth, 
 		this.config.currentAnimation[this.config.animation].nbRow * this.config.frameHeight,
 		this.config.frameWidth, this.config.frameHeight,
 		(this.pos.x-mapParams.viewX)*mapParams.tileSize, (this.pos.y-mapParams.viewY)*mapParams.tileSize, this.config.frameWidth, this.config.frameHeight);
-	//debugger;
+	}
 };
 
 //Attaque Hero
@@ -166,7 +228,8 @@ Heros.prototype.attack = function(){
 //==========================================
 //              CLASSE ARCHER              ||
 //==========================================
-var Archer = function(x,y,player){
+var Archer = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Archer';
 	this.width = 66;
 	this.height = 66;
@@ -181,6 +244,9 @@ var Archer = function(x,y,player){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
 		}
+		if(this.isMoving){
+			this.move();
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -194,7 +260,8 @@ Archer.prototype.constructor = Archer;
 //==========================================
 //               CLASSE VOLEUR             ||
 //==========================================
-var Thief = function(x,y,player){
+var Thief = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Thief';
 	this.width = 66;
 	this.height = 66;
@@ -205,9 +272,13 @@ var Thief = function(x,y,player){
 	this.magicResist = 4;
 	this.accuracy = 5;
 	this.movePoint = 6;
+	this.attackRange=2;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}
@@ -222,7 +293,8 @@ Thief.prototype.constructor = Thief;
 //==========================================
 //              CLASSE GUERRIER            ||
 //==========================================
-var Knight = function(x,y,player){
+var Knight = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Knight';
 	this.width = 66;
 	this.height = 66;
@@ -233,9 +305,13 @@ var Knight = function(x,y,player){
 	this.magicResist = 5;
 	this.accuracy = 4;
 	this.movePoint = 3;
+	this.attackRange=1;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}
@@ -250,7 +326,8 @@ Knight.prototype.constructor = Knight;
 //==========================================
 //                CLASSE MAGE              ||
 //==========================================
-var Mage = function(x,y,player){
+var Mage = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Mage';
 	this.width = 66;
 	this.height = 66;
@@ -261,9 +338,13 @@ var Mage = function(x,y,player){
 	this.magicResist = 6;
 	this.accuracy = 5;
 	this.movePoint = 4;
+	this.attackRange=2;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}
@@ -278,7 +359,8 @@ Mage.prototype.constructor = Mage;
 //==========================================
 //              CLASSE OVNI               ||
 //==========================================
-function Dragon(x,y,player){
+function Dragon(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Dragon';
 	this.width = 66;
 	this.height = 66;
@@ -289,9 +371,13 @@ function Dragon(x,y,player){
 	this.magicResist = 4;
 	this.accuracy = 3;
 	this.movePoint = 3;
+	this.attackRange=1;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}
@@ -306,7 +392,8 @@ Dragon.prototype.constructor = Dragon;
 //==========================================
 //              CLASSE PRETRE                ||
 //==========================================
-var Priest = function(x,y,player){
+var Priest = function(x,y,player,parent){
+	this.parent = parent;
 	this.name = 'Priest';
 	this.width = 66;
 	this.height = 66;
@@ -317,9 +404,13 @@ var Priest = function(x,y,player){
 	this.magicResist = 5;
 	this.accuracy = 3;
 	this.movePoint = 4;
+	this.attackRange=2;
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
+		}
+		if(this.isMoving){
+			this.move();
 		}
 		this.findPath();
 	}

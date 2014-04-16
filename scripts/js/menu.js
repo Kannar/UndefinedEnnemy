@@ -10,7 +10,6 @@
 *
 ***********************************/
 $(document).ready(function(){
-
     var stateSpecialTiles = {
         "Player1": {
             "specialTile1": false,  //True si activé (posé sur le terrain quoi)
