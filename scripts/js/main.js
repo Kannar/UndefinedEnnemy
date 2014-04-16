@@ -10,6 +10,9 @@ function run()
     {
         case "LOADING":
         break;
+        case "PAUSE":
+            pause();
+        break;
         case "SET_TILES":
             setTiles();
         break;
@@ -46,7 +49,7 @@ function gameloop()
 	frame++;
 }
 
-function drawMyPath(){  //A dégager
+function drawMyPath(){  //A changer d'endroit
     if(path)
     {
         var x;
@@ -63,7 +66,7 @@ function drawMyPath(){  //A dégager
     }
 }
 
-function findCaseWithCamera(x,y){   //A dégager
+function findCaseWithCamera(x,y){   //A changer d'endroit
     var mapCase = mouse.findCase(x,y);
     return {x:mapCase.x+mapParams.viewX, y:mapCase.y+mapParams.viewY}
 }
@@ -89,7 +92,11 @@ function loading(nb,target){
 ********************************/
 function setTiles()
 {
-    
+    for(var i = 0;i<gameObjects[2].length;i++)
+    {
+        gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
+        gameObjects[2][i].renderMap();
+    }
 }
 
 /********************************
@@ -100,4 +107,21 @@ function setTiles()
 function teamMaking()
 {
 
+}
+
+/********************************
+*
+*   Ecran pause
+*
+********************************/
+function pause()
+{
+    //Petit gris
+    context.fillStyle = "rgba(220, 220, 220, 0.1)";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    //Text
+    context.fillStyle = 'rgba(0, 0, 0, 1)';
+    context.font="30px Verdana";
+    context.fillText("PAUSE", canvas.width/2 - 50, canvas.height/2);
 }

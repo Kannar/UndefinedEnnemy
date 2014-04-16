@@ -2,17 +2,32 @@ function eventInit(){
     //****Mouse****//
         //OnClick
     canvas.addEventListener("click", function(e){
-        if(gameObjects[0][0].turn){
-            gameObjects[0][0].onclick(e.clientX, e.clientY);
+        if(state === "SET_TILES")
+        {
+            var _pos = mouse.findCase(e.clientX, e.clientY);
+
+            console.log(_pos);
+
+            if(currentTileType != undefined)
+            {
+                //Posage de la case
+                currentTileType = undefined;    //On RAZ la selection
+            }
         }
-        else{
-            gameObjects[1][0].onclick(e.clientX, e.clientY);
+        else if(state === "IN_GAME")
+        {
+            if(gameObjects[0][0].turn){
+                gameObjects[0][0].onclick(e.clientX, e.clientY);
+            }
+            else{
+                gameObjects[1][0].onclick(e.clientX, e.clientY);
+            }
+            endPathFinding(e);
+            doPathFinding(e);            
         }
-        endPathFinding(e);
-        doPathFinding(e);
 	});
         //MouseMove pour déplacer le canvas
-    canvas.addEventListener("mousemove", function(e){	
+    canvas.addEventListener("mousemove", function(e){
         getMouseOnMap(e);
 	});
 }

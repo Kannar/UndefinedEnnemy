@@ -1,6 +1,7 @@
 var Map = function(matrice)
 {
     this.matrice = matrice["collisions"];
+    this.speTiles = matrice["specials"];
     this.scrollSpeed = 10;
 
     this.constructMap=function(mouseX,mouseY)
@@ -75,6 +76,18 @@ var Map = function(matrice)
                 context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
             };
         };
+
+        for(var i = 0; i<this.speTiles.length; i++)
+        {
+            for(var j=0; j<this.speTiles[i].length; j++)
+            {
+                if(this.speTiles[i][j] == 1)   //Emplacement pour case speciale
+                {
+                    context.fillStyle = "rgb(50, 50, 250)";
+                    context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                }
+            }
+        }
     }
 
     //Appliquer des effets liés au case spéciales

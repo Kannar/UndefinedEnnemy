@@ -3,26 +3,50 @@
 	<head>
 		<title>Undefined Ennemy</title>
 		<link href="main.css" rel="stylesheet" type="text/css"/>
-
+		<script type="text/javascript" src="scripts/lib/jQuery.1.9.js"></script>
 	</head>
 	<body>
 		<div id="screen"></div>
 
-		<div id="p1Part">
+		<div id="Player1Part">
 			<div id="Player1">Player 1</div>
-			<div id="specialTilePartP1">
-				<div class="specialTile" id="specialTile1P1"></div>
-				<div class="specialTile" id="specialTile2P1"></div>
-				<div class="specialTile" id="specialTile3P1"></div>
+			<div id="specialTilePartPlayer1">
+				<div class="specialTilePlayer1" id="specialTile1Player1">T1</div>
+				<div class="specialTilePlayer1" id="specialTile2Player1">T2</div>
+				<div class="specialTilePlayer1" id="specialTile3Player1">T3</div>
+
+				<div class="confirmButton" id="confirmSpeTilePlayer1">OK</div>
+			</div>
+			<div id="choiceTileTypePlayer1">
+				<div class="selecSpecialTilePlayer1" id="resistanceSpeTilePlayer1"></div>
+				<div class="selecSpecialTilePlayer1" id="forceMeleeSpeTilePlayer1"></div>
+				<div class="selecSpecialTilePlayer1" id="forceDistSpeTilePlayer1"></div>
+				<div class="selecSpecialTilePlayer1" id="forceMagSpeTilePlayer1"></div>
+				<div class="selecSpecialTilePlayer1" id="hpSpeTilePlayer1"></div>
+				<div class="selecSpecialTilePlayer1" id="atkSpeTilePlayer1"></div>
+				<div class="selecSpecialTilePlayer1" id="prioriteSpeTilePlayer1"></div>
+				<div class="selecSpecialTilePlayer1" id="precisionSpeTilePlayer1"></div>
 			</div>
 		</div>
 
-		<div id="p2Part">
+		<div id="Player2Part">
 			<div id="Player2">Player 2</div>
-			<div id="specialTilePartP2">
-				<div class="specialTile" id="specialTile1P2"></div>
-				<div class="specialTile" id="specialTile2P2"></div>
-				<div class="specialTile" id="specialTile3P2"></div>
+			<div id="specialTilePartPlayer2">
+				<div class="specialTilePlayer2" id="specialTile1Player2">T1</div>
+				<div class="specialTilePlayer2" id="specialTile2Player2">T2</div>
+				<div class="specialTilePlayer2" id="specialTile3Player2">T3</div>
+
+				<div class="confirmButton" id="confirmSpeTilePlayer2">OK</div>
+			</div>
+			<div id="choiceTileTypePlayer2">
+				<div class="selecSpecialTilePlayer2" id="resistanceSpeTilePlayer2"></div>
+				<div class="selecSpecialTilePlayer2" id="forceMeleeSpeTilePlayer2"></div>
+				<div class="selecSpecialTilePlayer2" id="forceDistSpeTilePlayer2"></div>
+				<div class="selecSpecialTilePlayer2" id="forceMagSpeTilePlayer2"></div>
+				<div class="selecSpecialTilePlayer2" id="hpSpeTilePlayer2"></div>
+				<div class="selecSpecialTilePlayer2" id="atkSpeTilePlayer2"></div>
+				<div class="selecSpecialTilePlayer2" id="prioriteSpeTilePlayer2"></div>
+				<div class="selecSpecialTilePlayer2" id="precisionSpetilePlayer2"></div>
 			</div>
 		</div>
 
@@ -44,6 +68,7 @@
 		<script type="text/javascript" src="scripts/js/input.js"></script>
 		<script type="text/javascript" src="scripts/js/pathfinding.js"></script>
 		<script type="text/javascript" src="scripts/js/eventInit.js"></script>
+		<script type="text/javascript" src="scripts/js/menu.js"></script>
 
 		<!-- Classes -->
 		<script type="text/javascript" src="scripts/js/classes/map.js"></script>
@@ -54,7 +79,6 @@
 		<!-- Libs -->
 		<script type="text/javascript" src="scripts/lib/pathfinding-browser.min.js"></script>
 		<script type="text/javascript" src="scripts/lib/stats.min.js"></script>
-		<script type="text/javascript" src="scripts/lib/jQuery.1.9.js"></script>
 
 		<!-- Main -->
 		<script type="text/javascript" src="scripts/js/main.js"></script>
