@@ -91,7 +91,7 @@ function init() //Init général
 }
 
 function startGame(){
-    
+    context.clearRect(0,0,canvas.width,canvas.height);
     gameObjects[2].push(new Map(matrix));
     gameObjects[1].push(new Player(canvas,'Player2'));
     gameObjects[0].push(new Player(canvas,'Player1'));
@@ -102,11 +102,9 @@ function startGame(){
     document.getElementById("EndTurn").onclick = function(){
         if(gameObjects[0][0].turn){
             gameObjects[0][0].stopTurn();
-            gameObjects[1][0].startTurn();
         }
         else{
             gameObjects[1][0].stopTurn();
-            gameObjects[0][0].startTurn();
         }
     }
 

@@ -19,15 +19,20 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 }
 //loop Player
 Player.prototype.loop = function(context){
-	if(this.turn){	
+	if(this.turn){
 		this.timerTurn(context);
-	}
-	for (var i = this.army.length - 1; i >= 0; i--) {
-		if(this.army[i].isSelected){
-			this.army[i].loop(context);
-		}
+		for (var i = this.army.length - 1; i >= 0; i--) {
+			if(this.army[i].isSelected){
+				this.army[i].loop(context);
+			}
 		this.army[i].render(context);
-	};
+		}
+	}
+	else{
+		for (var i = this.army.length - 1; i >= 0; i--) {
+			this.army[i].render(context);
+		}
+	}
 };
 
 Player.prototype.onclick = function(x,y){

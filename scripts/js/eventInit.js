@@ -2,11 +2,11 @@ function eventInit(){
     //****Mouse****//
         //OnClick
     canvas.addEventListener("click", function(e){
-        if(gameObjects[0][0].turn=true){
+        if(gameObjects[0][0].turn){
             gameObjects[0][0].onclick(e.clientX, e.clientY);
         }
         else{
-            gameObjects[0][0].onclick();
+            gameObjects[1][0].onclick(e.clientX, e.clientY);
         }
         endPathFinding(e);
         doPathFinding(e);

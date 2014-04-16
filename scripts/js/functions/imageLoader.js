@@ -26,6 +26,9 @@ function loadImages(imagesTable)
                 startGame();
                 state = 'IN_GAME';
             }
+            else{
+                loading(_imagesLoaded,_nbImages);
+            }
         };
 
     }
