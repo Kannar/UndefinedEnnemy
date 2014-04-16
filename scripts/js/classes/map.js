@@ -1,16 +1,16 @@
 var Map = function(matrice)
 {
-    this.matrice = matrice;
+    this.matrice = matrice["collisions"];
     this.scrollSpeed = 10;
 
     this.constructMap=function(mouseX,mouseY)
     {
-        if(mouseX>mapParams.nbTileX-1 && frame>=this.scrollSpeed && mapParams.viewX<matrice[0].length-mapParams.nbTileX)
+        if(mouseX>mapParams.nbTileX-1 && frame>=this.scrollSpeed && mapParams.viewX<this.matrice[0].length-mapParams.nbTileX)
         {
           frame=0;
           mapParams.viewX+=1;
         }
-        if(mouseY>mapParams.nbTileY-1 && frame>=this.scrollSpeed && mapParams.viewY<matrice.length-mapParams.nbTileY)
+        if(mouseY>mapParams.nbTileY-1 && frame>=this.scrollSpeed && mapParams.viewY<this.matrice.length-mapParams.nbTileY)
         {
           frame=0;
           mapParams.viewY+=1;
@@ -38,6 +38,11 @@ var Map = function(matrice)
                 {
                   context.fillStyle="rgb(255,255,255)";
                 }
+                if(matrice["players"][i][j]==2)
+                {
+                  context.fillStyle="rgb(255,255,0)";
+                  context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                }
                 //  console.log(mapParams.viewX)
                 context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
             };
@@ -52,12 +57,12 @@ var Map = function(matrice)
             frame=0;
             mapParams.viewX-=1;
         }
-        if(sens == "right" && mapParams.viewX<matrice[0].length-mapParams.nbTileX)
+        if(sens == "right" && mapParams.viewX<this.matrice[0].length-mapParams.nbTileX)
         {
             frame=0;
             mapParams.viewX+=1;
         }
-        if(sens == "bot" && mapParams.viewY<matrice.length-mapParams.nbTileY)
+        if(sens == "bot" && mapParams.viewY<this.matrice.length-mapParams.nbTileY)
         {
             frame=0;
             mapParams.viewY+=1;

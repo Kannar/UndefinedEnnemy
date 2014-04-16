@@ -48,6 +48,7 @@ Heros.prototype.selected = function (){
 
 Heros.prototype.findPath = function (){
 	var deplacement = findPath(this.pos.x,this.pos.y)
+	showCharRange(this.pos,(this.movePoint));
 	if(deplacement.length<this.movePoint+2){
 		drawMyPath();
 	}
@@ -248,7 +249,7 @@ function Dragon(x,y,player){
 	this.Resist = 4;
 	this.magicResist = 4;
 	this.accuracy = 3;
-	this.movePoint = 8;
+	this.movePoint = 3;
 	this.loop = function(){
 		this.findPath();
 	}

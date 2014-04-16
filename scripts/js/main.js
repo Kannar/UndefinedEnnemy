@@ -33,6 +33,7 @@ function gameloop()
     {
         gameObjects[3][i].render();        
     }
+
 	frame++;
 }
 

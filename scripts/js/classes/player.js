@@ -4,7 +4,7 @@ var Player = function(canvas,name){
 	document.getElementById(this.name).visible = true;
 	this.timerBox = document.getElementById('countdown')
 	this.army = [];
-	this.army.push(new Dragon(3,4,this.name))
+	this.army.push(new Dragon(8,4,this.name))
 	this.status = '';
 	this.turn = false;
 	this.turnTimer = 30; //secondes

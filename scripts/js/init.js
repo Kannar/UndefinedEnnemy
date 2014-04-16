@@ -34,6 +34,7 @@ var mouse;
 var keyboard;
 var posX,posY;
 var path;
+var showRange=false;
 var images;
 var mouseVars={
     mapPosX:0,
@@ -92,7 +93,7 @@ function init() //Init général
 
 function startGame(){
     context.clearRect(0,0,canvas.width,canvas.height);
-    gameObjects[2].push(new Map(matrix));
+    gameObjects[2].push(new Map(map1));
     gameObjects[1].push(new Player(canvas,'Player2'));
     gameObjects[0].push(new Player(canvas,'Player1'));
     gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
