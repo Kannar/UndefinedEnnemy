@@ -64,6 +64,7 @@ Heros.prototype.newTurn = function (){
 Heros.prototype.EndTurn = function (){
 	this.hasMoved = true;
 	this.hasAttacked = true;
+	this.isSelected= false;
 	this.canBeSelected = false;
 };
 
