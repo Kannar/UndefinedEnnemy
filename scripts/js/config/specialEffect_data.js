@@ -22,19 +22,19 @@ var specialEffect_data = [
         name: "forceMelee",
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Ovni" || target.name === "Pretre")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
                 target.variableEffects.multiplicatorDgtDealt = 1.5;
         },
         offGoodEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Ovni" || target.name === "Pretre")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
                 target.variableEffects.multiplicatorDgtDealt = 1;
         },
         onBadEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Ovni" || target.name === "Pretre")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
                 target.variableEffects.canAtk = false;
         },
         offBadEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Ovni" || target.name === "Pretre")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
                 target.variableEffects.canAtk = true;
         }  
     },
