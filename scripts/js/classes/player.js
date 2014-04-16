@@ -5,6 +5,7 @@ var Player = function(canvas,name){
 	this.timerBox = document.getElementById('countdown')
 	this.army = [];
 	this.army.push(new Dragon(8,4,this.name))
+	this.army.push(new Knight(5,3,this.name))
 	this.status = '';
 	this.turn = false;
 	this.turnTimer = 30; //secondes
@@ -42,10 +43,12 @@ Player.prototype.onclick = function(x,y){
 			if(!this.army[i].isSelected){
 				this.army[i].selected();
 			}
+			else{
+				this.army[i].deselected();
+			}
 		} 
 		else if(this.army[i].isSelected) {
 			this.army[i].move();
-			this.army[i].isSelected = false;
 		}
 	};
 }
@@ -54,6 +57,9 @@ Player.prototype.startTurn = function(){
 	this.turn = true;
 	this.actualTimer =   (new Date().getTime()/1000)+this.turnTimer;
 	this.lastUpdate =  (new Date().getTime()/1000);
+	for (var i = 0; i < this.army.length; i++){
+		this.army[i].newTurn();
+	}
 };
 
 Player.prototype.stopTurn = function(){
