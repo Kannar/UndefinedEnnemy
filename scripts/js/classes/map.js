@@ -10,26 +10,31 @@ var Map = function(matrice)
             this.scrollCount++;
 
             if(this.scrollCount>=this.scrollSpeed){
-                this.scroll("right");
+                //this.scroll("right");
             }
         }
         else if(mouseY>=mapParams.nbTileY-1 && mapParams.viewY<this.matrice.length-mapParams.nbTileY)
         {
           this.scrollCount++;
           if(this.scrollCount>=this.scrollSpeed)
-            this.scroll("bot");
+          {
+            // this.scroll("bot");
+          }
         }
         else if(mouseX<=mapParams.viewX && mapParams.viewX>0)
         {
           this.scrollCount++;
-          if(this.scrollCount>=this.scrollSpeed) 
-            this.scroll("left");
+          if(this.scrollCount>=this.scrollSpeed)
+          { 
+            // this.scroll("left");
+          }
         }
         else if(mouseY<=mapParams.viewY && mapParams.viewY>0)
         {
           this.scrollCount++; 
-          if(this.scrollCount>=this.scrollSpeed)
-            this.scroll("top");
+          if(this.scrollCount>=this.scrollSpeed){
+            // this.scroll("top");
+         }
         }
         else{
             this.scrollCount=0; 

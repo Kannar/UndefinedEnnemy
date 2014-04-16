@@ -31,6 +31,7 @@ var mapParams = {
 
 var frame=0;
 var mouse;
+var c=[];
 var keyboard;
 var posX,posY;
 var path;

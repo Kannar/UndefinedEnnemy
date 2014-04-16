@@ -46,8 +46,9 @@ function endPathFinding(e){
 function resetClick(e){
     //if(mouse.findCase(e.clientX, e.clientY).x ||)
 }
-function showCharRange(case1,range){
+function showCharRange(case1,range,attackRange){
     var checkPath;
+    attackRange=4
     for(var i=-range;i<=range;i++)
     {
         for(var j=-range;j<=range;j++)
@@ -65,8 +66,33 @@ function showCharRange(case1,range){
                     grid = gridBackup;
                     if(checkPath.length<=range+1 && map1["collisions"][j+case1.y][i+case1.x]!=1)
                     {
-                     context.fillStyle="rgba(0,0,255,0.5)";
-                     context.fillRect((i+(case1.x-mapParams.viewX))*mapParams.tileSize,(j+case1.y-mapParams.viewY)*mapParams.tileSize,65,65);
+                        context.fillStyle="rgba(0,0,255,0.5)";
+                        context.fillRect((i+(case1.x-mapParams.viewX))*mapParams.tileSize,(j+case1.y-mapParams.viewY)*mapParams.tileSize,65,65);
+                    }
+                }
+            
+            }
+        }
+    }
+    for(var i=-(range+attackRange);i<=(range+attackRange);i++)
+    {
+        for(var j=-(range+attackRange);j<=range+attackRange;j++)
+        {
+            if(Math.abs(i)+Math.abs(j)>range && Math.abs(i)+Math.abs(j)<=range+attackRange)
+            {
+                if(j+case1.y>=0 && j+case1.y<mapParams.nbCaseMapY)
+                {
+                   // console.log(i+case1.x,j+case1.y)
+                    var grid = new PF.Grid(mapParams.nbCaseMapY, mapParams.nbCaseMapX, map1["specials"]);
+                    grid.setWalkableAt(0, 1, false);
+                    var finder = new PF.AStarFinder();
+                    var gridBackup = grid.clone();
+                    checkPath = finder.findPath(case1.x, case1.y, i+case1.x,j+case1.y , grid);
+                    grid = gridBackup;
+                    if(checkPath.length<=range+attackRange-1)
+                    {
+                        context.fillStyle="rgba(255,0,0,0.5)";
+                        context.fillRect((i+(case1.x-mapParams.viewX))*mapParams.tileSize,(j+case1.y-mapParams.viewY)*mapParams.tileSize,65,65);
                     }
                 }
             
