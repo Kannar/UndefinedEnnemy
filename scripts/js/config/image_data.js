@@ -13,7 +13,8 @@ var imgSrc = {
 	"PriestPlayer1" : "images/Heros/Priest1.png",
 	"PriestPlayer2" : "images/Heros/Priest2.png",
 	"MagePlayer1" : "images/Heros/Mage1.png",
-	"MagePlayer2" : "images/Heros/Mage2.png"
+	"MagePlayer2" : "images/Heros/Mage2.png",
+	"tilesSheet" : "images/tiles/terrain_planche.jpg",
 };
 
 /********************************************

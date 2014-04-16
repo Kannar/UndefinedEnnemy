@@ -13,7 +13,6 @@ var Heros = function(x,y,player){
 	this.canBeSelected = false;
 	this.isSelected = false;
 	this.isMoving = false;
-	this.flipped = false;
 	this.path;
 	this.config = animsConfig[this.name+'AnimConfig'];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
@@ -56,11 +55,9 @@ Heros.prototype.move = function (){
 	}
 	else if(this.isMoving){
 		if(this.path[0][0]<this.pos.x-this.moveSpeed){
-			this.flipped = true;
 			this.pos.x-=this.moveSpeed;
 		}
 		else if(this.path[0][0]>this.pos.x+this.moveSpeed){
-			this.flipped = false;
 			this.pos.x+=this.moveSpeed;
 		}
 		if(this.path[0][1]<this.pos.y-this.moveSpeed){
@@ -125,7 +122,7 @@ Heros.prototype.EndTurn = function (){
 Heros.prototype.findPath = function (){
 	if(!this.hasMoved){
 		showCharRange(this.pos,(this.movePoint),this.attackRange);
-		var deplacement = findPath(this.pos.x,this.pos.y)
+		var deplacement = findPath(this.pos.x,this.pos.y,mouseVars.mapPosX, mouseVars.mapPosY,'collisions');
 		if(deplacement.length<this.movePoint+2){
 			drawMyPath();
 		}
@@ -201,24 +198,11 @@ Heros.prototype.render = function(context){
 			this.config.currentFrame = 0;
 		}
 	}
-	if(this.flipped){
-		context.save();
-		context.translate((this.pos.x*mapParams.tileSize)+this.config.frameWidth,(this.pos.y*mapParams.tileSize));
-		context.scale(-1,1);
-		context.drawImage(this.image,
-		this.config.currentFrame * this.config.frameWidth, 
-		this.config.currentAnimation[this.config.animation].nbRow * this.config.frameHeight,
-		this.config.frameWidth, this.config.frameHeight,
-		0,0, this.config.frameWidth, this.config.frameHeight);
-		context.restore();
-	}
-	else{
 	context.drawImage(this.image,
 		this.config.currentFrame * this.config.frameWidth, 
 		this.config.currentAnimation[this.config.animation].nbRow * this.config.frameHeight,
 		this.config.frameWidth, this.config.frameHeight,
 		(this.pos.x-mapParams.viewX)*mapParams.tileSize, (this.pos.y-mapParams.viewY)*mapParams.tileSize, this.config.frameWidth, this.config.frameHeight);
-	}
 };
 
 //Attaque Hero
