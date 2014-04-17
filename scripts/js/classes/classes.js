@@ -15,6 +15,7 @@ var Heros = function(x,y,player){
 	this.isSelected = false;
 	this.isMoving = false;
 	this.path;
+	this.targetAvaible=[];
 	this.config = animsConfig[this.name+'AnimConfig'];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
 	this.config.frameHeight = this.image.height/this.config.nbRows;
@@ -22,17 +23,47 @@ var Heros = function(x,y,player){
 };
 Heros.prototype.constructor = Heros;
 
-Heros.prototype.checEnnemiInRange=function(){
-    for(var i=-this.attackRange;i<=this.attackRange;i++)
-    {
-        for(var j=-this.attackRange;j<=this.attackRange;j++)
-        {
-        	if(Math.abs(i)+Math.abs(j)<=this.attackRange)
-            {
-            	//if()
+Heros.prototype.checkEnnemiInRange=function(){
+    for(var i=-this.attackRange;i<=this.attackRange;i++){
+        for(var j=-this.attackRange;j<=this.attackRange;j++){
+        	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
+            	if(map["players"][this.pos.y][this.pos.x]==1){
+            		if(gameObjects[0][0].turn){
+            			for(var k=0; k<gameObjects[1][0].army.length;k++){
+            				if(gameObjects[1][0].army[k].pos.x==this.pos.x+i && 
+            				   gameObjects[1][0].army[k].pos.y==this.pos.y+j){
+            					console.log("j'attque l'arme 2");
+            					this.targetAvaible.push(gameObjects[1][0].army[k]);
+            				}
+            			}
+            		}
+            		if(gameObjects[1][0].turn){
+            			for(var k=0; k<gameObjects[0][0].army.length;k++){
+            				if(gameObjects[0][0].army[k].pos.x==this.pos.x+i && 
+        				   		gameObjects[0][0].army[k].pos.y==this.pos.y+j){
+            					console.log("j'attque l'arme 1");
+            					this.targetAvaible.push(gameObjects[0][0].army[k]);
+            				}
+            			}
+            		}
+            	}
             }
         }
     }
+    if(this.targetAvaible.length>0)
+    {
+    	return true;
+    }
+    else
+    	return false;
+}
+Heros.prototype.chooseTarget=function(caseSelected){
+	for(var i =0;i<this.targetAvaible.length;i++){
+		if(caseSelected.x==this.targetAvaible[i].pos.x && 
+		   caseSelected.y==this.targetAvaible[i].pos.y){
+			this.attack(this.targetAvaible[i]);
+		}
+	}
 }
 //Contient toutes les variables relatives aux effets de cases
 Heros.prototype.variableEffects = {
