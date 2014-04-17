@@ -62,7 +62,7 @@ Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
     }
     if(this.targetAvaible.length>0)
     {
-	    //return this.chooseTarget(caseClicked);
+	    return this.chooseTarget(caseClicked);
 	}
 }
 Heros.prototype.chooseTarget=function(caseSelected){
