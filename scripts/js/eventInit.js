@@ -6,15 +6,19 @@ function eventInit(){
         {
             var _pos = mouse.findCase(e.clientX, e.clientY);
 
-            console.log(_pos);
+            var _caseNb;
+            if(currentPlayerTurn === "Player1")
+                _caseNb = 1;
+            else if(currentPlayerTurn === "Player2")
+                _caseNb = 2;
 
             if(currentTileType.type != undefined)
             {
-                if(gameObjects[2][0].speTiles[_pos.y][_pos.x] == 1)
+                if(gameObjects[2][0].speTiles[_pos.y][_pos.x] == _caseNb)
                 {
                     gameObjects[3].push(new Tile({x: _pos.x, y: _pos.y, type: specialEffect_data[currentTileType.type], player: currentTileType.player}));    //Posage de la case
 
-                    gameObjects[2][0].speTiles[_pos.y][_pos.x] = specialEffect_data[currentTileType.type].id;
+                    gameObjects[2][0].speTiles[_pos.y][_pos.x] = 0; //Une fois prise la case n'est plus dispo
 
                     $("#choiceTileType"+currentTileType.player).slideToggle(200, function(){    //On cache la selec tile
 
@@ -24,10 +28,18 @@ function eventInit(){
 
                     });
 
+                    // console.log(stateSpecialTiles[currentTileType.player][currentTileType.nameSlotTile]);
+                    console.log(currentTileType.nameSlotTile);
+
+                    stateSpecialTiles[currentTileType.player][currentTileType.nameSlotTile] = true;  
+
                     var _nbSlotFull = 0;
                     for(var _i in stateSpecialTiles[currentTileType.player])    //On enregistre le fait que le slot actuel a été attribué
                     {
-                        _nbSlotFull += 1;
+                        if(stateSpecialTiles[currentTileType.player][_i] === true)
+                        {                                
+                            _nbSlotFull += 1;
+                        }
 
                         if(_nbSlotFull == 3)    //Si tout les slot sont plein
                         {
@@ -41,20 +53,14 @@ function eventInit(){
                                 state = "SELEC_PERSO";    //On passe à la pose des persos
                             }
                         }
-
-                        if(!stateSpecialTiles[currentTileType.player][_i])
-                        {
-                            stateSpecialTiles[currentTileType.player][_i] = true;
-                            break;
-                        }
-                    }
+                    }                  
 
                     for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
                     {
                         document.getElementById(_i + "SpeTile" + currentTileType.player).style.backgroundColor = "rgb(0, 0, 0)";
                     }
 
-                    currentTileType = {type: undefined, player: ""};    //On RAZ la selection
+                    currentTileType = {type: undefined, player: "", nameSlotTile: ""};    //On RAZ la selection
                 }
             }
         }
