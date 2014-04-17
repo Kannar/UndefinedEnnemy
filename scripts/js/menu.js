@@ -141,3 +141,14 @@ function confirmSetTiles(player)
         state = "SELEC_PERSO";
     }
 }
+
+/***********************************
+*
+*   Choix et pose des perso
+*
+***********************************/
+$(document).ready(function(){
+
+//Player1
+    $("#")
+});

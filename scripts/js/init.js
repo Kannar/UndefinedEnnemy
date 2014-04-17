@@ -120,5 +120,5 @@ function startGame(){
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
 
-    state = 'IN_GAME';
+    state = 'SELEC_PERSO';
 }

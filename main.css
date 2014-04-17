@@ -21,7 +21,7 @@
 }
 
 #specialTilePartPlayer1{
-	display: block;
+	display: none;
 	position: absolute;
 	width: 150px;
 	height: 639px;
@@ -47,6 +47,25 @@
 	height: 635px;
 }
 
+.selecUnitPlayer1{
+	position: relative;
+	margin-top: 32px;
+	margin-left: 50%;
+	left: -33px;
+	width: 66px;
+	height: 66px;
+
+	border: 1px white solid;
+}
+
+#selecUnitPlayer1{
+	display: block;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;	
+}
+
 #Player2{
 	text-align: center;
 	color : #0000ff;
@@ -62,7 +81,7 @@
 }
 
 #specialTilePartPlayer2{
-	display: block;
+	display: none;
 	position: absolute;
 	width: 150px;
 	height: 639px;
@@ -81,6 +100,24 @@
 	background-color: red;
 }
 
+#selecUnitPlayer2{
+	display: block;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;	
+}
+
+.selecUnitPlayer2{
+	position: relative;
+	margin-top: 32px;
+	margin-left: 50%;
+	left: -33px;
+	width: 66px;
+	height: 66px;
+
+	border: 1px white solid;
+}
 .specialTilePlayer1{
 	position: relative;
 	margin-left: 50%;
@@ -130,6 +167,83 @@
 	text-align: center;
 	border: white 1px solid
 }
+
+#archerUnitPlayer1{
+	background-image: url("images/menu/skins_grey/Archer_1.png");
+}
+#priestUnitPlayer1{
+	background-image: url("images/menu/skins_grey/Priest_2.png");
+}
+#guerrierUnitPlayer1{
+	background-image: url("images/menu/skins_grey/Knight_2.png");
+}
+#mageUnitPlayer1{
+	background-image: url("images/menu/skins_grey/Mage_1.png");
+}
+#thiefUnitPlayer1{
+	background-image: url("images/menu/skins_grey/Thief_1.png");
+}
+#dragonUnitPlayer1{
+	background-image: url("images/menu/skins_grey/Dragon.png");
+}
+
+#archerUnitPlayer1:hover{
+	background-image: url("images/Heros/Archer1.png");
+}
+#priestUnitPlayer1:hover{
+	background-image: url("images/Heros/Priest1.png");
+}
+#guerrierUnitPlayer1:hover{
+	background-image: url("images/Heros/Knight1.png");
+}
+#mageUnitPlayer1:hover{
+	background-image: url("images/Heros/Mage1.png");
+}
+#thiefUnitPlayer1:hover{
+	background-image: url("images/Heros/Thief1.png");
+}
+#dragonUnitPlayer1:hover{
+	background-image: url("images/Heros/Dragon1.png");
+}
+
+#archerUnitPlayer2{
+	background-image: url("images/menu/skins_grey/Archer_2.png");
+}
+#priestUnitPlayer2{
+	background-image: url("images/menu/skins_grey/Priest_2.png");
+}
+#guerrierUnitPlayer2{
+	background-image: url("images/menu/skins_grey/Knight_2.png");
+}
+#mageUnitPlayer2{
+	background-image: url("images/menu/skins_grey/Mage_1.png");
+}
+#thiefUnitPlayer2{
+	background-image: url("images/menu/skins_grey/Thief_1.png");
+}
+#dragonUnitPlayer2{
+	background-image: url("images/menu/skins_grey/Dragon.png");
+}
+
+#archerUnitPlayer2:hover{
+	background-image: url("images/Heros/Archer2.png");
+}
+#priestUnitPlayer2:hover{
+	background-image: url("images/Heros/Priest2.png");
+}
+#guerrierUnitPlayer2:hover{
+	background-image: url("images/Heros/Knight2.png");
+}
+#mageUnitPlayer2:hover{
+	background-image: url("images/Heros/Mage2.png");
+}
+#thiefUnitPlayer2:hover{
+	background-image: url("images/Heros/Thief2.png");
+}
+#dragonUnitPlayer2:hover{
+	background-image: url("images/Heros/Dragon2.png");
+}
+
 
 #Timer{
 	position : absolute;
