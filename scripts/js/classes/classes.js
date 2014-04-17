@@ -27,14 +27,14 @@ Heros.prototype.checkEnnemiInRange=function(caseClicked){
     for(var i=-this.attackRange;i<=this.attackRange;i++){
         for(var j=-this.attackRange;j<=this.attackRange;j++){
         	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
-            	// if(map["players"][this.pos.y][this.pos.x]==1){
+            	if(map["players"][this.pos.y][this.pos.x]==1){
         			for(var k=0; k<this.parent.otherPlayer.army.length;k++){
         				if(this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && 
         				    this.parent.otherPlayer.army[k].pos.y==this.pos.y+j){
         					this.targetAvaible.push(this.parent.otherPlayer.army[k]);
         				}
         			}
-            	// }
+            	}
             }
         }
     }
@@ -56,7 +56,6 @@ Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
 	    	if((this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.otherPlayer.army[k].pos.y==this.pos.y) || (this.parent.otherPlayer.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.otherPlayer.army[k].pos.x==this.pos.x))
 	    	{
 				this.targetAvaible.push(this.parent.otherPlayer.army[k]);
-	    		console.log(this.parent.otherPlayer.army[k].pos.x,this.pos.x+i,this.parent.otherPlayer.army[k].pos.y,this.pos.y+i);
 			}
 		}
     }
@@ -261,7 +260,7 @@ Heros.prototype.pushSomeone = function(target,direction,coefDirecteur){
 //Dessine le Hero
 Heros.prototype.render = function(context){
 	this.config.animFrame++;
-	if (this.config.animFrame % Math.floor(60 / this.config.currentAnimation[this.config.animation].fps) == 0){
+	if (this.config.animFrame % Math.floor(180 / this.config.currentAnimation[this.config.animation].fps) == 0){
 		this.config.currentFrame++;
 		if (this.config.currentFrame == this.config.currentAnimation[this.config.animation].nbFrame){
 			this.config.currentFrame = 0;
