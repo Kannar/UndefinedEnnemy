@@ -87,8 +87,10 @@ function startGame(){
     context.clearRect(0,0,canvas.width,canvas.height);
     map = initMap(map1);
     gameObjects[2].push(new Map(map));
-    gameObjects[1].push(new Player(canvas,'Player2'));
-    gameObjects[0].push(new Player(canvas,'Player1'));
+    var P1spawn = [[0,0],[0,2],[1,1],[2,1],[2,0],[3,0]]
+    var P2spawn = [[19,14],[19,12],[18,13],[17,13],[17,14],[16,14]]
+    gameObjects[1].push(new Player(canvas,'Player2',P1spawn));
+    gameObjects[0].push(new Player(canvas,'Player1',P2spawn));
     gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
     gameObjects[1][0].addOtherPlayer(gameObjects[0][0])
 
@@ -116,5 +118,5 @@ function startGame(){
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
 
-    state = 'SET_TILES';
+    state = 'IN_GAME';
 }

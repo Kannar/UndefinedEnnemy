@@ -3,11 +3,12 @@
 //====================================================================
 var Heros = function(x,y,player){
 	manageTiles('players',x,y,true);
+	manageTiles('collisions',x,y,true);
 	this.player = player;
 	this.pos = {x : x, y : y};
 	this.image = images[this.name+''+this.player];
 	this.status = '';
-	this.moveSpeed = 0.07;
+	this.moveSpeed = 0.03;
 	this.hasMoved = false;
 	this.hasAttacked = false;
 	this.canBeSelected = false;
@@ -53,8 +54,12 @@ Heros.prototype.move = function (){
 	if(!this.hasMoved && !this.isMoving){
 		if(path.length<this.movePoint+2){
 			if(checkTiles('players',path[path.length-1][0],path[path.length-1][1]) == 0){
+				
 				manageTiles('players',this.pos.x,this.pos.y,false);
+				manageTiles('collisions',this.pos.x,this.pos.y,false);
 				this.path = path;
+				manageTiles('collisions',this.path[this.path.length-1][0],this.path[this.path.length-1][1],true);
+				manageTiles('players',this.path[this.path.length-1][0],this.path[this.path.length-1][1],true);
 				// this.pos.x = path[path.length-1][0];
 				// this.pos.y = path[path.length-1][1];
 				// this.CheckCase();
@@ -85,7 +90,6 @@ Heros.prototype.move = function (){
 			else{
 				this.pos.x = this.path[0][0];
 				this.pos.y = this.path[0][1];
-				manageTiles('players',this.pos.x,this.pos.y,true);
 				this.path;
 				this.changeAnim('normal');
 				this.isMoving = false;
@@ -97,7 +101,6 @@ Heros.prototype.changeAnim = function (name){
 	this.config.animation = name;
 	this.config.animFrame = 0;
 	this.config.currentFrame = 0;
-	//checklacase si y a bonus/malus.
 };
 
 Heros.prototype.CheckCase = function (){
@@ -120,6 +123,7 @@ Heros.prototype.deselected = function (){
 
 Heros.prototype.newTurn = function (){
 	this.hasMoved = false;
+	this.isSelected = false;
 	this.hasAttacked = false;
 	this.canBeSelected = true;
 };
@@ -127,7 +131,7 @@ Heros.prototype.newTurn = function (){
 Heros.prototype.EndTurn = function (){
 	this.hasMoved = true;
 	this.hasAttacked = true;
-	this.isSelected= false;
+	this.isSelected = false;
 	this.canBeSelected = false;
 };
 
