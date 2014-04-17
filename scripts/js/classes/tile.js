@@ -26,7 +26,7 @@ var Tile = function(params)
         this.pos.x = this.beginPos.x - mapParams.viewX;
         this.pos.y = this.beginPos.y - mapParams.viewY;
 
-        this.render();
+        // this.render();
     }
 }
 

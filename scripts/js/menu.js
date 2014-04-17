@@ -83,8 +83,6 @@ $(document).ready(function(){
 
                 currentTileType.nameSlotTile = _tempSpeTile;
 
-                console.log();
-
                 $("#choiceTileTypePlayer2").slideToggle(200, function(){
 
                 });
@@ -131,6 +129,13 @@ function confirmSetTiles(player)
         $("#specialTilePartPlayer2").slideToggle(200, function(){
 
         });
+
+        for(var i = 0; i<gameObjects[3].length; i++)
+        {
+            var _pos = gameObjects[3][i].beginPos;
+
+            gameObjects[2][0].speTiles[_pos.y][_pos.x] = 0;
+        }
 
         currentPlayerTurn = "Player1";
         state = "SELEC_PERSO";

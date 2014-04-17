@@ -102,7 +102,7 @@ var Map = function(matrice)
                         context.fillStyle = "rgb(50, 50, 250)";
                         context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
                     }
-                    else if(this.speTiles[i][j] == 2 && currentPlayerTurn === "Player2")   //Emplacement libre pour case speciale joueur 1
+                    else if(this.speTiles[i][j] == 4 && currentPlayerTurn === "Player2")   //Emplacement libre pour case speciale joueur 1
                     {
                         context.fillStyle = "rgb(50, 250, 50)";
                         context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
