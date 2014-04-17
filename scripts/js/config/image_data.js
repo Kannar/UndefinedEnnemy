@@ -15,6 +15,8 @@ var imgSrc = {
 	"MagePlayer1" : "images/Heros/Mage1.png",
 	"MagePlayer2" : "images/Heros/Mage2.png",
 	"tilesSheet" : "images/tiles/terrain_planche.jpg",
+	"boutonPush" : "images/bouton/boutonPush.png",
+	"boutonAttack" : "images/bouton/boutonAttack.png",
 };
 
 /********************************************
