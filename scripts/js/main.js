@@ -102,7 +102,7 @@ function loading(nb,target){
 *
 ********************************/
 function manageTiles(layer,x,y,insert)
-{
+{   
     if(insert)
         map[layer][y][x] = 1;
     else
