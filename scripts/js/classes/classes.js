@@ -3,11 +3,12 @@
 //====================================================================
 var Heros = function(x,y,player){
 	manageTiles('players',x,y,true);
+	manageTiles('collisions',x,y,true);
 	this.player = player;
 	this.pos = {x : x, y : y};
 	this.image = images[this.name+''+this.player];
 	this.status = '';
-	this.moveSpeed = 0.07;
+	this.moveSpeed = 0.03;
 	this.hasMoved = false;
 	this.hasAttacked = false;
 	this.canBeSelected = false;
@@ -21,6 +22,18 @@ var Heros = function(x,y,player){
 };
 Heros.prototype.constructor = Heros;
 
+Heros.prototype.checEnnemiInRange=function(){
+    for(var i=-this.attackRange;i<=this.attackRange;i++)
+    {
+        for(var j=-this.attackRange;j<=this.attackRange;j++)
+        {
+        	if(Math.abs(i)+Math.abs(j)<=this.attackRange)
+            {
+            	//if()
+            }
+        }
+    }
+}
 //Contient toutes les variables relatives aux effets de cases
 Heros.prototype.variableEffects = {
 
@@ -41,8 +54,12 @@ Heros.prototype.move = function (){
 	if(!this.hasMoved && !this.isMoving){
 		if(path.length<this.movePoint+2){
 			if(checkTiles('players',path[path.length-1][0],path[path.length-1][1]) == 0){
+				
 				manageTiles('players',this.pos.x,this.pos.y,false);
+				manageTiles('collisions',this.pos.x,this.pos.y,false);
 				this.path = path;
+				manageTiles('collisions',this.path[this.path.length-1][0],this.path[this.path.length-1][1],true);
+				manageTiles('players',this.path[this.path.length-1][0],this.path[this.path.length-1][1],true);
 				// this.pos.x = path[path.length-1][0];
 				// this.pos.y = path[path.length-1][1];
 				// this.CheckCase();
@@ -73,7 +90,6 @@ Heros.prototype.move = function (){
 			else{
 				this.pos.x = this.path[0][0];
 				this.pos.y = this.path[0][1];
-				manageTiles('players',this.pos.x,this.pos.y,true);
 				this.path;
 				this.changeAnim('normal');
 				this.isMoving = false;
@@ -85,7 +101,6 @@ Heros.prototype.changeAnim = function (name){
 	this.config.animation = name;
 	this.config.animFrame = 0;
 	this.config.currentFrame = 0;
-	//checklacase si y a bonus/malus.
 };
 
 Heros.prototype.CheckCase = function (){
@@ -108,6 +123,7 @@ Heros.prototype.deselected = function (){
 
 Heros.prototype.newTurn = function (){
 	this.hasMoved = false;
+	this.isSelected = false;
 	this.hasAttacked = false;
 	this.canBeSelected = true;
 };
@@ -115,7 +131,7 @@ Heros.prototype.newTurn = function (){
 Heros.prototype.EndTurn = function (){
 	this.hasMoved = true;
 	this.hasAttacked = true;
-	this.isSelected= false;
+	this.isSelected = false;
 	this.canBeSelected = false;
 };
 
@@ -257,7 +273,8 @@ var Thief = function(x,y,player,parent){
 	this.magicResist = 4;
 	this.accuracy = 5;
 	this.movePoint = 6;
-	this.attackRange = 1;	
+	this.attackRange=2;
+
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -290,7 +307,8 @@ var Knight = function(x,y,player,parent){
 	this.magicResist = 5;
 	this.accuracy = 4;
 	this.movePoint = 3;
-	this.attackRange = 2;
+	this.attackRange=1;
+
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -323,7 +341,8 @@ var Mage = function(x,y,player,parent){
 	this.magicResist = 6;
 	this.accuracy = 5;
 	this.movePoint = 4;
-	this.attackRange = 2;
+	this.attackRange=2;
+
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -356,7 +375,8 @@ function Dragon(x,y,player,parent){
 	this.magicResist = 4;
 	this.accuracy = 3;
 	this.movePoint = 3;
-	this.attackRange = 1;
+	this.attackRange=1;
+
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();
@@ -389,7 +409,8 @@ var Priest = function(x,y,player,parent){
 	this.magicResist = 5;
 	this.accuracy = 3;
 	this.movePoint = 4;
-	this.attackRange = 2;
+	this.attackRange=2;
+
 	this.loop = function(){
 		if(this.hasAttacked && this.hasMoved){
 			this.EndTurn();

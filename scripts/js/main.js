@@ -10,6 +10,9 @@ function run()
     {
         case "LOADING":
         break;
+        case "PAUSE":
+            pause();
+        break;
         case "SET_TILES":
             setTiles();
         break;
@@ -35,6 +38,8 @@ function gameloop()
         gameObjects[2][i].constructMap(mouseVars.mapPosWithoutCamX,mouseVars.mapPosWithoutCamY);
         gameObjects[2][i].renderMap();
     }
+    gameObjects[0][0].loop(context);
+    gameObjects[1][0].loop(context);
 
     if(gameObjects[0][0].turn){
         gameObjects[0][0].loop(context);
@@ -51,7 +56,7 @@ function gameloop()
 	frame++;
 }
 
-function drawMyPath(){  //A dégager
+function drawMyPath(){  //A changer d'endroit
     if(path)
     {
         var x;
@@ -67,7 +72,7 @@ function drawMyPath(){  //A dégager
     }
 }
 
-function findCaseWithCamera(x,y){   //A dégager
+function findCaseWithCamera(x,y){   //A changer d'endroit
     var mapCase = mouse.findCase(x,y);
     return {x:mapCase.x+mapParams.viewX, y:mapCase.y+mapParams.viewY}
 }
@@ -93,9 +98,10 @@ function loading(nb,target){
 *   x == caseX
 *   y == caseY
 *   insert == true=setLobstacle false=removeLobstacle
+*
 ********************************/
 function manageTiles(layer,x,y,insert)
-{
+{   
     if(insert)
         map[layer][y][x] = 1;
     else
@@ -105,15 +111,42 @@ function manageTiles(layer,x,y,insert)
 function checkTiles(layer,x,y)
 {
     return map[layer][y][x];
-
 }
 
 /********************************
 *
+*   Ecran pause
+*
+********************************/
+function pause()
+{
+    //Petit gris
+    context.fillStyle = "rgba(220, 220, 220, 0.1)";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    //Text
+    context.fillStyle = 'rgba(0, 0, 0, 1)';
+    context.font="30px Verdana";
+    context.fillText("PAUSE", canvas.width/2 - 50, canvas.height/2);
+}
+/********************************
 *   Boucle de création des équipes
 *
 ********************************/
 function teamMaking()
 {
 
+}
+/*********************************
+*
+*   Set des tiles
+*
+*********************************/
+function setTiles()
+{
+    for(var i = 0;i<gameObjects[2].length;i++)
+    {
+        gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
+        gameObjects[2][i].renderMap();
+    }
 }

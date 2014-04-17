@@ -16,27 +16,29 @@ var specialEffect_data = [
         },
         offBadEffect: function(target){
             target.variableEffects.multiplicatorDgtTook = 1;
-        }
+        },
+        id: 2
     },
     {
         name: "forceMelee",
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon")
                 target.variableEffects.multiplicatorDgtDealt = 1.5;
         },
         offGoodEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon")
                 target.variableEffects.multiplicatorDgtDealt = 1;
         },
         onBadEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon")
                 target.variableEffects.canAtk = false;
         },
         offBadEffect: function(target){
-            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon" || target.name === "Priest")
+            if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon")
                 target.variableEffects.canAtk = true;
-        }  
+        }  ,
+        id: 3
     },
     {
         name: "forceDist",
@@ -56,7 +58,8 @@ var specialEffect_data = [
         offBadEffect: function(target){
             if(target.name === "Mage" || target.name === "Archer")
                 target.variableEffects.canAtk = true;
-        }
+        },
+        id: 4
     },
     {
         name: "forceMag",
@@ -76,7 +79,8 @@ var specialEffect_data = [
         offBadEffect: function(target){
             if(target.name === "Mage" || target.name === "Priest")
                 target.variableEffects.canAtk = true;
-        } 
+        },
+        id: 5
     },
     {
         name: "hp",
@@ -93,7 +97,8 @@ var specialEffect_data = [
         },
         offBadEffect: function(target){
             target.variableEffects.hpGain = 0;
-        }
+        },
+        id: 6
     },
     {
         name: "atk",
@@ -109,7 +114,8 @@ var specialEffect_data = [
         },
         offBadEffect: function(target){
             target.variableEffects.takeDgts = false;
-        }
+        },
+        id: 7
     },
     {
         name: "priorite",
@@ -124,7 +130,8 @@ var specialEffect_data = [
         },
         offBadEffect: function(target){
             target.variableEffects.lastToAtk = false;
-        }
+        },
+        id: 8
     },
     {
         name: "precision",
@@ -141,6 +148,7 @@ var specialEffect_data = [
         },
         offBadEffect: function(target){
             target.variableEffects.accuracyMultiplicator = 1;
-        }
+        },
+        id: 9
     }
 ];

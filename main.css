@@ -11,12 +11,33 @@
 	color : #ff0000;
 }
 
-#p1Part{
+#Player1Part{
 	position : absolute;
 	margin-left: 50%;
 	left : -580px;
 	width:150px;
 	height : 660px;
+	border: 1px white solid;
+}
+
+#specialTilePartPlayer1{
+	display: block;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;
+}
+
+#choiceTileTypePlayer1{
+	display: none;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;
+}
+
+#confirmSpeTilePlayer1{
+	background-color: green;
 }
 
 #specialTilePartP1{
@@ -31,16 +52,82 @@
 	color : #0000ff;
 }
 
-#p2Part{
+#Player2Part{
 	position : absolute;
 	margin-left: 50%;
 	left : 430px;
 	width : 150px;
 	height : 660px;
+	border: 1px white solid;
 }
 
-.specialTile{
+#specialTilePartPlayer2{
+	display: block;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;
+}
 
+#choiceTileTypePlayer2{
+	display: none;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;
+}
+
+#confirmSpeTilePlayer2{
+	background-color: green;
+}
+
+.specialTilePlayer1{
+	position: relative;
+	margin-left: 50%;
+	margin-top: 80px;
+	left: -33px;
+	width: 66px;
+	height: 66px;
+	border: 1px white solid;
+}
+
+.selecSpecialTilePlayer1{
+	position: relative;
+	margin-left: 50%;
+	margin-top: 10px;
+	left: -33px;
+	width: 66px;
+	height: 66px;
+	border: 1px white solid;
+}
+.specialTilePlayer2{
+	position: relative;
+	margin-left: 50%;
+	margin-top: 80px;
+	left: -33px;
+	width: 66px;
+	height: 66px;
+	border: 1px white solid;
+}
+
+.selecSpecialTilePlayer2{
+	position: relative;
+	margin-left: 50%;
+	margin-top: 10px;
+	left: -33px;
+	width: 66px;
+	height: 66px;
+	border: 1px white solid;
+}
+
+.confirmButton{
+	position: relative;
+	margin-top: 50px;
+	margin-left: 50%;
+	left: -50px;
+	width: 100px;
+	height: 50px;
+	text-align: center;
 }
 
 #Timer{
