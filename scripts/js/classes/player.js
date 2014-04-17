@@ -23,7 +23,7 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 
 Player.prototype.spawnHeros = function(){
 	for (var i = 0; i < this.spawn.length; i++) {
-		this.army.push(new Thief(this.spawn[i][0],this.spawn[i][1],this.name,this))
+		this.army.push(new Knight(this.spawn[i][0],this.spawn[i][1],this.name,this))
 	};
 }
 

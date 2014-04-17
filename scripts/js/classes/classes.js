@@ -28,24 +28,12 @@ Heros.prototype.checkEnnemiInRange=function(){
         for(var j=-this.attackRange;j<=this.attackRange;j++){
         	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
             	if(map["players"][this.pos.y][this.pos.x]==1){
-            		if(gameObjects[0][0].turn){
-            			for(var k=0; k<gameObjects[1][0].army.length;k++){
-            				if(gameObjects[1][0].army[k].pos.x==this.pos.x+i && 
-            				   gameObjects[1][0].army[k].pos.y==this.pos.y+j){
-            					console.log("j'attque l'arme 2");
-            					this.targetAvaible.push(gameObjects[1][0].army[k]);
-            				}
-            			}
-            		}
-            		if(gameObjects[1][0].turn){
-            			for(var k=0; k<gameObjects[0][0].army.length;k++){
-            				if(gameObjects[0][0].army[k].pos.x==this.pos.x+i && 
-        				   		gameObjects[0][0].army[k].pos.y==this.pos.y+j){
-            					console.log("j'attque l'arme 1");
-            					this.targetAvaible.push(gameObjects[0][0].army[k]);
-            				}
-            			}
-            		}
+        			for(var k=0; k<this.parent.otherPlayer.army.length;k++){
+        				if(this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && 
+        				    this.parent.otherPlayer.army[k].pos.y==this.pos.y+j){
+        					this.targetAvaible.push(this.parent.otherPlayer.army[k]);
+        				}
+        			}
             	}
             }
         }
