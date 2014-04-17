@@ -24,9 +24,9 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 }
 
 Player.prototype.spawnHeros = function(){
-	for (var i = 0; i < this.spawn.length; i++) {
-		this.army.push(new this.heros[i](this.spawn[i][0],this.spawn[i][1],this.name,this))
-	};
+	// for (var i = 0; i < this.spawn.length; i++) {
+	// 	this.army.push(new this.heros[i](this.spawn[i][0],this.spawn[i][1],this.name,this))
+	// };
 }
 
 //loop Player
@@ -58,9 +58,6 @@ Player.prototype.loop = function(context){
 	
 
 //BOUCLES A RENDER \\
-	for (var i = this.army.length - 1; i >= 0; i--) {
-		this.army[i].render(context);
-	}
 	for (var i = 0; i < this.otherPlayer.army.length; i++) {
 		this.otherPlayer.army[i].render(context);
 	};
