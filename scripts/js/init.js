@@ -49,6 +49,10 @@ var mouseVars={
 //player1,player2,neutre,cases spéciales
 var gameObjects=[[],[],[],[]];
 /*******************************
+*   Variable temp menu
+********************************/
+var currentTileType;
+/*******************************
 *
 *   Varibles d'UI
 *
@@ -111,5 +115,6 @@ function startGame(){
         38: [gameObjects[2][0].scroll, "top"],  //Scroll haut
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
-    state = 'IN_GAME';
+
+    state = 'SET_TILES';
 }
