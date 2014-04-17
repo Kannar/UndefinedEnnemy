@@ -35,7 +35,7 @@ function gameloop()
 {
     for(var i = 0;i<gameObjects[2].length;i++)
     {
-        gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
+        gameObjects[2][i].constructMap(mouseVars.mapPosWithoutCamX,mouseVars.mapPosWithoutCamY);
         gameObjects[2][i].renderMap();
     }
     gameObjects[0][0].loop(context);
@@ -67,7 +67,6 @@ function drawMyPath(){  //A changer d'endroit
         {
             x=path[i][0];
             y=path[i][1];
-            context.fillStyle="rgb(255,255,0)";
             context.fillRect((x-mapParams.viewX)*mapParams.tileSize,(y-mapParams.viewY)*mapParams.tileSize,65,65);
         }
     }
@@ -104,14 +103,14 @@ function loading(nb,target){
 function manageTiles(layer,x,y,insert)
 {
     if(insert)
-        map1[layer][x][y] = 1;
+        map[layer][y][x] = 1;
     else
-        map1[layer][x][y] = 0;
+        map[layer][y][x] = 0;
 }
 
 function checkTiles(layer,x,y)
 {
-    return map1[layer][x][y];
+    return map[layer][y][x];
 }
 
 /********************************

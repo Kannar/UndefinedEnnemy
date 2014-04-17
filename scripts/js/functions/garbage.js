@@ -16,7 +16,6 @@ function garbageCollector(table)    //Basique, à élaborer si besoin
             if(table[i][j].toDestroy === true)
             {
                 table[i].splice(j, 1);
-
                 j--;
             }
         }

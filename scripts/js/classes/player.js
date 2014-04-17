@@ -2,7 +2,7 @@ var Player = function(canvas,name){
 	this.name = name;
 	this.images = images;
 	document.getElementById(this.name).visible = true;
-	this.timerBox = document.getElementById('countdown')
+	this.timerBox = document.getElementById('countdown');
 	this.army = [];
 	this.army.push(new Thief(8,4,this.name,this))
 	this.army.push(new Dragon(5,3,this.name,this))
