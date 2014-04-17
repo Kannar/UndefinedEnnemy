@@ -15,6 +15,8 @@ var Heros = function(x,y,player){
 	this.isSelected = false;
 	this.isMoving = false;
 	this.path;
+	this.direction="";
+	this.coefDirecteur=1;
 	this.targetAvaible=[];
 	this.config = animsConfig[this.name+'AnimConfig'];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
@@ -53,15 +55,35 @@ Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
 		// 	}
 		// }
     	for(var k=0; k<this.parent.otherPlayer.army.length;k++){
-	    	if((this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.otherPlayer.army[k].pos.y==this.pos.y) || (this.parent.otherPlayer.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.otherPlayer.army[k].pos.x==this.pos.x))
+	    	if((this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.otherPlayer.army[k].pos.y==this.pos.y))
 	    	{
+	    		if(i<0)
+	    		{
+	    			this.coefDirecteur=-1;
+	    		}
+	    		else{
+	    			this.coefDirecteur=1;
+	    		}
+	    		this.direction="y";
 				this.targetAvaible.push(this.parent.otherPlayer.army[k]);
+	    		// console.log(this.parent.otherPlayer.army[k].pos.x,this.pos.x+i,this.parent.otherPlayer.army[k].pos.y,this.pos.y+i);
+			}
+			if((this.parent.otherPlayer.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.otherPlayer.army[k].pos.x==this.pos.x)){
+	    		if(i<0)
+	    		{
+	    			this.coefDirecteur=-1;
+	    		}
+	    		else{
+	    			this.coefDirecteur=1;
+	    		}
+	    		this.direction="x";
+	    		this.targetAvaible.push(this.parent.otherPlayer.army[k]);
 			}
 		}
     }
     if(this.targetAvaible.length>0)
     {
-	    //return this.chooseTarget(caseClicked);
+	    return this.chooseTarget(caseClicked);
 	}
 }
 Heros.prototype.chooseTarget=function(caseSelected){
@@ -252,8 +274,65 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 	this.hasAttacked=true;
 };
 
-Heros.prototype.pushSomeone = function(target,direction,coefDirecteur){
-	target.pos[direction] = target.pos[direction]*coefDirecteur*this.damage; 
+Heros.prototype.pushSomeone = function(target){
+	var tmp=0;
+	var side;
+	if(this.direction=="x"){
+		if(this.coefDirecteur>0)
+		{
+			var marge =mapParams.nbCaseMapX-target.pos.x;
+		}
+		else{
+			var marge = target.pos.x;	
+		}
+		console.log(marge);
+		var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(this.damage*this.coefDirecteur),target.pos.y,"empty");
+		side = mapParams.nbCaseMapX;
+	}
+	if(this.direction=="y"){
+		if(this.coefDirecteur>0)
+		{
+			var marge =mapParams.nbCaseMapY-target.pos.y;
+		}
+		else{
+			var marge = target.pos.y;	
+		}
+		if(target.pos.y+((this.damage+marge)*this.coefDirecteur)<0)
+		{
+		console.log("toto")
+		var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(this.damage*this.coefDirecteur),"empty");
+		}
+		side = mapParams.nbCaseMapY;
+	}
+	if(myPath.length>0)
+	{
+			 // manageTiles('players',target.pos.x,target.pos.y,false);
+			 manageTiles('collisions',target.pos.x,target.pos.y,false);
+		for(var i =0;i<myPath.length;i++){
+				console.log(myPath)	
+			if(map.collisions[myPath[i][1]][myPath[i][0]] == 1)
+			{
+				console.log(myPath[i][1],myPath[i][0]);
+				tmp=myPath.length-i;
+				break;
+			}
+			// if(map.players[myPath[i][1]][myPath[i][0]]==1){
+			// 	for(var j =0;j<target.parent.army.length;j++){
+			// 		if(this.parent.army[j].x==myPath[i][0] && this.parent.army[j].y==myPath[i][1]){
+			// 			console.log("toto");
+			// 		}
+			// 	}
+			// }
+			// else{
+			// 	console.log(map.collisions[myPath[i][1]][myPath[i][0]]);	
+			// }
+		}
+	}
+
+	target.pos[this.direction] += this.coefDirecteur*(this.damage-tmp); 
+	// 	manageTiles('players',target.pos.x,target.pos.y,true);
+	// manageTiles('collisions',target.pos.x,target.pos.y,true);
+	console.log(target.pos[this.direction],this.coefDirecteur,this.damage,this.coefDirecteur*(this.damage),tmp);
 	this.hasAttacked=true;
 };
 
