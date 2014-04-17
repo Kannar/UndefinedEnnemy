@@ -84,7 +84,7 @@
 .specialTilePlayer1{
 	position: relative;
 	margin-left: 50%;
-	margin-top: 107px;
+	margin-top: 80px;
 	left: -33px;
 	width: 66px;
 	height: 66px;
@@ -103,7 +103,7 @@
 .specialTilePlayer2{
 	position: relative;
 	margin-left: 50%;
-	margin-top: 107px;
+	margin-top: 80px;
 	left: -33px;
 	width: 66px;
 	height: 66px;
@@ -128,6 +128,7 @@
 	width: 100px;
 	height: 50px;
 	text-align: center;
+	border: white 1px solid
 }
 
 #Timer{
