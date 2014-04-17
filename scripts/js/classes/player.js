@@ -24,9 +24,9 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 }
 
 Player.prototype.spawnHeros = function(){
-	// for (var i = 0; i < this.spawn.length; i++) {
-	// 	this.army.push(new this.heros[i](this.spawn[i][0],this.spawn[i][1],this.name,this))
-	// };
+	for (var i = 0; i < this.spawn.length; i++) {
+		this.army.push(new this.heros[i](this.spawn[i][0],this.spawn[i][1],this.name,this))
+	};
 }
 
 //loop Player
@@ -64,55 +64,55 @@ Player.prototype.loop = function(context){
 };
 
 Player.prototype.onclick = function(x,y){
-	var caseSelected = findCaseWithCamera(x,y);
-	if(!this.isDoingAttack){
-		for (var i = 0; i < this.army.length; i++) {
-			if(this.army[i].pos.x == caseSelected.x && this.army[i].pos.y == caseSelected.y){
-				if(!this.isSelecting){
-					if(!this.army[i].isSelected && this.army[i].canBeSelected){
-						this.army[i].selected();
-						this.targetSelected = this.army[i];
-					}
-					else{
-						this.army[i].deselected();
-						this.targetSelected = false;
-					}
-				}
-				else{
-					this.targetSelected.deselected();
-					this.targetSelected = false;
-				}
-			} 
-			else if(this.army[i].isSelected) {
-				if(this.army[i].CheckCase(caseSelected) == 'move'){
-					this.army[i].move();
-				}
-				if(this.army[i].CheckCase(caseSelected) == 'player'){
-					this.isDoingAttack = true;
-				}
-			}
-		};
-	}
-	else{
-		var caseSelected = mouse.findCase(x,y);
-		if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
-				(caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
-			var enemy = this.targetSelected.checkEnnemiInRangeForPush(caseSelected);
-			this.isDoingAttack = false;
-		}
-		if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize) && 
-				(caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
-			var enemy = this.targetSelected.checkEnnemiInRange(caseSelected);
-			if(enemy){
-				this.targetSelected.attack(enemy);
-				this.targetSelected.targetAvaible = [];
-			}
-			this.isDoingAttack=false;
-		}
-		else{
-			this.isDoingAttack = false;
-		}
-	}
+ var caseSelected = findCaseWithCamera(x,y);
+ if(!this.isDoingAttack){
+  for (var i = 0; i < this.army.length; i++) {
+   if(this.army[i].pos.x == caseSelected.x && this.army[i].pos.y == caseSelected.y){
+    if(!this.isSelecting){
+     if(!this.army[i].isSelected && this.army[i].canBeSelected){
+      this.army[i].selected();
+      this.targetSelected = this.army[i];
+     }
+     else{
+      this.army[i].deselected();
+      this.targetSelected = false;
+     }
+    }
+    else{
+     this.targetSelected.deselected();
+     this.targetSelected = false;
+    }
+   } 
+   else if(this.army[i].isSelected) {
+    if(this.army[i].CheckCase(caseSelected) == 'move'){
+     this.army[i].move();
+    }
+    if(this.army[i].CheckCase(caseSelected) == 'player'){
+     this.isDoingAttack = true;
+    }
+   }
+  };
+ }
+ else{
+  var caseSelected = mouse.findCase(x,y);
+  if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
+    (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
+   var enemy = this.targetSelected.checkEnnemiInRangeForPush(caseSelected);
+   this.isDoingAttack = false;
+  }
+  if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize) && 
+    (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
+   var enemy = this.targetSelected.checkEnnemiInRange(caseSelected);
+   if(enemy){
+    this.targetSelected.attack(enemy);
+    this.targetSelected.targetAvaible = [];
+   }
+   this.isDoingAttack=false;
+  }
+  else{
+   this.isDoingAttack = false;
+  }
+ }
 }
 
 Player.prototype.startTurn = function(){

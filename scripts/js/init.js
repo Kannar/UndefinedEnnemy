@@ -91,9 +91,9 @@ function startGame(){
     context.clearRect(0,0,canvas.width,canvas.height);
     map = initMap(map1);
     gameObjects[2].push(new Map(map));
-    // var P1hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
+    var P1hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
     var P1spawn = [[0,0],[0,2],[1,1],[2,1],[2,0],[3,0]]
-    // var P2hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
+    var P2hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
     var P2spawn = [[3,3],[19,12],[18,13],[17,13],[17,14],[16,14]]
     gameObjects[1].push(new Player(canvas,'Player2',P1spawn,P1hero));
     gameObjects[0].push(new Player(canvas,'Player1',P2spawn,P2hero));
