@@ -27,14 +27,14 @@ Heros.prototype.checkEnnemiInRange=function(caseClicked){
     for(var i=-this.attackRange;i<=this.attackRange;i++){
         for(var j=-this.attackRange;j<=this.attackRange;j++){
         	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
-            	if(map["players"][this.pos.y][this.pos.x]==1){
+            	// if(map["players"][this.pos.y][this.pos.x]==1){
         			for(var k=0; k<this.parent.otherPlayer.army.length;k++){
         				if(this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && 
         				    this.parent.otherPlayer.army[k].pos.y==this.pos.y+j){
         					this.targetAvaible.push(this.parent.otherPlayer.army[k]);
         				}
         			}
-            	}
+            	// }
             }
         }
     }
@@ -43,9 +43,30 @@ Heros.prototype.checkEnnemiInRange=function(caseClicked){
 	    return this.chooseTarget(caseClicked);
 	}
 }
+Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
+    for(var i=-this.attackRange;i<=this.attackRange;i++){
+  //   	for(var k=0; k<this.parent.army.length;k++){
+	 //    	if((this.parent.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.army[k].pos.y==this.pos.y) || (this.parent.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.army[k].pos.x==this.pos.x))
+	 //    	{
+		// 		this.targetAvaible.push(this.parent.army[k]);
+		// 		console.log(this.parent.army[k].pos.x,this.pos.x+i,this.parent.army[k].pos.y,this.pos.y+i);
+		// 	}
+		// }
+    	for(var k=0; k<this.parent.otherPlayer.army.length;k++){
+	    	if((this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.otherPlayer.army[k].pos.y==this.pos.y) || (this.parent.otherPlayer.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.otherPlayer.army[k].pos.x==this.pos.x))
+	    	{
+				this.targetAvaible.push(this.parent.otherPlayer.army[k]);
+	    		console.log(this.parent.otherPlayer.army[k].pos.x,this.pos.x+i,this.parent.otherPlayer.army[k].pos.y,this.pos.y+i);
+			}
+		}
+    }
+    if(this.targetAvaible.length>0)
+    {
+	    //return this.chooseTarget(caseClicked);
+	}
+}
 Heros.prototype.chooseTarget=function(caseSelected){
 	for(var i =0;i<this.targetAvaible.length;i++){
-		console.log(this.targetAvaible)
 		if(caseSelected.x==this.targetAvaible[i].pos.x && 
 		   caseSelected.y==this.targetAvaible[i].pos.y){
 		   	return this.targetAvaible[i];
@@ -232,7 +253,8 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 	this.hasAttacked=true;
 };
 
-Heros.prototype.pushSomeone = function(target){
+Heros.prototype.pushSomeone = function(target,direction,coefDirecteur){
+	target.pos[direction] = target.pos[direction]*coefDirecteur*this.damage; 
 	this.hasAttacked=true;
 };
 
