@@ -40,7 +40,7 @@ function Mouse(objects_data)   //objects_data -> tableau des objets à parcourir
 
         var _caseX = Math.floor(_x/66);
         var _caseY = Math.floor(_y/66);
-		return {x:_caseX,y:_caseY}
+		return {x:_caseX,y:_caseY,xoff:_x,yoff:_y }
         console.log("x: "+_caseX, " y: "+_caseY);
     }
 

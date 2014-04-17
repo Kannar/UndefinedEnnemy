@@ -1,7 +1,7 @@
 var animsConfig = {
 	ThiefAnimConfig : {
 		animation : 'normal',
-		nbRows : 3,
+		nbRows : 4,
 		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
@@ -24,12 +24,18 @@ var animsConfig = {
 										nbRow : 2,
 										minFrame : 0
 										},
+								push : {
+									fps : 2,
+									nbFrame : 3,
+									nbRow : 3,
+									minFrame : 0,
+								}
 							}
 	},
 
 	ArcherAnimConfig : {
 		animation : 'normal',
-		nbRows : 3,
+		nbRows : 4,
 		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
@@ -52,12 +58,18 @@ var animsConfig = {
 										nbRow : 2,
 										minFrame : 0
 										},
+								push : {
+									fps : 2,
+									nbFrame : 3,
+									nbRow : 3,
+									minFrame : 0,
+								}
 							}
 	},
 
 	PriestAnimConfig : {
 		animation : 'normal',
-		nbRows : 3,
+		nbRows : 4,
 		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
@@ -80,12 +92,18 @@ var animsConfig = {
 										nbRow : 2,
 										minFrame : 0
 										},
+								push : {
+									fps : 2,
+									nbFrame : 3,
+									nbRow : 3,
+									minFrame : 0,
+								}
 							}
 	},
 
 	MageAnimConfig : {
 		animation : 'normal',
-		nbRows : 3,
+		nbRows : 4,
 		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
@@ -108,12 +126,19 @@ var animsConfig = {
 										nbRow : 2,
 										minFrame : 0
 										},
+								push : {
+									fps : 2,
+									nbFrame : 3,
+									nbRow : 3,
+									minFrame : 0,
+								}
+
 							}
 	},
 
 	DragonAnimConfig : {
 		animation : 'normal',
-		nbRows : 3,
+		nbRows : 4,
 		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
@@ -125,7 +150,7 @@ var animsConfig = {
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :4,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
@@ -136,12 +161,18 @@ var animsConfig = {
 										nbRow : 2,
 										minFrame : 0
 										},
+								push : {
+									fps : 2,
+									nbFrame : 3,
+									nbRow : 3,
+									minFrame : 0,
+								}
 							}
 	},
 
 	KnightAnimConfig : {
 		animation : 'normal',
-		nbRows : 3,
+		nbRows : 4,
 		nbFrameMax : 4,
 		animFrame : 0,
 		currentFrame : 0,
@@ -163,7 +194,13 @@ var animsConfig = {
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
-										},
+									},
+								push : {
+									fps : 2,
+									nbFrame : 3,
+									nbRow : 3,
+									minFrame : 0,
+									},
 							}
 	},
 };

@@ -1,7 +1,8 @@
-var Player = function(canvas,name,spawn){
+var Player = function(canvas,name,spawn,heros){
 	this.name = name;
 	this.images = images;
 	this.spawn = spawn;
+	this.heros = heros
 	document.getElementById(this.name).visible = true;
 	this.timerBox = document.getElementById('countdown');
 	this.army = [];
@@ -24,7 +25,7 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 
 Player.prototype.spawnHeros = function(){
 	for (var i = 0; i < this.spawn.length; i++) {
-		this.army.push(new Knight(this.spawn[i][0],this.spawn[i][1],this.name,this))
+		this.army.push(new this.heros[i](this.spawn[i][0],this.spawn[i][1],this.name,this))
 	};
 }
 

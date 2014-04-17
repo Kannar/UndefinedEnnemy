@@ -260,7 +260,7 @@ Heros.prototype.pushSomeone = function(target,direction,coefDirecteur){
 //Dessine le Hero
 Heros.prototype.render = function(context){
 	this.config.animFrame++;
-	if (this.config.animFrame % Math.floor(60 / this.config.currentAnimation[this.config.animation].fps) == 0){
+	if (this.config.animFrame % Math.floor(180 / this.config.currentAnimation[this.config.animation].fps) == 0){
 		this.config.currentFrame++;
 		if (this.config.currentFrame == this.config.currentAnimation[this.config.animation].nbFrame){
 			this.config.currentFrame = 0;
