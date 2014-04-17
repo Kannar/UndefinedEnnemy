@@ -55,7 +55,7 @@
 	width: 66px;
 	height: 66px;
 
-	border: 1px white solid;
+	border: 0px white solid;
 }
 
 #selecUnitPlayer1{
@@ -116,7 +116,7 @@
 	width: 66px;
 	height: 66px;
 
-	border: 1px white solid;
+	border: 0px white solid;
 }
 .specialTilePlayer1{
 	position: relative;
@@ -188,26 +188,26 @@
 }
 
 #archerUnitPlayer1:hover{
-	background-image: url("images/Heros/Archer1.png");
+	background-image: url("images/Heros/Archer2.png");
 }
 #priestUnitPlayer1:hover{
-	background-image: url("images/Heros/Priest1.png");
+	background-image: url("images/Heros/Priest2.png");
 }
 #guerrierUnitPlayer1:hover{
-	background-image: url("images/Heros/Knight1.png");
+	background-image: url("images/Heros/Knight2.png");
 }
 #mageUnitPlayer1:hover{
-	background-image: url("images/Heros/Mage1.png");
+	background-image: url("images/Heros/Mage2.png");
 }
 #thiefUnitPlayer1:hover{
-	background-image: url("images/Heros/Thief1.png");
+	background-image: url("images/Heros/Thief2.png");
 }
 #dragonUnitPlayer1:hover{
-	background-image: url("images/Heros/Dragon1.png");
+	background-image: url("images/Heros/Dragon2.png");
 }
 
 #archerUnitPlayer2{
-	background-image: url("images/menu/skins_grey/Archer_2.png");
+	background-image: url("images/menu/skins_grey/Archer_1.png");
 }
 #priestUnitPlayer2{
 	background-image: url("images/menu/skins_grey/Priest_2.png");
@@ -226,22 +226,22 @@
 }
 
 #archerUnitPlayer2:hover{
-	background-image: url("images/Heros/Archer2.png");
+	background-image: url("images/Heros/Archer1.png");
 }
 #priestUnitPlayer2:hover{
-	background-image: url("images/Heros/Priest2.png");
+	background-image: url("images/Heros/Priest1.png");
 }
 #guerrierUnitPlayer2:hover{
-	background-image: url("images/Heros/Knight2.png");
+	background-image: url("images/Heros/Knight1.png");
 }
 #mageUnitPlayer2:hover{
-	background-image: url("images/Heros/Mage2.png");
+	background-image: url("images/Heros/Mage1.png");
 }
 #thiefUnitPlayer2:hover{
-	background-image: url("images/Heros/Thief2.png");
+	background-image: url("images/Heros/Thief1.png");
 }
 #dragonUnitPlayer2:hover{
-	background-image: url("images/Heros/Dragon2.png");
+	background-image: url("images/Heros/Dragon1.png");
 }
 
 

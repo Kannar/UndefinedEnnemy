@@ -42,13 +42,6 @@ function gameloop()
     gameObjects[0][0].loop(context);
     gameObjects[1][0].loop(context);
 
-    if(gameObjects[0][0].turn){
-        gameObjects[0][0].loop(context);
-    }
-    else{
-        gameObjects[1][0].loop(context);
-    }
-
     for(var i=0; i<gameObjects[3].length; i++)
     {
         gameObjects[3][i].update();        
@@ -142,6 +135,13 @@ function teamMaking()
     {
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
         gameObjects[2][i].renderMap();
+    }
+
+    if(currentPlayerTurn === "Player1"){
+        gameObjects[0][0].loop(context);
+    }
+    else if(currentPlayerTurn === "Player2"){
+        gameObjects[1][0].loop(context);
     }
 }
 /*********************************

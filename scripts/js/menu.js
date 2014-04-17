@@ -149,6 +149,94 @@ function confirmSetTiles(player)
 ***********************************/
 $(document).ready(function(){
 
+    var currentButtonActive = {
+        "Player1": "",
+        "Player2": ""
+    }
+
+    var player1Skins = {
+        "archerUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Archer_1.png",
+            "colored": "images/Heros/Archer2.png"
+        },
+        "priestUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Priest_2.png",
+            "colored": "images/Heros/Priest2.png"
+        },
+        "guerrierUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Knight_2.png",
+            "colored": "images/Heros/Knight2.png"
+        },
+        "mageUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Mage_1.png",
+            "colored": "images/Heros/Mage2.png"
+        },
+        "thiefUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Thief_1.png",
+            "colored": "images/Heros/Thief2.png"
+        },
+        "dragonUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Dragon.png",
+            "colored": "images/Heros/Dragon2.png"
+        }
+    }
+    var player2Skins = {
+        "archerUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Archer_1.png",
+            "colored": "images/Heros/Archer1.png"
+        },
+        "priestUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Priest_2.png",
+            "colored": "images/Heros/Priest1.png"
+        },
+        "guerrierUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Knight_2.png",
+            "colored": "images/Heros/Knight1.png"
+        },
+        "mageUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Mage_1.png",
+            "colored": "images/Heros/Mage1.png"
+        },
+        "thiefUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Thief_1.png",
+            "colored": "images/Heros/Thief1.png"
+        },
+        "dragonUnitPlayer1": {
+            "grey": "images/menu/skins_grey/Dragon.png",
+            "colored": "images/Heros/Dragon1.png"
+        }
+    }
+
 //Player1
-    $("#")
+    $(".selecUnitPlayer1").click(function(){
+
+        if(currentButtonActive["Player1"] != "")    //Si un bouton est déjà séléctionné
+        {
+            //On le deselectionne
+            document.getElementById(currentButtonActive["Player1"]).style.border = "solid 0px white";
+
+            //On regrise l'ancien
+            document.getElementById(currentButtonActive["Player1"]).style.backgroundImage = "url('"+player1Skins[currentButtonActive["Player1"]]["grey"]+"')";
+
+            //On selectionne le nouveau
+            this.style.border = "solid 1px white";
+
+            //On change l'icone
+            this.style.backgroundImage = "url('"+player1Skins[this.id]["colored"]+"')";
+
+            //On stock le nouvel id
+            currentButtonActive["Player1"] = this.id;
+        }
+        else
+        {
+            //On le selectionne
+           this.style.border = "solid 1px white";
+
+           //On change l'icone
+           this.style.backgroundImage = "url('"+player1Skins[this.id]["colored"]+"')";
+
+           //On stock l'id
+           currentButtonActive["Player1"] = this.id;
+        }
+    });
 });
