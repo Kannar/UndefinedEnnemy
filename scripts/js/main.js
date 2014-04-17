@@ -136,7 +136,13 @@ function pause()
 ********************************/
 function teamMaking()
 {
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
+    for(var i = 0;i<gameObjects[2].length;i++)
+    {
+        gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
+        gameObjects[2][i].renderMap();
+    }
 }
 /*********************************
 *
@@ -145,6 +151,8 @@ function teamMaking()
 *********************************/
 function setTiles()
 {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
     for(var i = 0;i<gameObjects[2].length;i++)
     {
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
