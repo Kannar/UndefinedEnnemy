@@ -75,9 +75,9 @@ Player.prototype.onclick = function(x,y){
 				this.army[i].move();
 			}
 			if(this.army[i].CheckCase(caseSelected) == 'player'){
-				var enemy = this.army[i].checkEnnemiInRange(caseSelected);
+				var enemy = this.army[i].checkEnnemiInRangeForPush(caseSelected);
 				if(enemy){
-					this.army[i].attack(enemy);
+					//this.army[i].attack(enemy);
 					this.army[i].targetAvaible = [];
 				}
 			}
