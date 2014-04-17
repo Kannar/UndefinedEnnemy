@@ -1,10 +1,9 @@
 var Map = function(matrice)
 {
-    this.matrice = matrice["collisions"];
+    this.map = matrice;
+    this.matrice = matrice['collisions'];
     this.speTiles = matrice["specials"];
     this.scrollSpeed = 10;
-
-    this.map = matrice;
     this.scrollSpeed = 50;
     this.scrollCount = 0;
     this.image = images['tilesSheet'];
