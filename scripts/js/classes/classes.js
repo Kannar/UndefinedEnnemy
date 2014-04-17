@@ -47,6 +47,7 @@ Heros.prototype.checkEnnemiInRange=function(){
 }
 Heros.prototype.chooseTarget=function(caseSelected){
 	for(var i =0;i<this.targetAvaible.length;i++){
+		console.log(this.targetAvaible)
 		if(caseSelected.x==this.targetAvaible[i].pos.x && 
 		   caseSelected.y==this.targetAvaible[i].pos.y){
 		   	console.log(this.targetAvaible[i])
