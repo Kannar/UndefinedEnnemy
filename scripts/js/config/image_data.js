@@ -4,8 +4,8 @@
 var imgSrc = {
 	//"ArcherPlayer1" : "images/Heros/Archer1.png",
 	//"ArcherPlayer2" : "images/Heros/Archer2.png",
-	"ThiefPlayer1" : "images/Heros/Thief1.png",
-	"ThiefPlayer2" : "images/Heros/Thief2.png",
+	//"ThiefPlayer1" : "images/Heros/Thief1.png",
+	//"ThiefPlayer2" : "images/Heros/Thief2.png",
 	"DragonPlayer1" : "images/Heros/Dragon1.png",
 	"DragonPlayer2" : "images/Heros/Dragon2.png",
 	"KnightPlayer1" : "images/Heros/Knight1.png",
