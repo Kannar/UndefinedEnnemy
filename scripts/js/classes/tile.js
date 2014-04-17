@@ -2,7 +2,7 @@ var Tile = function(params)
 {
     this.type = params.type;
 
-    this.player = params.player;    //Quel player à déposé cette case ?
+    this.player = params.player;    //Quel player à déposé cette case ? (string)
 
     this.beginPos = {x: params.x, y: params.y}; //En case
 
@@ -22,6 +22,7 @@ var Tile = function(params)
 
     this.update = function()
     {
+        //Màj de la position pour le scroll
         this.pos.x = this.beginPos.x - mapParams.viewX;
         this.pos.y = this.beginPos.y - mapParams.viewY;
 

@@ -23,36 +23,78 @@ var Heros = function(x,y,player){
 };
 Heros.prototype.constructor = Heros;
 
-Heros.prototype.checkEnnemiInRange=function(){
+Heros.prototype.checkEnnemiInRange=function(caseClicked){
     for(var i=-this.attackRange;i<=this.attackRange;i++){
         for(var j=-this.attackRange;j<=this.attackRange;j++){
         	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
+<<<<<<< HEAD
             	if(map["players"][this.pos.y][this.pos.x]==1){
+=======
+            	// if(map["players"][this.pos.y][this.pos.x]==1){
+>>>>>>> origin/MASTER3
         			for(var k=0; k<this.parent.otherPlayer.army.length;k++){
         				if(this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && 
         				    this.parent.otherPlayer.army[k].pos.y==this.pos.y+j){
         					this.targetAvaible.push(this.parent.otherPlayer.army[k]);
         				}
         			}
+<<<<<<< HEAD
             	}
+=======
+            	// }
+>>>>>>> origin/MASTER3
             }
         }
     }
     if(this.targetAvaible.length>0)
     {
-    	return true;
+	    return this.chooseTarget(caseClicked);
+	}
+}
+Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
+    for(var i=-this.attackRange;i<=this.attackRange;i++){
+  //   	for(var k=0; k<this.parent.army.length;k++){
+	 //    	if((this.parent.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.army[k].pos.y==this.pos.y) || (this.parent.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.army[k].pos.x==this.pos.x))
+	 //    	{
+		// 		this.targetAvaible.push(this.parent.army[k]);
+		// 		console.log(this.parent.army[k].pos.x,this.pos.x+i,this.parent.army[k].pos.y,this.pos.y+i);
+		// 	}
+		// }
+    	for(var k=0; k<this.parent.otherPlayer.army.length;k++){
+	    	if((this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.otherPlayer.army[k].pos.y==this.pos.y) || (this.parent.otherPlayer.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.otherPlayer.army[k].pos.x==this.pos.x))
+	    	{
+				this.targetAvaible.push(this.parent.otherPlayer.army[k]);
+	    		console.log(this.parent.otherPlayer.army[k].pos.x,this.pos.x+i,this.parent.otherPlayer.army[k].pos.y,this.pos.y+i);
+			}
+		}
     }
-    else
-    	return false;
+    if(this.targetAvaible.length>0)
+    {
+	    //return this.chooseTarget(caseClicked);
+	}
 }
 Heros.prototype.chooseTarget=function(caseSelected){
 	for(var i =0;i<this.targetAvaible.length;i++){
 		if(caseSelected.x==this.targetAvaible[i].pos.x && 
 		   caseSelected.y==this.targetAvaible[i].pos.y){
-			this.attack(this.targetAvaible[i]);
+		   	return this.targetAvaible[i];
 		}
 	}
+	return false;
 }
+
+Heros.prototype.CheckCase = function (caseClicked){
+	for (var i = 0; i < this.parent.otherPlayer.army.length; i++) {
+		enemy = this.parent.otherPlayer.army[i];
+		if (enemy.pos.x==caseClicked.x && enemy.pos.y==caseClicked.y){
+			return 'player';
+		}
+	};
+	if(checkTiles('collisions',caseClicked.x,caseClicked.y) == 0){
+		return 'move';
+	}
+	return false;
+};
 //Contient toutes les variables relatives aux effets de cases
 Heros.prototype.variableEffects = {
 
@@ -87,7 +129,7 @@ Heros.prototype.move = function (){
 				this.changeAnim('walk')
 			}
 		}
-		this.deselected();
+		//this.deselectioncted();
 	}
 	else if(this.isMoving){
 		if(this.path[0][0]<this.pos.x-this.moveSpeed){
@@ -122,9 +164,6 @@ Heros.prototype.changeAnim = function (name){
 	this.config.currentFrame = 0;
 };
 
-Heros.prototype.CheckCase = function (){
-	//checklacase si y a bonus/malus.
-};
 
 //Hero is selected
 Heros.prototype.selected = function (){
@@ -180,14 +219,15 @@ Heros.prototype.getDamage = function (){
 
 //Hero Attaque 
 Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (objet)
-
+	console.log("attacke")
 	if(this.variableEffects.canAtk)
 	{
 		//Insert animation d'attack de l'attaquant
 
 		if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
 		{
-			target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+			console.log(this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook);
+			target.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
 			//Insert animation prise de dégât defenseur
 		}
 		else
@@ -195,7 +235,7 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 			//Insert animation de block ou quoi
 
 			if(this.variableEffects.takeDgts)
-				this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+				this.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt;
 				//Insert anim de prend chère
 		}
 		
@@ -205,7 +245,7 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 
 			if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
 			{	
-				target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+				target.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
 				//Insert animation prise de dégât defenseur
 			}
 			else
@@ -213,14 +253,16 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 				//Insert animation de block
 
 				if(this.variableEffects.takeDgts)
-					this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+					this.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt;
 					//Insert anim de prend chère
 			}
 		}
 	}
 	this.hasAttacked=true;
 };
-Heros.prototype.pushSomeone = function(target){
+
+Heros.prototype.pushSomeone = function(target,direction,coefDirecteur){
+	target.pos[direction] = target.pos[direction]*coefDirecteur*this.damage; 
 	this.hasAttacked=true;
 };
 
@@ -241,8 +283,7 @@ Heros.prototype.render = function(context){
 };
 
 //Attaque Hero
-Heros.prototype.attack = function(){
-};
+
 
 //==========================================
 //              CLASSE ARCHER              ||
@@ -261,7 +302,7 @@ var Archer = function(x,y,player,parent){
 	this.movePoint = 4;
 	this.attackRange = 2;
 	this.loop = function(){
-		if(this.hasAttacked && this.hasMoved){
+		if(this.hasAttacked){
 			this.EndTurn();
 		}
 		if(this.isMoving){
@@ -295,7 +336,7 @@ var Thief = function(x,y,player,parent){
 	this.attackRange=2;
 
 	this.loop = function(){
-		if(this.hasAttacked && this.hasMoved){
+		if(this.hasAttacked){
 			this.EndTurn();
 		}
 		if(this.isMoving){
@@ -329,7 +370,7 @@ var Knight = function(x,y,player,parent){
 	this.attackRange=1;
 
 	this.loop = function(){
-		if(this.hasAttacked && this.hasMoved){
+		if(this.hasAttacked){
 			this.EndTurn();
 		}
 		if(this.isMoving){
@@ -363,7 +404,7 @@ var Mage = function(x,y,player,parent){
 	this.attackRange=2;
 
 	this.loop = function(){
-		if(this.hasAttacked && this.hasMoved){
+		if(this.hasAttacked){
 			this.EndTurn();
 		}
 		if(this.isMoving){
@@ -397,7 +438,7 @@ function Dragon(x,y,player,parent){
 	this.attackRange=1;
 
 	this.loop = function(){
-		if(this.hasAttacked && this.hasMoved){
+		if(this.hasAttacked){
 			this.EndTurn();
 		}
 		if(this.isMoving){
@@ -431,7 +472,7 @@ var Priest = function(x,y,player,parent){
 	this.attackRange=2;
 
 	this.loop = function(){
-		if(this.hasAttacked && this.hasMoved){
+		if(this.hasAttacked){
 			this.EndTurn();
 		}
 		if(this.isMoving){

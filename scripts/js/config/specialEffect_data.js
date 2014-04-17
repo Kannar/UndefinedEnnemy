@@ -1,9 +1,8 @@
 /**************************************************
 *   Donnée des cases spéciales
 **************************************************/
-var specialEffect_data = [
-    {
-        name: "resistance",
+var specialEffect_data = {
+    "resistance": {
         multiplicatorDgtTook: 2,
         onGoodEffect: function(target){
             target.variableEffects.invincible = true;
@@ -19,8 +18,7 @@ var specialEffect_data = [
         },
         id: 2
     },
-    {
-        name: "forceMelee",
+    "forceMelee": {
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon")
@@ -40,8 +38,7 @@ var specialEffect_data = [
         }  ,
         id: 3
     },
-    {
-        name: "forceDist",
+    "forceDist": {
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Mage" || target.name === "Archer")
@@ -61,8 +58,7 @@ var specialEffect_data = [
         },
         id: 4
     },
-    {
-        name: "forceMag",
+    "forceMag": {
         multiplicatorDgtSpell: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Mage" || target.name === "Priest")
@@ -82,8 +78,7 @@ var specialEffect_data = [
         },
         id: 5
     },
-    {
-        name: "hp",
+    "hp": {
         gainHp: 2,
         loseHp: 3,
         onGoodEffect: function(target){
@@ -100,8 +95,7 @@ var specialEffect_data = [
         },
         id: 6
     },
-    {
-        name: "atk",
+    "atk": {
         atkTurns: 2,
         onGoodEffect: function(target){
              target.variableEffects.atkTwice = true;
@@ -117,8 +111,7 @@ var specialEffect_data = [
         },
         id: 7
     },
-    {
-        name: "priorite",
+    "priorite": {
         onGoodEffect: function(target){
             target.variableEffects.firstToAtk = true;
         },
@@ -133,8 +126,7 @@ var specialEffect_data = [
         },
         id: 8
     },
-    {
-        name: "precision",
+    "precision": {
         gainAccuracy: 1.3,
         loseAccuracy: 1.4,
         onGoodEffect: function(target){
@@ -151,4 +143,4 @@ var specialEffect_data = [
         },
         id: 9
     }
-];
+};

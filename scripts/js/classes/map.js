@@ -81,14 +81,32 @@ var Map = function(matrice)
             };
         };
 
-        for(var i = 0; i<this.speTiles.length; i++)
+        if(state === "SET_TILES")
         {
-            for(var j=0; j<this.speTiles[i].length; j++)
+            for(var i = 0; i<this.speTiles.length; i++)
             {
-                if(this.speTiles[i][j] == 1)   //Emplacement pour case speciale
+                for(var j=0; j<this.speTiles[i].length; j++)
                 {
-                    context.fillStyle = "rgb(50, 50, 250)";
-                    context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                    if(this.speTiles[i][j] == 1 && currentPlayerTurn === "Player1")   //Emplacement libre pour case speciale joueur 1
+                    {
+                        context.fillStyle = "rgb(250, 50, 50)";
+                        context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                    }
+                    else if(this.speTiles[i][j] == 3 && currentPlayerTurn === "Player1")   //Emplacement libre pour case speciale joueur 1
+                    {
+                        context.fillStyle = "rgb(50, 250, 50)";
+                        context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                    }
+                    else if(this.speTiles[i][j] == 2 && currentPlayerTurn === "Player2")   //Emplacement libre pour case speciale joueur 1
+                    {
+                        context.fillStyle = "rgb(50, 50, 250)";
+                        context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                    }
+                    else if(this.speTiles[i][j] == 2 && currentPlayerTurn === "Player2")   //Emplacement libre pour case speciale joueur 1
+                    {
+                        context.fillStyle = "rgb(50, 250, 50)";
+                        context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                    }
                 }
             }
         }
