@@ -115,3 +115,24 @@ $(document).ready(function(){
         }
     });
 });
+
+//Confirmation de la pose des cases
+function confirmSetTiles(player)
+{
+    if(player === "Player1" && document.getElementById("confirmSpeTilePlayer1").style.backgroundColor == "rgb(25, 250, 25)")
+    {
+        currentPlayerTurn = "Player2";
+        $("#specialTilePartPlayer1").slideToggle(200, function(){
+
+        });
+    }
+    else if(player === "Player2" && document.getElementById("confirmSpeTilePlayer2").style.backgroundColor == "rgb(25, 250, 25)")
+    {
+        $("#specialTilePartPlayer2").slideToggle(200, function(){
+
+        });
+
+        currentPlayerTurn = "Player1";
+        state = "SELEC_PERSO";
+    }
+}

@@ -7,10 +7,18 @@ function eventInit(){
             var _pos = mouse.findCase(e.clientX, e.clientY);
 
             var _caseNb;
+            var _newNb;
             if(currentPlayerTurn === "Player1")
+            {
                 _caseNb = 1;
+                _newNb = 3;
+                
+            }
             else if(currentPlayerTurn === "Player2")
+            {
                 _caseNb = 2;
+                _newNb = 4;
+            }
 
             if(currentTileType.type != undefined)
             {
@@ -18,7 +26,7 @@ function eventInit(){
                 {
                     gameObjects[3].push(new Tile({x: _pos.x, y: _pos.y, type: specialEffect_data[currentTileType.type], player: currentTileType.player}));    //Posage de la case
 
-                    gameObjects[2][0].speTiles[_pos.y][_pos.x] = 0; //Une fois prise la case n'est plus dispo
+                    gameObjects[2][0].speTiles[_pos.y][_pos.x] = _newNb; //Une fois prise la case n'est plus dispo
 
                     $("#choiceTileType"+currentTileType.player).slideToggle(200, function(){    //On cache la selec tile
 
@@ -44,13 +52,13 @@ function eventInit(){
                         if(_nbSlotFull == 3)    //Si tout les slot sont plein
                         {
                             if(currentTileType.player === "Player1")    //Si on était sur le player1
-                            {  
-                                currentPlayerTurn = "Player2"    //On passe au joueur suivant
+                            {
+                                document.getElementById("confirmSpeTilePlayer1").style.backgroundColor = "rgb(25, 250, 25)";
                             }
                             else if(currentTileType.player === "Player2")   //Sinon
                             {
                                 
-                                state = "SELEC_PERSO";    //On passe à la pose des persos
+                                document.getElementById("confirmSpeTilePlayer2").style.backgroundColor = "rgb(25, 250, 25)";
                             }
                         }
                     }                  
