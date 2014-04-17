@@ -25,7 +25,7 @@ $(document).ready(function(){
 
     currentPlayerTurn = "Player1"    //"player1" ou "player2"
     var currentSlot = "";
-    currentTileType = {type: undefined, player: ""};
+    currentTileType = {type: undefined, player: "", nameSlotTile: ""};
 
 //PLayer1
     $(".specialTilePlayer1").click(function(){
@@ -38,6 +38,8 @@ $(document).ready(function(){
             {
                 currentSlot = this.id;
 
+                currentTileType.nameSlotTile = _tempSpeTile;
+
                 $("#choiceTileTypePlayer1").slideToggle(200, function(){
 
                 });
@@ -46,7 +48,7 @@ $(document).ready(function(){
                 $("#specialTilePartPlayer1").slideToggle(200, function(){
 
                 });
-            }            
+            }
         }
     });
 
@@ -62,7 +64,7 @@ $(document).ready(function(){
             this.style.backgroundColor = "rgb(25, 250, 25)";    //Pour voir la selection
 
             var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
-            currentTileType = {type: _typeName, player: "Player1"};
+            currentTileType = {type: _typeName, player: "Player1", nameSlotTile: currentTileType.nameSlotTile};
 
             document.getElementById(currentSlot).style.backgroundColor = "rgb(250, 250, 250)";  //Temporaire, normalement y mettre l'image de la case
         }
@@ -78,6 +80,10 @@ $(document).ready(function(){
             if(stateSpecialTiles["Player2"][_tempSpeTile] === false)
             {
                 currentSlot = this.id;
+
+                currentTileType.nameSlotTile = _tempSpeTile;
+
+                console.log();
 
                 $("#choiceTileTypePlayer2").slideToggle(200, function(){
 
@@ -97,15 +103,13 @@ $(document).ready(function(){
         {
             for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
             {
-                console.log(_i+"SpeTilePlayer2");
-
                 document.getElementById(_i + "SpeTilePlayer2").style.backgroundColor = "rgb(0, 0, 0)";
             }
 
             this.style.backgroundColor = "rgb(25, 250, 25)";    //Pour voir la selection
 
             var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
-            currentTileType = {type: _typeName, player: "Player2"};
+            currentTileType = {type: _typeName, player: "Player2", nameSlotTile: currentTileType.nameSlotTile};
 
             document.getElementById(currentSlot).style.backgroundColor = "rgb(250, 250, 250)";  //Temporaire, normalement y mettre l'image de la case
         }
