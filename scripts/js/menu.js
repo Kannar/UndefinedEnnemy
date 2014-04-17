@@ -10,7 +10,7 @@
 *
 ***********************************/
 $(document).ready(function(){
-    var stateSpecialTiles = {
+    stateSpecialTiles = {
         "Player1": {
             "specialTile1": false,  //True si activé (posé sur le terrain quoi)
             "specialTile2": false,
@@ -23,47 +23,91 @@ $(document).ready(function(){
         }
     }
 
-    var currentPlayerTurn = "Player1"    //"player1" ou "player2"
+    currentPlayerTurn = "Player1"    //"player1" ou "player2"
     var currentSlot = "";
+    currentTileType = {type: undefined, player: ""};
 
-    $(".specialTile"+currentPlayerTurn).click(function(){
+//PLayer1
+    $(".specialTilePlayer1").click(function(){
+        
+        if(currentPlayerTurn === "Player1")
+        {
+            var _tempSpeTile = this.id.substring(0, 12);
 
-        currentSlot = this.id;
+            if(stateSpecialTiles["Player1"][_tempSpeTile] === false)
+            {
+                currentSlot = this.id;
 
-        $("#choiceTileType"+currentPlayerTurn).slideToggle(200, function(){
+                $("#choiceTileTypePlayer1").slideToggle(200, function(){
 
-        });
+                });
 
 
-        $("#specialTilePart"+currentPlayerTurn).slideToggle(200, function(){
+                $("#specialTilePartPlayer1").slideToggle(200, function(){
 
-        });
-
+                });
+            }            
+        }
     });
 
-    $(".selecSpecialTile"+currentPlayerTurn).click(function(){
+    $(".selecSpecialTilePlayer1").click(function(){
 
-        // $("#choiceTileType"+currentPlayerTurn).slideToggle(200, function(){
-
-        // });
-
-
-        // $("#specialTilePart"+currentPlayerTurn).slideToggle(200, function(){
-
-        // });
-
-        for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
+        if(currentPlayerTurn === "Player1")
         {
-            document.getElementById(specialEffect_data[_i].name + "SpeTile" + currentPlayerTurn).style.backgroundColor = "rgb(0, 0, 0)";
+            for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
+            {
+                document.getElementById(_i + "SpeTilePlayer1").style.backgroundColor = "rgb(0, 0, 0)";
+            }
+
+            this.style.backgroundColor = "rgb(25, 250, 25)";    //Pour voir la selection
+
+            var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
+            currentTileType = {type: _typeName, player: "Player1"};
+
+            document.getElementById(currentSlot).style.backgroundColor = "rgb(250, 250, 250)";  //Temporaire, normalement y mettre l'image de la case
         }
+    });
 
-        this.style.backgroundColor = "rgb(25, 250, 25)";    //Pour voir la selection
-
-        var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
-        currentTileType = _typeName;
+//Player2
+    $(".specialTilePlayer2").click(function(){
         
-        console.log(currentTileType);
+        if(currentPlayerTurn === "Player2")
+        {
+            var _tempSpeTile = this.id.substring(0, 12);
 
-        document.getElementById(currentSlot).style.backgroundColor = "rgb(250, 250, 250)";  //Temporaire, normalement y mettre l'image de la case
+            if(stateSpecialTiles["Player2"][_tempSpeTile] === false)
+            {
+                currentSlot = this.id;
+
+                $("#choiceTileTypePlayer2").slideToggle(200, function(){
+
+                });
+
+
+                $("#specialTilePartPlayer2").slideToggle(200, function(){
+
+                });
+            }    
+        }
+    });
+
+    $(".selecSpecialTilePlayer2").click(function(){
+
+        if(currentPlayerTurn === "Player2")
+        {
+            for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
+            {
+                console.log(_i+"SpeTilePlayer2");
+
+                document.getElementById(_i + "SpeTilePlayer2").style.backgroundColor = "rgb(0, 0, 0)";
+            }
+
+            this.style.backgroundColor = "rgb(25, 250, 25)";    //Pour voir la selection
+
+            var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
+            currentTileType = {type: _typeName, player: "Player2"};
+
+            document.getElementById(currentSlot).style.backgroundColor = "rgb(250, 250, 250)";  //Temporaire, normalement y mettre l'image de la case
+        }
     });
 });

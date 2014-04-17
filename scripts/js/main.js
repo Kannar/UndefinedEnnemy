@@ -17,6 +17,7 @@ function run()
             setTiles();
         break;
         case "SELEC_PERSO":
+            teamMaking();
         break;
         case "IN_GAME":
             gameloop();
