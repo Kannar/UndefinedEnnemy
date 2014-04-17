@@ -28,24 +28,12 @@ Heros.prototype.checkEnnemiInRange=function(){
         for(var j=-this.attackRange;j<=this.attackRange;j++){
         	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
             	if(map["players"][this.pos.y][this.pos.x]==1){
-            		if(gameObjects[0][0].turn){
-            			for(var k=0; k<gameObjects[1][0].army.length;k++){
-            				if(gameObjects[1][0].army[k].pos.x==this.pos.x+i && 
-            				   gameObjects[1][0].army[k].pos.y==this.pos.y+j){
-            					console.log("j'attque l'arme 2");
-            					this.targetAvaible.push(gameObjects[1][0].army[k]);
-            				}
-            			}
-            		}
-            		if(gameObjects[1][0].turn){
-            			for(var k=0; k<gameObjects[0][0].army.length;k++){
-            				if(gameObjects[0][0].army[k].pos.x==this.pos.x+i && 
-        				   		gameObjects[0][0].army[k].pos.y==this.pos.y+j){
-            					console.log("j'attque l'arme 1");
-            					this.targetAvaible.push(gameObjects[0][0].army[k]);
-            				}
-            			}
-            		}
+        			for(var k=0; k<this.parent.otherPlayer.army.length;k++){
+        				if(this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && 
+        				    this.parent.otherPlayer.army[k].pos.y==this.pos.y+j){
+        					this.targetAvaible.push(this.parent.otherPlayer.army[k]);
+        				}
+        			}
             	}
             }
         }
@@ -61,7 +49,9 @@ Heros.prototype.chooseTarget=function(caseSelected){
 	for(var i =0;i<this.targetAvaible.length;i++){
 		if(caseSelected.x==this.targetAvaible[i].pos.x && 
 		   caseSelected.y==this.targetAvaible[i].pos.y){
+		   	console.log(this.targetAvaible[i])
 			this.attack(this.targetAvaible[i]);
+			this.targetAvaible.length=0;
 		}
 	}
 }
@@ -99,7 +89,7 @@ Heros.prototype.move = function (){
 				this.changeAnim('walk')
 			}
 		}
-		this.deselected();
+		//this.deselectioncted();
 	}
 	else if(this.isMoving){
 		if(this.path[0][0]<this.pos.x-this.moveSpeed){
@@ -192,14 +182,15 @@ Heros.prototype.getDamage = function (){
 
 //Hero Attaque 
 Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (objet)
-
+	console.log("attacke")
 	if(this.variableEffects.canAtk)
 	{
 		//Insert animation d'attack de l'attaquant
 
 		if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
 		{
-			target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+			console.log(this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook);
+			target.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
 			//Insert animation prise de dégât defenseur
 		}
 		else
@@ -207,7 +198,7 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 			//Insert animation de block ou quoi
 
 			if(this.variableEffects.takeDgts)
-				this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+				this.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt;
 				//Insert anim de prend chère
 		}
 		
@@ -217,7 +208,7 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 
 			if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
 			{	
-				target.life -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
+				target.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
 				//Insert animation prise de dégât defenseur
 			}
 			else
@@ -225,7 +216,7 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 				//Insert animation de block
 
 				if(this.variableEffects.takeDgts)
-					this.life -= this.damage*this.variableEffects.multiplicatorDgtDealt;
+					this.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt;
 					//Insert anim de prend chère
 			}
 		}
@@ -253,8 +244,7 @@ Heros.prototype.render = function(context){
 };
 
 //Attaque Hero
-Heros.prototype.attack = function(){
-};
+
 
 //==========================================
 //              CLASSE ARCHER              ||
@@ -273,7 +263,7 @@ var Archer = function(x,y,player,parent){
 	this.movePoint = 4;
 	this.attackRange = 2;
 	this.loop = function(){
-		if(this.hasAttacked && this.hasMoved){
+		if(this.hasAttacked){
 			this.EndTurn();
 		}
 		if(this.isMoving){

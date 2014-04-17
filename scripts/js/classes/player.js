@@ -73,6 +73,12 @@ Player.prototype.onclick = function(x,y){
 		else if(this.army[i].isSelected) {
 			this.army[i].move();
 		}
+		if(this.army[i].isSelected)
+		{
+			if(this.army[i].checkEnnemiInRange()){
+				this.army[i].chooseTarget(caseSelected);
+			}
+		}
 	};
 }
 
