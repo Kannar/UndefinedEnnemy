@@ -27,14 +27,14 @@ Heros.prototype.checkEnnemiInRange=function(caseClicked){
     for(var i=-this.attackRange;i<=this.attackRange;i++){
         for(var j=-this.attackRange;j<=this.attackRange;j++){
         	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
-            	// if(map["players"][this.pos.y][this.pos.x]==1){
+            	if(map["players"][this.pos.y][this.pos.x]==1){
         			for(var k=0; k<this.parent.otherPlayer.army.length;k++){
         				if(this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && 
         				    this.parent.otherPlayer.army[k].pos.y==this.pos.y+j){
         					this.targetAvaible.push(this.parent.otherPlayer.army[k]);
         				}
         			}
-            	// }
+            	}
             }
         }
     }
@@ -56,7 +56,6 @@ Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
 	    	if((this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.otherPlayer.army[k].pos.y==this.pos.y) || (this.parent.otherPlayer.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.otherPlayer.army[k].pos.x==this.pos.x))
 	    	{
 				this.targetAvaible.push(this.parent.otherPlayer.army[k]);
-	    		console.log(this.parent.otherPlayer.army[k].pos.x,this.pos.x+i,this.parent.otherPlayer.army[k].pos.y,this.pos.y+i);
 			}
 		}
     }

@@ -7,6 +7,7 @@ var Player = function(canvas,name,spawn){
 	this.army = [];
 	this.spawnHeros();
 	this.status = '';
+	this.isDoingAttack = false;
 	this.isSelecting = false;
 	this.targetSelected = false;
 	this.turn = false;
@@ -23,7 +24,7 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 
 Player.prototype.spawnHeros = function(){
 	for (var i = 0; i < this.spawn.length; i++) {
-		this.army.push(new Thief(this.spawn[i][0],this.spawn[i][1],this.name,this))
+		this.army.push(new Knight(this.spawn[i][0],this.spawn[i][1],this.name,this))
 	};
 }
 
@@ -35,6 +36,19 @@ Player.prototype.loop = function(context){
 			if(this.army[i].isSelected){
 				this.army[i].loop(context);
 			}
+			if(this.army[i].isMoving){
+				this.army[i].move();
+			}
+		}
+		if(this.isDoingAttack){
+			context.fillStyle = 'red';
+			context.fillRect(this.targetSelected.pos.x*mapParams.tileSize,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
+			context.fillStyle = 'blue';
+			context.fillRect(this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
+		}
+	}
+	else{
+		for (var i = this.army.length - 1; i >= 0; i--){
 			if(this.army[i].isMoving){
 				this.army[i].move();
 			}
@@ -53,36 +67,54 @@ Player.prototype.loop = function(context){
 
 Player.prototype.onclick = function(x,y){
 	var caseSelected = findCaseWithCamera(x,y);
-	for (var i = 0; i < this.army.length; i++) {
-		if(this.army[i].pos.x == caseSelected.x && this.army[i].pos.y == caseSelected.y){
-			if(!this.isSelecting){
-				if(!this.army[i].isSelected && this.army[i].canBeSelected){
-					this.army[i].selected();
-					this.targetSelected = this.army[i];
+	if(!this.isDoingAttack){
+		for (var i = 0; i < this.army.length; i++) {
+			if(this.army[i].pos.x == caseSelected.x && this.army[i].pos.y == caseSelected.y){
+				if(!this.isSelecting){
+					if(!this.army[i].isSelected && this.army[i].canBeSelected){
+						this.army[i].selected();
+						this.targetSelected = this.army[i];
+					}
+					else{
+						this.army[i].deselected();
+						this.targetSelected = false;
+					}
 				}
 				else{
-					this.army[i].deselected();
+					this.targetSelected.deselected();
 					this.targetSelected = false;
 				}
-			}
-			else{
-				this.targetSelected.deselected();
-				this.targetSelected = false;
-			}
-		} 
-		else if(this.army[i].isSelected) {
-			if(this.army[i].CheckCase(caseSelected) == 'move'){
-				this.army[i].move();
-			}
-			if(this.army[i].CheckCase(caseSelected) == 'player'){
-				var enemy = this.army[i].checkEnnemiInRangeForPush(caseSelected);
-				if(enemy){
-					//this.army[i].attack(enemy);
-					this.army[i].targetAvaible = [];
+			} 
+			else if(this.army[i].isSelected) {
+				if(this.army[i].CheckCase(caseSelected) == 'move'){
+					this.army[i].move();
+				}
+				if(this.army[i].CheckCase(caseSelected) == 'player'){
+					this.isDoingAttack = true;
 				}
 			}
+		};
+	}
+	else{
+		var caseSelected = mouse.findCase(x,y);
+		if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
+				(caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
+			var enemy = this.targetSelected.checkEnnemiInRangeForPush(caseSelected);
+			this.isDoingAttack = false;
 		}
-	};
+		if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize) && 
+				(caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
+			var enemy = this.targetSelected.checkEnnemiInRange(caseSelected);
+			if(enemy){
+				this.targetSelected.attack(enemy);
+				this.targetSelected.targetAvaible = [];
+			}
+			this.isDoingAttack=false;
+		}
+		else{
+			this.isDoingAttack = false;
+		}
+	}
 }
 
 Player.prototype.startTurn = function(){
