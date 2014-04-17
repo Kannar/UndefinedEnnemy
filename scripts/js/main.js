@@ -103,19 +103,14 @@ function loading(nb,target){
 function manageTiles(layer,x,y,insert)
 {
     if(insert)
-        map[layer][x][y] = 1;
+        map[layer][y][x] = 1;
     else
-        map[layer][x][y] = 0;
+        map[layer][y][x] = 0;
 }
 
 function checkTiles(layer,x,y)
 {
-<<<<<<< HEAD
-    return map[layer][x][y];
-
-=======
-    return map1[layer][x][y];
->>>>>>> origin/Kannar
+    return map[layer][y][x];
 }
 
 /********************************

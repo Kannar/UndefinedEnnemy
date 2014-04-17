@@ -21,6 +21,18 @@ var Heros = function(x,y,player){
 };
 Heros.prototype.constructor = Heros;
 
+Heros.prototype.checEnnemiInRange=function(){
+    for(var i=-this.attackRange;i<=this.attackRange;i++)
+    {
+        for(var j=-this.attackRange;j<=this.attackRange;j++)
+        {
+        	if(Math.abs(i)+Math.abs(j)<=this.attackRange)
+            {
+            	//if()
+            }
+        }
+    }
+}
 //Contient toutes les variables relatives aux effets de cases
 Heros.prototype.variableEffects = {
 
