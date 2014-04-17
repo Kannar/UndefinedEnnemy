@@ -8,10 +8,54 @@ function eventInit(){
 
             console.log(_pos);
 
-            if(currentTileType != undefined)
+            if(currentTileType.type != undefined)
             {
-                //Posage de la case
-                currentTileType = undefined;    //On RAZ la selection
+                if(gameObjects[2][0].speTiles[_pos.y][_pos.x] == 1)
+                {
+                    gameObjects[3].push(new Tile({x: _pos.x, y: _pos.y, type: specialEffect_data[currentTileType.type], player: currentTileType.player}));    //Posage de la case
+
+                    gameObjects[2][0].speTiles[_pos.y][_pos.x] = specialEffect_data[currentTileType.type].id;
+
+                    $("#choiceTileType"+currentTileType.player).slideToggle(200, function(){    //On cache la selec tile
+
+                    });
+
+                    $("#specialTilePart"+currentTileType.player).slideToggle(200, function(){   //On ré-affiche la partie tile
+
+                    });
+
+                    var _nbSlotFull = 0;
+                    for(var _i in stateSpecialTiles[currentTileType.player])    //On enregistre le fait que le slot actuel a été attribué
+                    {
+                        _nbSlotFull += 1;
+
+                        if(_nbSlotFull == 3)    //Si tout les slot sont plein
+                        {
+                            if(currentTileType.player === "Player1")    //Si on était sur le player1
+                            {  
+                                currentPlayerTurn = "Player2"    //On passe au joueur suivant
+                            }
+                            else if(currentTileType.player === "Player2")   //Sinon
+                            {
+                                
+                                state = "SELEC_PERSO";    //On passe à la pose des persos
+                            }
+                        }
+
+                        if(!stateSpecialTiles[currentTileType.player][_i])
+                        {
+                            stateSpecialTiles[currentTileType.player][_i] = true;
+                            break;
+                        }
+                    }
+
+                    for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
+                    {
+                        document.getElementById(_i + "SpeTile" + currentTileType.player).style.backgroundColor = "rgb(0, 0, 0)";
+                    }
+
+                    currentTileType = {type: undefined, player: ""};    //On RAZ la selection
+                }
             }
         }
         else if(state === "IN_GAME")
@@ -23,7 +67,7 @@ function eventInit(){
                 gameObjects[1][0].onclick(e.clientX, e.clientY);
             }
             endPathFinding(e);
-            doPathFinding(e);            
+            doPathFinding(e);
         }
     });
         //MouseMove pour déplacer le canvas

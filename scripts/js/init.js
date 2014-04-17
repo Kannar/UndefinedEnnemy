@@ -52,6 +52,8 @@ var gameObjects=[[],[],[],[]];
 *   Variable temp menu
 ********************************/
 var currentTileType;
+var stateSpecialTiles;
+var currentPlayerTurn;
 /*******************************
 *
 *   Varibles d'UI
