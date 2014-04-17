@@ -43,9 +43,9 @@ Player.prototype.loop = function(context){
 		}
 		if(this.isDoingAttack){
 			context.fillStyle = 'red';
-			context.fillRect(this.targetSelected.pos.x*mapParams.tileSize,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
+			context.drawImage(images['boutonPush'],this.targetSelected.pos.x*mapParams.tileSize,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
 			context.fillStyle = 'blue';
-			context.fillRect(this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
+			context.drawImage(images['boutonAttack'],this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
 		}
 	}
 	else{
