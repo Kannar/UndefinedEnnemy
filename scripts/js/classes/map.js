@@ -110,6 +110,26 @@ var Map = function(matrice)
                 }
             }
         }
+
+        if(state === "SELEC_PERSO")
+        {
+            for(var i=0; i<this.map.players.length; i++)
+            {
+                for(var j=0; j<this.map.players[i].length; j++)
+                {
+                    if(this.map.players[i][j] === 1 && currentPlayerTurn === "Player1")
+                    {
+                        context.fillStyle = "rgb(250, 50, 50)";
+                        context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                    }
+                    else if(this.map.players[i][j] === 2 && currentPlayerTurn === "Player2")
+                    {
+                        context.fillStyle = "rgb(50, 50, 250)";
+                        context.fillRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,65,65);
+                    }
+                }
+            }
+        }
     }
 
     //Appliquer des effets liés au case spéciales

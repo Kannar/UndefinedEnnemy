@@ -22,7 +22,7 @@ function eventInit(){
 
             if(currentTileType.type != undefined)
             {
-                if(gameObjects[2][0].speTiles[_pos.y][_pos.x] == _caseNb)
+                if(gameObjects[2][0].speTiles[_pos.y+mapParams.viewY][_pos.x+mapParams.viewX] == _caseNb)
                 {
                     gameObjects[3].push(new Tile({x: _pos.x, y: _pos.y, type: specialEffect_data[currentTileType.type], player: currentTileType.player}));    //Posage de la case
 
@@ -72,6 +72,88 @@ function eventInit(){
                 }
             }
         }
+        else if(state === "SELEC_PERSO")
+        {
+            if(currentUnit.obj != undefined)
+            {
+                var _pos = mouse.findCase(e.clientX, e.clientY);
+                var _freeTile = true;
+
+                // console.log(_pos);
+
+                if(currentPlayerTurn === "Player1" && gameObjects[2][0].map.players[_pos.y][_pos.x] === 1)
+                {
+                    for(var i=0; i<gameObjects[0][0].army.length; i++)
+                    {
+                        _freeTile = true;
+
+                        if(gameObjects[0][0].army[i].pos.x === _pos.x && gameObjects[0][0].army[i].pos.y === _pos.y)
+                        {
+                            _freeTile = false;
+                        }
+                    }
+
+                    if(_freeTile === true)
+                    {
+                        gameObjects[0][0].army.push(new player1Skins[currentUnit.id]["unit"](_pos.x+mapParams.viewX, _pos.y+mapParams.viewY, "Player1", gameObjects[0][0]));
+
+                        //On le deselectionne
+                        document.getElementById(currentUnit.id).style.border = "solid 0px white";
+
+                        //On regrise l'ancien
+                        document.getElementById(currentUnit.id).style.backgroundImage = "url('"+player1Skins[currentUnit.id]["grey"]+"')";
+
+                        currentUnit = {id: "", obj: undefined};
+
+                        if(gameObjects[0][0].army.length == 6)
+                        {
+                            currentPlayerTurn = "Player2";
+                        }
+                    }
+
+                }
+                else if(currentPlayerTurn === "Player2" && gameObjects[2][0].map.players[_pos.y+mapParams.viewY][_pos.x+mapParams.viewX] === 2)
+                {
+                    for(var i=0; i<gameObjects[1][0].army.length; i++)
+                    {
+                        _freeTile = true;
+
+                        if(gameObjects[1][0].army[i].pos.x === _pos.x && gameObjects[1][0].army[i].pos.y === _pos.y)
+                        {
+                            _freeTile = false;
+                        }
+                    }
+
+                    if(_freeTile === true)
+                    {
+                        gameObjects[1][0].army.push(new player2Skins[currentUnit.id]["unit"](_pos.x+mapParams.viewX, _pos.y+mapParams.viewY, "Player2", gameObjects[1][0]));
+
+                        //On le deselectionne
+                        document.getElementById(currentUnit.id).style.border = "solid 0px white";
+
+                        //On regrise l'ancien
+                        document.getElementById(currentUnit.id).style.backgroundImage = "url('"+player2Skins[currentUnit.id]["grey"]+"')";
+
+                        currentUnit = {id: "", obj: undefined};
+
+                        if(gameObjects[1][0].army.length == 6)
+                        {
+                            currentPlayerTurn = "";
+
+                            $("#selecUnitPlayer1").slideToggle(200, function(){    //On cache la selec tile
+
+                            });
+
+                            $("#selecUnitPlayer2").slideToggle(200, function(){    //On cache la selec tile
+
+                            });
+
+                            state = "IN_GAME";
+                        }
+                    }
+                }
+            }
+        }
         else if(state === "IN_GAME")
         {
             if(gameObjects[0][0].turn){
@@ -85,8 +167,20 @@ function eventInit(){
         }
     });
         //MouseMove pour déplacer le canvas
-    canvas.addEventListener("mousemove", function(e){   
+    canvas.addEventListener("mousemove", function(e){
         getMouseOnMap(e);
+
+        if(state === "SELEC_PERSO")
+        {
+            // console.log(mouse.findCase(e.clientX, e.clientY));
+
+            if(currentUnit.obj != undefined)
+            {
+                currentUnit.obj.pos.x = (mouse.findCase(e.clientX, e.clientY).x+mapParams.viewX);
+                currentUnit.obj.pos.y = (mouse.findCase(e.clientX, e.clientY).y+mapParams.viewY);
+                // currentUnit.obj.render(context);
+            }
+        }
     });
 }
 

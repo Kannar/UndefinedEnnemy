@@ -53,9 +53,14 @@ var gameObjects=[[],[],[],[]];
 /*******************************
 *   Variable temp menu
 ********************************/
+var currentPlayerTurn;
+//Pose des cases
 var currentTileType;
 var stateSpecialTiles;
-var currentPlayerTurn;
+//Selection et pose des unités
+var currentUnit = {id: "", obj: undefined};
+var player1Skins;
+var player2Skins;
 /*******************************
 *
 *   Varibles d'UI
@@ -93,8 +98,16 @@ function startGame(){
     gameObjects[2].push(new Map(map));
     // var P1hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
     var P1spawn = [[0,0],[0,2],[1,1],[2,1],[2,0],[3,0]]
+    for(var i=0; i<P1spawn.length; i++)
+    {
+        gameObjects[2][0].map.players[P1spawn[i][1]][P1spawn[i][0]] = 1;    //1 = emplacement de joueur libre
+    }
     // var P2hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
     var P2spawn = [[3,3],[19,12],[18,13],[17,13],[17,14],[16,14]]
+    for(var i=0; i<P2spawn.length; i++)
+    {
+        gameObjects[2][0].map.players[P2spawn[i][1]][P2spawn[i][0]] = 2;    //2 = emplacement de joueur libre
+    }
     gameObjects[1].push(new Player(canvas,'Player2',P1spawn,P1hero));
     gameObjects[0].push(new Player(canvas,'Player1',P2spawn,P2hero));
     gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
@@ -124,5 +137,5 @@ function startGame(){
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
 
-    state = 'IN_GAME';
+    state = 'SET_TILES';
 }

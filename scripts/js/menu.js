@@ -58,6 +58,7 @@ $(document).ready(function(){
         {
             for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
             {
+                console.log(_i + "SpeTilePlayer1");
                 document.getElementById(_i + "SpeTilePlayer1").style.backgroundColor = "rgb(0, 0, 0)";
             }
 
@@ -137,6 +138,14 @@ function confirmSetTiles(player)
             gameObjects[2][0].speTiles[_pos.y][_pos.x] = 0;
         }
 
+        $("#selecUnitPlayer1").slideToggle(200, function(){    //On cache la selec tile
+
+        });
+
+        $("#selecUnitPlayer2").slideToggle(200, function(){    //On cache la selec tile
+
+        });
+
         currentPlayerTurn = "Player1";
         state = "SELEC_PERSO";
     }
@@ -154,89 +163,158 @@ $(document).ready(function(){
         "Player2": ""
     }
 
-    var player1Skins = {
+    player1Skins = {
         "archerUnitPlayer1": {
             "grey": "images/menu/skins_grey/Archer_1.png",
-            "colored": "images/Heros/Archer2.png"
+            "colored": "images/Heros/Archer2.png",
+            "unit": Archer
         },
         "priestUnitPlayer1": {
             "grey": "images/menu/skins_grey/Priest_2.png",
-            "colored": "images/Heros/Priest2.png"
+            "colored": "images/Heros/Priest2.png",
+            "unit": Priest
         },
         "guerrierUnitPlayer1": {
             "grey": "images/menu/skins_grey/Knight_2.png",
-            "colored": "images/Heros/Knight2.png"
+            "colored": "images/Heros/Knight2.png",
+            "unit": Knight
         },
         "mageUnitPlayer1": {
             "grey": "images/menu/skins_grey/Mage_1.png",
-            "colored": "images/Heros/Mage2.png"
+            "colored": "images/Heros/Mage2.png",
+            "unit": Mage
         },
         "thiefUnitPlayer1": {
             "grey": "images/menu/skins_grey/Thief_1.png",
-            "colored": "images/Heros/Thief2.png"
+            "colored": "images/Heros/Thief2.png",
+            "unit": Thief
         },
         "dragonUnitPlayer1": {
             "grey": "images/menu/skins_grey/Dragon.png",
-            "colored": "images/Heros/Dragon2.png"
+            "colored": "images/Heros/Dragon2.png",
+            "unit": Dragon
         }
     }
-    var player2Skins = {
-        "archerUnitPlayer1": {
+    player2Skins = {
+        "archerUnitPlayer2": {
             "grey": "images/menu/skins_grey/Archer_1.png",
-            "colored": "images/Heros/Archer1.png"
+            "colored": "images/Heros/Archer1.png",
+            "unit": Archer
         },
-        "priestUnitPlayer1": {
+        "priestUnitPlayer2": {
             "grey": "images/menu/skins_grey/Priest_2.png",
-            "colored": "images/Heros/Priest1.png"
+            "colored": "images/Heros/Priest1.png",
+            "unit": Priest
         },
-        "guerrierUnitPlayer1": {
+        "guerrierUnitPlayer2": {
             "grey": "images/menu/skins_grey/Knight_2.png",
-            "colored": "images/Heros/Knight1.png"
+            "colored": "images/Heros/Knight1.png",
+            "unit": Knight
         },
-        "mageUnitPlayer1": {
+        "mageUnitPlayer2": {
             "grey": "images/menu/skins_grey/Mage_1.png",
-            "colored": "images/Heros/Mage1.png"
+            "colored": "images/Heros/Mage1.png",
+            "unit": Mage
         },
-        "thiefUnitPlayer1": {
+        "thiefUnitPlayer2": {
             "grey": "images/menu/skins_grey/Thief_1.png",
-            "colored": "images/Heros/Thief1.png"
+            "colored": "images/Heros/Thief1.png",
+            "unit": Thief
         },
-        "dragonUnitPlayer1": {
+        "dragonUnitPlayer2": {
             "grey": "images/menu/skins_grey/Dragon.png",
-            "colored": "images/Heros/Dragon1.png"
+            "colored": "images/Heros/Dragon1.png",
+            "unit": Dragon
         }
     }
 
 //Player1
     $(".selecUnitPlayer1").click(function(){
 
-        if(currentButtonActive["Player1"] != "")    //Si un bouton est déjà séléctionné
+        console.log("yololo");
+
+        if(currentPlayerTurn === "Player1")
         {
-            //On le deselectionne
-            document.getElementById(currentButtonActive["Player1"]).style.border = "solid 0px white";
+            if(currentButtonActive["Player1"] != "")    //Si un bouton est déjà séléctionné
+            {
+                //On le deselectionne
+                document.getElementById(currentButtonActive["Player1"]).style.border = "solid 0px white";
 
-            //On regrise l'ancien
-            document.getElementById(currentButtonActive["Player1"]).style.backgroundImage = "url('"+player1Skins[currentButtonActive["Player1"]]["grey"]+"')";
+                //On regrise l'ancien
+                document.getElementById(currentButtonActive["Player1"]).style.backgroundImage = "url('"+player1Skins[currentButtonActive["Player1"]]["grey"]+"')";
 
-            //On selectionne le nouveau
-            this.style.border = "solid 1px white";
+                //On selectionne le nouveau
+                this.style.border = "solid 1px white";
 
-            //On change l'icone
-            this.style.backgroundImage = "url('"+player1Skins[this.id]["colored"]+"')";
+                //On change l'icone
+                this.style.backgroundImage = "url('"+player1Skins[this.id]["colored"]+"')";
 
-            //On stock le nouvel id
-            currentButtonActive["Player1"] = this.id;
+                //On stock le nouvel id
+                currentButtonActive["Player1"] = this.id;
+
+                currentUnit.id = this.id;
+                currentUnit.obj = new player1Skins[this.id]["unit"](0, 0, "Player1", gameObjects[0][0]);
+            }
+            else
+            {
+                //On le selectionne
+                this.style.border = "solid 1px white";
+
+                //On change l'icone
+                this.style.backgroundImage = "url('"+player1Skins[this.id]["colored"]+"')";
+
+                //On stock l'id
+                currentButtonActive["Player1"] = this.id;
+
+                currentUnit.id = this.id;
+                currentUnit.obj = new player1Skins[this.id]["unit"](0, 0, "Player1", gameObjects[0][0]);
+            }            
         }
-        else
+    });
+
+
+//Player2
+    $(".selecUnitPlayer2").click(function(){
+
+        if(currentPlayerTurn === "Player2")
         {
-            //On le selectionne
-           this.style.border = "solid 1px white";
+            if(currentButtonActive["Player2"] != "")    //Si un bouton est déjà séléctionné
+            {
+                console.log("yolo1");
+                            
+                //On le deselectionne
+                document.getElementById(currentButtonActive["Player2"]).style.border = "solid 0px white";
 
-           //On change l'icone
-           this.style.backgroundImage = "url('"+player1Skins[this.id]["colored"]+"')";
+                //On regrise l'ancien
+                document.getElementById(currentButtonActive["Player2"]).style.backgroundImage = "url('"+player2Skins[currentButtonActive["Player2"]]["grey"]+"')";
 
-           //On stock l'id
-           currentButtonActive["Player1"] = this.id;
+                //On selectionne le nouveau
+                this.style.border = "solid 1px white";
+
+                //On change l'icone
+                this.style.backgroundImage = "url('"+player2Skins[this.id]["colored"]+"')";
+
+                //On stock le nouvel id
+                currentButtonActive["Player2"] = this.id;
+
+                currentUnit.id = this.id;
+                currentUnit.obj = new player2Skins[this.id]["unit"](0, 0, "Player2", gameObjects[1][0]);
+            }
+            else
+            {
+                //On le selectionne
+                this.style.border = "solid 1px white";
+
+                //On change l'icone
+                this.style.backgroundImage = "url('"+player2Skins[this.id]["colored"]+"')";
+
+                //On stock l'id
+                currentButtonActive["Player2"] = this.id;
+
+                currentUnit.id = this.id;
+                currentUnit.obj = new player2Skins[this.id]["unit"](0, 0, "Player2", gameObjects[1][0]);
+                            
+            }            
         }
     });
 });

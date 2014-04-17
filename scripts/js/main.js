@@ -137,11 +137,19 @@ function teamMaking()
         gameObjects[2][i].renderMap();
     }
 
-    if(currentPlayerTurn === "Player1"){
-        gameObjects[0][0].loop(context);
+    if(currentUnit.obj != undefined)
+    {
+        currentUnit.obj.render(context);
     }
-    else if(currentPlayerTurn === "Player2"){
-        gameObjects[1][0].loop(context);
+
+    //Si on veut voir toutes les unités peut ilporte qui selectionne les siennes
+    for(var i=0; i<gameObjects[0][0].army.length; i++)
+    {
+        gameObjects[0][0].army[i].render(context);
+    }
+    for(var i=0; i<gameObjects[1][0].army.length; i++)
+    {
+        gameObjects[1][0].army[i].render(context);
     }
 }
 /*********************************

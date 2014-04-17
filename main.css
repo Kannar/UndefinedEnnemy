@@ -21,7 +21,7 @@
 }
 
 #specialTilePartPlayer1{
-	display: none;
+	display: block;
 	position: absolute;
 	width: 150px;
 	height: 639px;
@@ -59,7 +59,7 @@
 }
 
 #selecUnitPlayer1{
-	display: block;
+	display: none;
 	position: absolute;
 	width: 150px;
 	height: 639px;
@@ -81,7 +81,7 @@
 }
 
 #specialTilePartPlayer2{
-	display: none;
+	display: block;
 	position: absolute;
 	width: 150px;
 	height: 639px;
@@ -101,7 +101,7 @@
 }
 
 #selecUnitPlayer2{
-	display: block;
+	display: none;
 	position: absolute;
 	width: 150px;
 	height: 639px;
