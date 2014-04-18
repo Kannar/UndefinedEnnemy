@@ -106,14 +106,12 @@ function startGame(){
     context.clearRect(0,0,canvas.width,canvas.height);
     map = initMap(map1);
     gameObjects[2].push(new Map(map));
-    var P1hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
     var P1spawn = [[0,0],[0,2],[1,1],[2,1],[2,0],[3,0]]
     for(var i=0; i<P1spawn.length; i++)
     {
         gameObjects[2][0].map.players[P1spawn[i][1]][P1spawn[i][0]] = 1;    //1 = emplacement de joueur libre
     }
-    var P2hero = [Dragon,Thief,Archer,Priest,Mage,Knight]
-    var P2spawn = [[3,3],[19,12],[18,13],[17,13],[17,14],[16,14]]
+    var P2spawn = [[19,15],[19,12],[18,13],[17,13],[17,14],[16,14]]
     for(var i=0; i<P2spawn.length; i++)
     {
         gameObjects[2][0].map.players[P2spawn[i][1]][P2spawn[i][0]] = 2;    //2 = emplacement de joueur libre

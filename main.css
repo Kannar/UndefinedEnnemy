@@ -1,5 +1,5 @@
 #mainCanvas{
-    border: white solid 1px;
+  
     margin-left:50%;
     position : relative;
     left:-429px;
@@ -27,7 +27,6 @@
 	left : -580px;
 	width:150px;
 	height : 660px;
-	border: 1px white solid;
 }
 
 #specialTilePartPlayer1{
@@ -38,7 +37,6 @@
 	position: absolute;
 	width: 150px;
 	height: 639px;
-	border: 1px white solid;
 }
 
 #choiceTileTypePlayer1{
@@ -46,8 +44,13 @@
 	position: absolute;
 	width: 150px;
 	height: 639px;
-	border: 1px white solid;
 }
+
+.borderStyle{
+	border: 1px black solid;
+
+}
+
 
 #confirmSpeTilePlayer1{
 	background-color: red;
@@ -67,15 +70,13 @@
 	width: 66px;
 	height: 66px;
 
-	border: 0px white solid;
 }
 
 #selecUnitPlayer1{
 	display: none;
 	position: absolute;
 	width: 150px;
-	height: 639px;
-	border: 1px white solid;	
+	height: 639px;	
 }
 
 #statsTeamPlayer1{
@@ -83,7 +84,6 @@
 	position: absolute;
 	width: 150px;
 	height: 639px;
-	border: 1px white solid;
 }
 
 .unitStatsPlayer1{
@@ -115,7 +115,6 @@
 	left : 430px;
 	width : 150px;
 	height : 660px;
-	border: 1px white solid;
 }
 
 #specialTilePartPlayer2{
@@ -126,7 +125,6 @@
 	position: absolute;
 	width: 150px;
 	height: 639px;
-	border: 1px white solid;
 }
 
 #choiceTileTypePlayer2{
@@ -134,7 +132,6 @@
 	position: absolute;
 	width: 150px;
 	height: 639px;
-	border: 1px white solid;
 }
 
 #confirmSpeTilePlayer2{
@@ -145,8 +142,7 @@
 	display: none;
 	position: absolute;
 	width: 150px;
-	height: 639px;
-	border: 1px white solid;	
+	height: 639px;	
 }
 
 #statsTeamPlayer2{
@@ -154,7 +150,6 @@
 	position: absolute;
 	width: 150px;
 	height: 639px;
-	border: 1px white solid;
 }
 
 .unitStatsPlayer2{
@@ -174,7 +169,6 @@
 	width: 66px;
 	height: 66px;
 
-	border: 0px white solid;
 }
 .specialTilePlayer1{
 	position: relative;
@@ -183,7 +177,6 @@
 	left: -33px;
 	width: 66px;
 	height: 66px;
-	border: 1px white solid;
 }
 
 .selecSpecialTilePlayer1{
@@ -193,7 +186,6 @@
 	left: -33px;
 	width: 66px;
 	height: 66px;
-	border: 1px white solid;
 }
 .specialTilePlayer2{
 	position: relative;
@@ -202,7 +194,6 @@
 	left: -33px;
 	width: 66px;
 	height: 66px;
-	border: 1px white solid;
 }
 
 .selecSpecialTilePlayer2{
@@ -212,7 +203,6 @@
 	left: -33px;
 	width: 66px;
 	height: 66px;
-	border: 1px white solid;
 }
 
 .confirmButton{
@@ -222,9 +212,7 @@
 	left: -50px;
 	width: 100px;
 	height: 20px;
-	text-align: center;
-	border: white 1px solid
-}
+	text-align: center;}
 
 #archerUnitPlayer1{
 	background-image: url("images/menu/skins_grey/Archer_1.png");

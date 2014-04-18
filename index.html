@@ -1,124 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-	<head>
-		<title>Fortis</title>
-		<link href="main.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="scripts/lib/jQuery.1.9.js"></script>
-	</head>
-	<body>
-		<div id="screen"></div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Fortis</title>
 
-		<div id="Player1Part">
-			<div id="Player1">Player 1</div>
-			<div id="specialTilePartPlayer1">
-				<div class="specialTilePlayer1" id="specialTile1Player1">T1</div>
-				<div class="specialTilePlayer1" id="specialTile2Player1">T2</div>
-				<div class="specialTilePlayer1" id="specialTile3Player1">T3</div>
+<!--CDN link for the latest TweenMax-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<!--CDN links for the latest TweenLite, CSSPlugin, and EasePack-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+<script src="Script/libs/jquery-1.11.0.min.js"></script>
+<script src="Script/Move.js"></script>
 
-				<div class="confirmButton" id="confirmSpeTilePlayer1" onclick="confirmSetTiles('Player1')">OK</div>
-			</div>
-			<div id="choiceTileTypePlayer1">
-				<div class="selecSpecialTilePlayer1" id="resistanceSpeTilePlayer1"></div>
-				<div class="selecSpecialTilePlayer1" id="forceMeleeSpeTilePlayer1"></div>
-				<div class="selecSpecialTilePlayer1" id="forceDistSpeTilePlayer1"></div>
-				<div class="selecSpecialTilePlayer1" id="forceMagSpeTilePlayer1"></div>
-				<div class="selecSpecialTilePlayer1" id="hpSpeTilePlayer1"></div>
-				<div class="selecSpecialTilePlayer1" id="atkSpeTilePlayer1"></div>
-				<div class="selecSpecialTilePlayer1" id="prioriteSpeTilePlayer1"></div>
-				<div class="selecSpecialTilePlayer1" id="precisionSpeTilePlayer1"></div>
-			</div>
-			<div id="selecUnitPlayer1">
-				<div class="selecUnitPlayer1" id="archerUnitPlayer1"></div>
-				<div class="selecUnitPlayer1" id="priestUnitPlayer1"></div>
-				<div class="selecUnitPlayer1" id="guerrierUnitPlayer1"></div>
-				<div class="selecUnitPlayer1" id="mageUnitPlayer1"></div>
-				<div class="selecUnitPlayer1" id="thiefUnitPlayer1"></div>
-				<div class="selecUnitPlayer1" id="dragonUnitPlayer1"></div>
-			</div>
-			<div id="statsTeamPlayer1">
-				<div class="unitStatsPlayer1" id="statUnit1Player1"></div>
-				<div class="unitStatsPlayer1" id="statUnit2Player1"></div>
-				<div class="unitStatsPlayer1" id="statUnit2Player1"></div>
-				<div class="unitStatsPlayer1" id="statUnit2Player1"></div>
-				<div class="unitStatsPlayer1" id="statUnit2Player1"></div>
-				<div class="unitStatsPlayer1" id="statUnit2Player1"></div>
-			</div>
-		</div>
+<link rel="stylesheet" type="text/css" href="CSS/main.css">
+</head>
+<body>
 
-		<div id="Player2Part">
-			<div id="Player2">Player 2</div>
-			<div id="specialTilePartPlayer2">
-				<div class="specialTilePlayer2" id="specialTile1Player2">T1</div>
-				<div class="specialTilePlayer2" id="specialTile2Player2">T2</div>
-				<div class="specialTilePlayer2" id="specialTile3Player2">T3</div>
+	<div id="Titre"></div>
+	<div id="BoutonStart"></div>
+	<div id="BoutonRegle"></div>
+	<div id="logoIsart"></div>
 
-				<div class="confirmButton" id="confirmSpeTilePlayer2" onclick="confirmSetTiles('Player2')">OK</div>
-			</div>
-			<div id="choiceTileTypePlayer2">
-				<div class="selecSpecialTilePlayer2" id="resistanceSpeTilePlayer2"></div>
-				<div class="selecSpecialTilePlayer2" id="forceMeleeSpeTilePlayer2"></div>
-				<div class="selecSpecialTilePlayer2" id="forceDistSpeTilePlayer2"></div>
-				<div class="selecSpecialTilePlayer2" id="forceMagSpeTilePlayer2"></div>
-				<div class="selecSpecialTilePlayer2" id="hpSpeTilePlayer2"></div>
-				<div class="selecSpecialTilePlayer2" id="atkSpeTilePlayer2"></div>
-				<div class="selecSpecialTilePlayer2" id="prioriteSpeTilePlayer2"></div>
-				<div class="selecSpecialTilePlayer2" id="precisionSpeTilePlayer2"></div>
-			</div>
-			<div id="selecUnitPlayer2">
-				<div class="selecUnitPlayer2" id="archerUnitPlayer2"></div>
-				<div class="selecUnitPlayer2" id="priestUnitPlayer2"></div>
-				<div class="selecUnitPlayer2" id="guerrierUnitPlayer2"></div>
-				<div class="selecUnitPlayer2" id="mageUnitPlayer2"></div>
-				<div class="selecUnitPlayer2" id="thiefUnitPlayer2"></div>
-				<div class="selecUnitPlayer2" id="dragonUnitPlayer2"></div>
-			</div>
-			<div id="statsTeamPlayer2">
-				<div class="unitStatsPlayer2" id="statUnit1Player2"></div>
-				<div class="unitStatsPlayer2" id="statUnit2Player2"></div>
-				<div class="unitStatsPlayer2" id="statUnit2Player2"></div>
-				<div class="unitStatsPlayer2" id="statUnit2Player2"></div>
-				<div class="unitStatsPlayer2" id="statUnit2Player2"></div>
-				<div class="unitStatsPlayer2" id="statUnit2Player2"></div>
-			</div>
-		</div>
-
-		<div id="Timer">
-			<div id="countdown"></div>
-		</div>
-		<div id="EndTurnBoxDiv">
-			<div id="EndTurnBox"></div>
-			<button type="button" id="EndTurn">End turn</button>
-		</div>
-		<canvas id="mainCanvas"></canvas>
-
-		<!-- Functions -->
-		<script type="text/javascript" src="scripts/js/functions/garbage.js"></script>
-		<script type="text/javascript" src="scripts/js/functions/imageLoader.js"></script>
-
-		<!-- Config -->
-		<script type="text/javascript" src="scripts/js/json/animConfig.js"></script>
-		<script type="text/javascript" src="scripts/js/config/image_data.js"></script>
-		<script type="text/javascript" src="scripts/js/config/map_data.js"></script>
-		<script type="text/javascript" src="scripts/js/config/specialEffect_data.js"></script>
-		<script type="text/javascript" src="scripts/js/input.js"></script>
-		<script type="text/javascript" src="scripts/js/pathfinding.js"></script>
-		<script type="text/javascript" src="scripts/js/eventInit.js"></script>
-		<script type="text/javascript" src="scripts/js/menu.js"></script>
-
-		<!-- Classes -->
-		<script type="text/javascript" src="scripts/js/classes/map.js"></script>
-		<script type="text/javascript" src="scripts/js/classes/classes.js"></script>
-		<script type="text/javascript" src="scripts/js/classes/player.js"></script>
-		<script type="text/javascript" src="scripts/js/classes/tile.js"></script>
-
-		<!-- Libs -->
-		<script type="text/javascript" src="scripts/lib/pathfinding-browser.min.js"></script>
-		<script type="text/javascript" src="scripts/lib/stats.min.js"></script>
-		<script type="text/javascript" src="scripts/lib/jQuery.1.9.js"></script>
-
-		<!-- Main -->
-		<script type="text/javascript" src="scripts/js/init.js"></script>
-		<script type="text/javascript" src="scripts/js/main.js"></script>
-
-	</body>
+</body>
 </html>

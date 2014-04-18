@@ -19,13 +19,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -59,13 +59,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -99,13 +99,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -139,13 +139,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -180,13 +180,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -220,13 +220,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 									},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -259,13 +259,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -299,13 +299,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -339,13 +339,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -379,13 +379,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -420,13 +420,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -460,13 +460,13 @@ var animsConfig = {
 										minFrame : 0
 										},
 								attack : {
-										fps :6,
+										fps : 30,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 									},
 								push : {
-									fps : 6,
+									fps : 30,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
