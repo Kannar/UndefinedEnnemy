@@ -108,8 +108,8 @@ function startGame(){
     {
         gameObjects[2][0].map.players[P2spawn[i][1]][P2spawn[i][0]] = 2;    //2 = emplacement de joueur libre
     }
-    gameObjects[1].push(new Player(canvas,'Player2',P1spawn,P1hero));
-    gameObjects[0].push(new Player(canvas,'Player1',P2spawn,P2hero));
+    gameObjects[0].push(new Player(canvas,'Player2',P1spawn,P1hero));
+    gameObjects[1].push(new Player(canvas,'Player1',P2spawn,P2hero));
     gameObjects[0][0].addOtherPlayer(gameObjects[1][0])
     gameObjects[1][0].addOtherPlayer(gameObjects[0][0])
 
@@ -137,5 +137,5 @@ function startGame(){
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
 
-    state = 'SET_TILES';
+    state = 'IN_GAME';
 }

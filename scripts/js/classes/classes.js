@@ -18,10 +18,9 @@ var Heros = function(x,y,player){
 	this.direction="";
 	this.coefDirecteur=1;
 	this.targetAvaible=[];
-	this.config = animsConfig[this.name+'AnimConfig'];
+	this.config = animsConfig[this.name+'AnimConfig'+this.player];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
 	this.config.frameHeight = this.image.height/this.config.nbRows;
-	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
 
@@ -229,6 +228,7 @@ Heros.prototype.newTurn = function (){
 	this.isSelected = false;
 	this.hasAttacked = false;
 	this.canBeSelected = true;
+	this.changeAnim('normal');
 };
 
 Heros.prototype.EndTurn = function (){
@@ -266,7 +266,6 @@ Heros.prototype.getDamage = function (){
 
 //Hero Attaque 
 Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (objet)
-	console.log("attacke")
 	if(this.variableEffects.canAtk)
 	{
 		//Insert animation d'attack de l'attaquant
@@ -408,6 +407,7 @@ var Archer = function(x,y,player,parent){
 	this.loop = function(){
 		if(this.hasAttacked){
 			this.EndTurn();
+			this.changeAnim('deselected');
 		}
 		if(this.isMoving){
 			this.move();
@@ -442,6 +442,7 @@ var Thief = function(x,y,player,parent){
 	this.loop = function(){
 		if(this.hasAttacked){
 			this.EndTurn();
+			this.changeAnim('deselected');
 		}
 		if(this.isMoving){
 			this.move();
@@ -476,6 +477,7 @@ var Knight = function(x,y,player,parent){
 	this.loop = function(){
 		if(this.hasAttacked){
 			this.EndTurn();
+			this.changeAnim('deselected');
 		}
 		if(this.isMoving){
 			this.move();
@@ -510,6 +512,7 @@ var Mage = function(x,y,player,parent){
 	this.loop = function(){
 		if(this.hasAttacked){
 			this.EndTurn();
+			this.changeAnim('deselected');
 		}
 		if(this.isMoving){
 			this.move();
@@ -544,6 +547,7 @@ function Dragon(x,y,player,parent){
 	this.loop = function(){
 		if(this.hasAttacked){
 			this.EndTurn();
+			this.changeAnim('deselected');
 		}
 		if(this.isMoving){
 			this.move();
@@ -578,6 +582,7 @@ var Priest = function(x,y,player,parent){
 	this.loop = function(){
 		if(this.hasAttacked){
 			this.EndTurn();
+			this.changeAnim('deselected');
 		}
 		if(this.isMoving){
 			this.move();
