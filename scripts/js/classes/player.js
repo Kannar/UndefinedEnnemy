@@ -34,6 +34,12 @@ Player.prototype.spawnHeros = function(){
 
 //loop Player
 Player.prototype.loop = function(context){
+
+	if(this.army.length<=0)
+	{
+		window.location.href="victoire.html"
+	}
+	
 	if(this.turn){
 		this.timerTurn(context);
 		for (var i = this.army.length - 1; i >= 0; i--) {
