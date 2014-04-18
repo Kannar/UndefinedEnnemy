@@ -4,7 +4,9 @@ var Player = function(canvas,name,spawn,heros){
 	this.spawn = spawn;
 	this.heros = heros
 	document.getElementById(this.name).visible = true;
-	this.timerBox = document.getElementById('countdown');
+	this.logoBox = document.getElementById('countdown');
+	this.logoBoxLastChilde = false;
+	this.EndTurnBox = document.getElementById('EndTurnBox');
 	this.army = [];
 	this.spawnHeros();
 	this.status = '';
@@ -72,6 +74,7 @@ Player.prototype.onclick = function(x,y){
      if(!this.army[i].isSelected && this.army[i].canBeSelected){
       this.army[i].selected();
       this.targetSelected = this.army[i];
+      this.changeDivBox(this.targetSelected);
      }
      else{
       this.army[i].deselected();
@@ -124,8 +127,26 @@ Player.prototype.startTurn = function(){
 	}
 };
 
+Player.prototype.changeDivBox = function(player){
+	if(this.logoBoxLastChild){
+		this.logoBox.removeChild(this.logoBoxLastChild);
+		this.logoBoxLastChild = false;
+	}
+	var image = images[player.name+'logo'];
+	image.style.zIndex = 3;
+	image.style.position = 'absolute';
+	image.style.left = 0 + 'px';
+	image.style.top = 0 + 'px';
+	this.logoBox.appendChild(image);
+	this.logoBoxLastChild = image;
+}
+
 Player.prototype.stopTurn = function(){
-	this.turnTimer = 30;
+	this.turnTimer = 60;
+	if(this.logoBoxLastChild){
+		this.logoBox.removeChild(this.logoBoxLastChild);
+		this.logoBoxLastChild = false;
+	}
 	this.turn = false;
 	for (var i = 0; i < this.army.length; i++){
 		this.army[i].EndTurn();
@@ -138,5 +159,5 @@ Player.prototype.timerTurn = function(){
 	if(cd<0 && this.turn){
 		this.stopTurn();
 	}
-	this.timerBox.innerHTML = this.name+ " " +cd+" second left";
+	this.EndTurnBox.innerHTML = this.name+ " " +cd+" second left";
 };

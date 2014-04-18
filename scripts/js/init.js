@@ -89,6 +89,7 @@ function init() //Init général
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     images = loadImages(imgSrc);
+    document.getElementById('countdown').appendChild(images['fondDivCount']);
     run();
 }
 

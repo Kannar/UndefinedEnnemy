@@ -7,8 +7,18 @@
 }
 
 #Player1{
+	background: url('images/background/panneau_fond.png') no-repeat;
+	background-size: 120% auto;
+	background-position-y: -40px;
+	background-position-x: -20px;
+	-webkit-background-size: 120% auto;
+	-moz-background-size: 10% auto;
+	-o-background-size: 10% auto;
+	overflow: hidden;
+	font-size: 30px;
+	font-style: bold;
 	text-align: center;
-	color : #ff0000;
+	color: #ffffff;
 }
 
 #Player1Part{
@@ -21,6 +31,9 @@
 }
 
 #specialTilePartPlayer1{
+	background:url('images/background/divs.png') no-repeat center center fixed;
+	background-size: 100% 100%;
+	overflow: hidden;
 	display: block;
 	position: absolute;
 	width: 150px;
@@ -75,8 +88,18 @@
 }
 
 #Player2{
+	background: url('images/background/panneau_fond.png') no-repeat;
+	background-size: 120% auto;
+	background-position-y: -40px;
+	background-position-x: -20px;
+	-webkit-background-size: 120% auto;
+	-moz-background-size: 10% auto;
+	-o-background-size: 10% auto;
+	overflow: hidden;
+	font-size: 30px;
+	font-style: bold;
 	text-align: center;
-	color : #0000ff;
+	color: #ffffff;
 }
 
 #Player2Part{
@@ -89,6 +112,9 @@
 }
 
 #specialTilePartPlayer2{
+	background:url('images/background/divs.png') no-repeat center center fixed;
+	background-size: 100% 100%;
+	overflow: hidden;
 	display: block;
 	position: absolute;
 	width: 150px;
@@ -271,17 +297,32 @@
 }
 
 #countdown{
-	text-align: center;
+	text-align: right;
 	color : #ffffff;
-	font-size:30px;
+	font-size:14px;
 }
 
 #EndTurn{
 	float : right;
 }
+#EndTurnBoxDiv{
+	text-align: right;
+	color : #ffffff;
+	font-size:20px;
+	position : absolute;
+	margin-top: 680px;
+	margin-left: 50%;
+	left : 432px;
+	width : 150px;
+	height : 150px;
+}
 
 body{
-    background-color: black;
+	background:url('images/background/background.png') no-repeat center center fixed;
+	background-size: 100% auto;
+	-webkit-background-size: 100% auto;
+	-moz-background-size: 100% auto;
+	-o-background-size: 100% auto;
 	overflow: hidden;
 }
 
