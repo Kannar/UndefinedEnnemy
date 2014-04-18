@@ -46,9 +46,9 @@ Player.prototype.loop = function(context){
 		}
 		if(this.isDoingAttack){
 			context.fillStyle = 'red';
-			context.drawImage(images['boutonPush'],this.targetSelected.pos.x*mapParams.tileSize,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
+			context.drawImage(images['boutonPush'],(this.targetSelected.pos.x-mapParams.viewX)*mapParams.tileSize,(this.targetSelected.pos.y-mapParams.viewY)*mapParams.tileSize+mapParams.tileSize/2+mapParams.viewY,mapParams.tileSize/2,mapParams.tileSize/2);
 			context.fillStyle = 'blue';
-			context.drawImage(images['boutonAttack'],this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2,this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
+			context.drawImage(images['boutonAttack'],(this.targetSelected.pos.x-mapParams.viewX)*mapParams.tileSize+mapParams.tileSize/2,(this.targetSelected.pos.y-mapParams.viewY)*mapParams.tileSize+mapParams.tileSize/2,mapParams.tileSize/2,mapParams.tileSize/2);
 		}
 	}
 	else{
@@ -106,7 +106,7 @@ Player.prototype.onclick = function(x,y){
    if(enemy)
    {
    	
-		console.log()
+	   console.log();
 	   this.targetSelected.pushSomeone(this.targetToAttack);
 	   this.isDoingAttack = false;
 	}

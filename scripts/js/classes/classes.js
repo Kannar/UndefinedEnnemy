@@ -334,7 +334,7 @@ Heros.prototype.pushSomeone = function(target){
 	var damageTmp;
 	console.log(target)
 	if(this.direction=="x"){
-		if(target.pos.x+this.damage*this.coefDirecteur>mapParams.nbCaseMapX || target.pos.x+this.damage*this.coefDirecteur<0)
+		if(target.pos.x+this.pushRange*this.coefDirecteur>mapParams.nbCaseMapX || target.pos.x+this.pushRange*this.coefDirecteur<0)
 		{
 			outScreen=true;
 			if(this.coefDirecteur>0)
@@ -350,13 +350,13 @@ Heros.prototype.pushSomeone = function(target){
 		}
 		else
 		{
-			console.log(this.damage)
-			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(this.damage*this.coefDirecteur),target.pos.y,"empty");
+			console.log(this.pushRange)
+			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(this.pushRange*this.coefDirecteur),target.pos.y,"empty");
 		}
 		side = mapParams.nbCaseMapX;
 	}
 	if(this.direction=="y"){
-		if(target.pos.y+this.damage*this.coefDirecteur>mapParams.nbCaseMapY || target.pos.y+this.damage*this.coefDirecteur<0)
+		if(target.pos.y+this.pushRange*this.coefDirecteur>mapParams.nbCaseMapY || target.pos.y+this.pushRange*this.coefDirecteur<0)
 		{
 			outScreen=true;
 			if(this.coefDirecteur>0)
@@ -370,7 +370,7 @@ Heros.prototype.pushSomeone = function(target){
 			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(damageTmp*this.coefDirecteur),"empty");
 		}
 		else
-			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(this.damage*this.coefDirecteur),"empty");
+			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(this.pushRange*this.coefDirecteur),"empty");
 		side = mapParams.nbCaseMapY;
 	}
 	if(myPath.length>0)
@@ -400,11 +400,11 @@ Heros.prototype.pushSomeone = function(target){
 		}
 	}
 
-	console.log(this.direction,this.coefDirecteur,this.damage,this.coefDirecteur*(this.damage),tmp);
+	console.log(this.direction,this.coefDirecteur,this.push,this.coefDirecteur*(this.damage),tmp);
 	if(outScreen)
 		target.pos[this.direction] += this.coefDirecteur*(damageTmp-tmp); 
 	else
-		target.pos[this.direction] += this.coefDirecteur*(this.damage-tmp); 
+		target.pos[this.direction] += this.coefDirecteur*(this.pushRange-tmp); 
 		manageTiles('players',target.pos.x,target.pos.y,true);
 	this.hasAttacked=true;
 };
@@ -449,6 +449,7 @@ var Archer = function(x,y,player,parent){
 	this.height = 66;
 	this.hp = 13;
 	this.damage = 5;
+	this.pushRange = 2;
 	this.magic = 1;
 	this.Resist = 3;
 	this.magicResist = 5;
@@ -484,6 +485,7 @@ var Thief = function(x,y,player,parent){
 	this.id=this.name+(Math.random()*200000>>0);
 	this.hp = 12;
 	this.damage = 4;
+	this.pushRange = 1;
 	this.magic = 2;
 	this.Resist = 3;
 	this.magicResist = 4;
@@ -521,6 +523,7 @@ var Knight = function(x,y,player,parent){
 	this.hp = 20;
 	this.damage = 2;
 	this.magic = 2;
+	this.pushRange = 3;
 	this.Resist = 6;
 	this.magicResist = 5;
 	this.accuracy = 4;
@@ -556,6 +559,7 @@ var Mage = function(x,y,player,parent){
 	this.height = 66;
 	this.hp = 13;
 	this.damage = 2;
+	this.pushRange = 2;
 	this.magic = 6;
 	this.Resist = 3;
 	this.magicResist = 6;
@@ -595,13 +599,14 @@ function Dragon(x,y,player,parent){
 	this.id=this.name+(Math.random()*200000>>0);
 	this.width = 66;
 	this.height = 66;
-	this.hp = 20;
+	this.hp = 15;
 	this.damage = 25;
 	this.magic = 3;
+	this.pushRange = 2;
 	this.Resist = 4;
 	this.magicResist = 4;
 	this.accuracy = 3;
-	this.movePoint = 3;
+	this.movePoint = 8;
 	this.attackRange=1;
 
 	this.loop = function(){
@@ -634,6 +639,7 @@ var Priest = function(x,y,player,parent){
 	this.height = 66;
 	this.hp = 10;
 	this.damage = -1;
+	this.pushRange = -1;
 	this.magic = 5;
 	this.Resist = 5;
 	this.magicResist = 5;
