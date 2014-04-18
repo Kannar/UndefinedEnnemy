@@ -59,7 +59,6 @@
 	width: 150px;
 	height: 635px;
 }
-
 .selecUnitPlayer1{
 	position: relative;
 	margin-top: 32px;
@@ -86,6 +85,16 @@
 	height: 639px;
 	border: 1px white solid;
 }
+
+.unitStatsPlayer1{
+	position: relative;
+	margin-top: 32px;
+	margin-left: 25%;
+	left: -33px;
+	width: 65px;
+	height: 65px;
+}
+
 
 #Player2{
 	background: url('images/background/panneau_fond.png') no-repeat;
@@ -148,6 +157,15 @@
 	width: 150px;
 	height: 639px;
 	border: 1px white solid;
+}
+
+.unitStatsPlayer2{
+	position: relative;
+	margin-top: 32px;
+	margin-left: 25%;
+	left: -33px;
+	width: 65px;
+	height: 65px;
 }
 
 .selecUnitPlayer2{
@@ -286,7 +304,68 @@
 	background-image: url("images/Heros/Dragon1.png");
 }
 
+#resistanceSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet invulnerable.png");
+}
 
+#resistanceSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet invulnerable.png");
+}
+
+#forceMeleeSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet melee.png");
+}
+
+#forceMeleeSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet melee.png");
+}
+
+#forceDistSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet arc.png");
+}
+
+#forceDistSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet arc.png");
+}
+
+#forceMagSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet magie.png");
+}
+
+#forceMagSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet magie.png");
+}
+
+#hpSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet regeneration.png");
+}
+
+#hpSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet regeneration.png");
+}
+
+#atkSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet combat X2.png");
+}
+
+#atkSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet combat X2.png");
+}
+
+#prioriteSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet initiative.png");
+}
+
+#prioriteSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet initiative.png");
+}
+
+#precisionSpeTilePlayer1{
+	background-image: url("images/Zones bonus malus/effet prevoyance.png");
+}
+#precisionSpeTilePlayer2{
+	background-image: url("images/Zones bonus malus/effet prevoyance.png");
+}
 #Timer{
 	position : absolute;
 	margin-top: 660px;
