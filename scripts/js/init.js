@@ -38,6 +38,7 @@ var path;
 var map;
 var showRange=false;
 var images;
+var music ;
 var mouseVars={
     mapPosX:0,
     mapPosY:0,
@@ -84,6 +85,12 @@ function init() //Init général
     canvas.width  = mapParams.tileSize*mapParams.nbTileX;
     canvas.height = mapParams.tileSize*mapParams.nbTileY;
     images = loadImages(imgSrc);
+        music = document.createElement("audio");
+        music.setAttribute('src', 'fortisfinale.mp3');
+        music.setAttribute('preload', 'true');
+        music.setAttribute('loop', 'true');
+        music.volume = 0.5;
+        music.play();
     run();
 }
 
