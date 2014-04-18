@@ -160,6 +160,7 @@ Heros.prototype.move = function (){
 				manageTiles('players',this.pos.x,this.pos.y,false);
 				manageTiles('collisions',this.pos.x,this.pos.y,false);
 				this.path = path;
+				this.moveSpeed = 0.03;
 				manageTiles('collisions',this.path[this.path.length-1][0],this.path[this.path.length-1][1],true);
 				manageTiles('players',this.path[this.path.length-1][0],this.path[this.path.length-1][1],true);
 				// this.pos.x = path[path.length-1][0];
@@ -285,7 +286,6 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 
 		if(!target.variableEffects.invincible && !this.variableEffects.takeDgts)
 		{
-			console.log(this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook);
 			target.hp -= this.damage*this.variableEffects.multiplicatorDgtDealt*target.variableEffects.multiplicatorDgtTook;
 			//Insert animation prise de dégât defenseur
 		}
@@ -323,8 +323,8 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 			manageTiles('collisions',target.pos.x,target.pos.y,false);
 		}
 	}
-	console.log(target.hp)
-	this.hasAttacked=true;
+
+	this.changeAnim('attack');
 };
 
 Heros.prototype.pushSomeone = function(target){
@@ -332,7 +332,7 @@ Heros.prototype.pushSomeone = function(target){
 	var side;
 	var outScreen=false;
 	var damageTmp;
-	console.log(target)
+	var myPath;
 	if(this.direction=="x"){
 		if(target.pos.x+this.damage*this.coefDirecteur>mapParams.nbCaseMapX || target.pos.x+this.damage*this.coefDirecteur<0)
 		{
@@ -345,13 +345,11 @@ Heros.prototype.pushSomeone = function(target){
 				
 				damageTmp = target.pos.x;
 			}
-			console.log(damageTmp)
-			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(damageTmp*this.coefDirecteur),target.pos.y,"empty");
+			myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(damageTmp*this.coefDirecteur),target.pos.y,"empty");
 		}
 		else
 		{
-			console.log(this.damage)
-			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(this.damage*this.coefDirecteur),target.pos.y,"empty");
+			myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(this.damage*this.coefDirecteur),target.pos.y,"empty");
 		}
 		side = mapParams.nbCaseMapX;
 	}
@@ -367,10 +365,11 @@ Heros.prototype.pushSomeone = function(target){
 				
 				damageTmp = target.pos.y;
 			}
-			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(damageTmp*this.coefDirecteur),"empty");
+			myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(damageTmp*this.coefDirecteur),"empty");
 		}
 		else
-			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(this.damage*this.coefDirecteur),"empty");
+			myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(this.damage*this.coefDirecteur),"empty");
+
 		side = mapParams.nbCaseMapY;
 	}
 	if(myPath.length>0)
@@ -378,7 +377,6 @@ Heros.prototype.pushSomeone = function(target){
 		manageTiles('players',target.pos.x,target.pos.y,false);
 		manageTiles('collisions',target.pos.x,target.pos.y,false);
 		for(var i =0;i<myPath.length;i++){
-						console.log("titi")
 			if(map.players[myPath[i][1]][myPath[i][0]]==1){
 				for(var j =0;j<target.parent.army.length;j++){
 					
@@ -389,7 +387,6 @@ Heros.prototype.pushSomeone = function(target){
 			}
 			if(map.collisions[myPath[i][1]][myPath[i][0]] == 1)
 			{
-				console.log(myPath[i][1],myPath[i][0]);
 				tmp=myPath.length-i;
 				break;
 			}
@@ -399,14 +396,11 @@ Heros.prototype.pushSomeone = function(target){
 			}
 		}
 	}
-
-	console.log(this.direction,this.coefDirecteur,this.damage,this.coefDirecteur*(this.damage),tmp);
-	if(outScreen)
-		target.pos[this.direction] += this.coefDirecteur*(damageTmp-tmp); 
-	else
-		target.pos[this.direction] += this.coefDirecteur*(this.damage-tmp); 
-		manageTiles('players',target.pos.x,target.pos.y,true);
-	this.hasAttacked=true;
+	manageTiles('players',target.pos.x,target.pos.y,true);
+	target.isMoving = true;
+	target.moveSpeed = 0.09;
+	target.path = myPath;
+	this.changeAnim('push');
 };
 
 //Dessine le Hero
@@ -415,6 +409,9 @@ Heros.prototype.render = function(context){
 	if (this.config.animFrame % Math.floor(180 / this.config.currentAnimation[this.config.animation].fps) == 0){
 		this.config.currentFrame++;
 		if (this.config.currentFrame == this.config.currentAnimation[this.config.animation].nbFrame){
+			if(this.config.animation == 'attack' || this.config.animation == 'push'){
+				this.hasAttacked = true;
+			}
 			this.config.currentFrame = 0;
 		}
 	}
@@ -428,7 +425,6 @@ Heros.prototype.render = function(context){
 //Attaque Hero
 Heros.prototype.death = function(targetArmy,target){
 	for(var i=0; i<targetArmy.length;i++){
-			console.log(target.id,targetArmy[i].id);
 		if(target.id==targetArmy[i].id)
 		{
 			targetArmy.splice(i,1);
@@ -573,7 +569,6 @@ var Mage = function(x,y,player,parent){
 		}
 		if(this.hp<=0)
 		{
-			console.log("toto")
 			this.death(this.parent.army,this)
 		}
 		this.findPath();

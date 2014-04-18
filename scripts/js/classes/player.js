@@ -7,6 +7,9 @@ var Player = function(canvas,name,spawn,heros){
 	this.logoBox = document.getElementById('countdown');
 	this.logoBoxLastChilde = false;
 	this.EndTurnBox = document.getElementById('EndTurnBox');
+	this.StatCanvas = document.getElementById('StatsCanvas').getContext('2d');
+	this.StatCanvas.font="30px Arial";
+	this.StatCanvas.fillStyle="black";
 	this.army = [];
 	this.spawnHeros();
 	this.status = '';
@@ -76,6 +79,7 @@ Player.prototype.onclick = function(x,y){
       this.army[i].selected();
       this.targetSelected = this.army[i];
       this.changeDivBox(this.targetSelected);
+      this.changeStatsIn(this.targetSelected);
      }
      else{
       this.army[i].deselected();
@@ -105,8 +109,6 @@ Player.prototype.onclick = function(x,y){
    var enemy = this.targetSelected.checkEnnemiInRangeForPush(this.targetToAttack);
    if(enemy)
    {
-   	
-		console.log()
 	   this.targetSelected.pushSomeone(this.targetToAttack);
 	   this.isDoingAttack = false;
 	}
@@ -147,6 +149,20 @@ Player.prototype.changeDivBox = function(player){
 	image.style.top = 0 + 'px';
 	this.logoBox.appendChild(image);
 	this.logoBoxLastChild = image;
+}
+
+Player.prototype.changeStatsIn = function(player,value){
+	this.StatCanvas.clearRect(0,0,600,600)
+	if(value){
+		this.StatCanvas.fillText(player.hp , 200,30);
+		this.StatCanvas.fillText(player.attackRange , 30,30);
+		this.StatCanvas.fillText(player.damage , 30,30);
+		this.StatCanvas.fillText(player.magicResist , 30,30);
+		this.StatCanvas.fillText(player.damage , 30,30);
+	}
+	else{
+
+	}
 }
 
 Player.prototype.stopTurn = function(){
