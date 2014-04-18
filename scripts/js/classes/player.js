@@ -14,6 +14,7 @@ var Player = function(canvas,name,spawn,heros){
 	this.isSelecting = false;
 	this.targetSelected = false;
 	this.turn = false;
+	this.targetToAttack =false
 	this.turnTimer = 60; //secondes
 	this.actualTimer = 0;
 	this.lastUpdate;
@@ -86,12 +87,13 @@ Player.prototype.onclick = function(x,y){
      this.targetSelected = false;
     }
    } 
-   else if(this.army[i].isSelected) {
-    if(this.army[i].CheckCase(caseSelected) == 'move'){
+ 	else if(this.army[i].isSelected) {
+    if(this.army[i].CheckCase(caseSelected).state == 'move'){
      this.army[i].move();
     }
-    if(this.army[i].CheckCase(caseSelected) == 'player'){
-     this.isDoingAttack = true;
+    if(this.army[i].CheckCase(caseSelected).state == 'player'){
+     this.isDoingAttack = true; 
+     this.targetToAttack = this.army[i].CheckCase(caseSelected).player;
     }
    }
   };
@@ -100,14 +102,20 @@ Player.prototype.onclick = function(x,y){
   var caseSelected = mouse.findCase(x,y);
   if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
     (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
-   var enemy = this.targetSelected.checkEnnemiInRangeForPush(caseSelected);
-   this.isDoingAttack = false;
+   var enemy = this.targetSelected.checkEnnemiInRangeForPush(this.targetToAttack);
+   if(enemy)
+   {
+   	
+		console.log()
+	   this.targetSelected.pushSomeone(this.targetToAttack);
+	   this.isDoingAttack = false;
+	}
   }
   if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize) && 
     (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
-   var enemy = this.targetSelected.checkEnnemiInRange(caseSelected);
+   var enemy = this.targetSelected.checkEnnemiInRange(this.targetToAttack);
    if(enemy){
-    this.targetSelected.attack(enemy);
+    this.targetSelected.attack(this.targetToAttack);
     this.targetSelected.targetAvaible = [];
    }
    this.isDoingAttack=false;
