@@ -37,7 +37,6 @@ function eventInit(){
                     });
 
                     // console.log(stateSpecialTiles[currentTileType.player][currentTileType.nameSlotTile]);
-                    console.log(currentTileType.nameSlotTile);
 
                     stateSpecialTiles[currentTileType.player][currentTileType.nameSlotTile] = true;  
 

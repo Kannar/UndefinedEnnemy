@@ -114,7 +114,7 @@ Heros.prototype.variableEffects = {
 	"multiplicatorDgtTook": 1,	//done
 	"multiplicatorDgtDealt": 1,	//done
 	"canAtk": true,	//done
-	"hpGain": 0,
+	"hpGain": 0,	//done
 	"atkTwice": false,	//done
 	"takeDgts": false,	//done
 	"firstToAtk": false,
@@ -127,6 +127,22 @@ Heros.prototype.move = function (){
 	if(!this.hasMoved && !this.isMoving){
 		if(path.length<this.movePoint+2){
 			if(checkTiles('players',path[path.length-1][0],path[path.length-1][1]) == 0){
+
+				//Desactivation de l'effet de la case sur laquelle on se trouvait
+				for(var i=0; i<gameObjects[3].length; i++)
+				{
+					if(gameObjects[3][i].pos.x === this.pos.x && gameObjects[3][i].pos.y === this.pos.y)
+					{
+						if(gameObjects[3][i].player === this.player)
+						{
+							gameObjects[3][0].outBad(this);
+						}
+						else
+						{
+							gameObjects[3][0].outGood(this);
+						}
+					}
+				}
 				
 				manageTiles('players',this.pos.x,this.pos.y,false);
 				manageTiles('collisions',this.pos.x,this.pos.y,false);
@@ -166,6 +182,22 @@ Heros.prototype.move = function (){
 				this.path;
 				this.changeAnim('normal');
 				this.isMoving = false;
+
+				//Activation de l'effet de la case sur laquelle on se trouvait
+				for(var i=0; i<gameObjects[3].length; i++)
+				{
+					if(gameObjects[3][i].pos.x === this.pos.x && gameObjects[3][i].pos.y === this.pos.y)
+					{
+						if(gameObjects[3][i].player === this.player)
+						{
+							gameObjects[3][0].onBad(this);
+						}
+						else
+						{
+							gameObjects[3][0].onGood(this);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -204,6 +236,8 @@ Heros.prototype.EndTurn = function (){
 	this.hasAttacked = true;
 	this.isSelected = false;
 	this.canBeSelected = false;
+
+	this.life = this.life + this.variableEffects.hpGain;
 };
 
 Heros.prototype.findPath = function (){
