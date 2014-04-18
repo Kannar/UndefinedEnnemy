@@ -110,8 +110,8 @@ Player.prototype.onclick = function(x,y){
  }
  else{
   var caseSelected = mouse.findCase(x,y);
-  if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
-    (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
+  if( (caseSelected.xoff>(this.targetSelected.pos.x+mapParams.viewX)*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
+    (caseSelected.yoff>(this.targetSelected.pos.y+mapParams.viewY)*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<(this.targetSelected.pos.y+mapParams.viewY)*mapParams.tileSize+mapParams.tileSize) ){
    var enemy = this.targetSelected.checkEnnemiInRangeForPush(this.targetToAttack);
    if(enemy)
    {
@@ -119,8 +119,9 @@ Player.prototype.onclick = function(x,y){
 	   this.isDoingAttack = false;
 	}
   }
-  if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize) && 
-    (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
+  if( (caseSelected.xoff>(this.targetSelected.pos.x+mapParams.viewX)*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<(this.targetSelected.pos.x+mapParams.viewX)*mapParams.tileSize+mapParams.tileSize) && 
+    (caseSelected.yoff>(this.targetSelected.pos.y+mapParams.viewY)*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<(this.targetSelected.pos.y+mapParams.viewY)*mapParams.tileSize+mapParams.tileSize) ){
+  	consol.log()
    var enemy = this.targetSelected.checkEnnemiInRange(this.targetToAttack);
    if(enemy){
     this.targetSelected.attack(this.targetToAttack);
