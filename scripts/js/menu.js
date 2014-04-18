@@ -58,7 +58,6 @@ $(document).ready(function(){
         {
             for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
             {
-                console.log(_i + "SpeTilePlayer1");
                 document.getElementById(_i + "SpeTilePlayer1").style.backgroundColor = "rgb(0, 0, 0)";
             }
 
@@ -231,8 +230,6 @@ $(document).ready(function(){
 //Player1
     $(".selecUnitPlayer1").click(function(){
 
-        console.log("yololo");
-
         if(currentPlayerTurn === "Player1")
         {
             if(currentButtonActive["Player1"] != "")    //Si un bouton est déjà séléctionné
@@ -280,8 +277,6 @@ $(document).ready(function(){
         {
             if(currentButtonActive["Player2"] != "")    //Si un bouton est déjà séléctionné
             {
-                console.log("yolo1");
-                            
                 //On le deselectionne
                 document.getElementById(currentButtonActive["Player2"]).style.border = "solid 0px white";
 

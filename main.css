@@ -66,6 +66,14 @@
 	border: 1px white solid;	
 }
 
+#statsTeamPlayer1{
+	display: none;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;
+}
+
 #Player2{
 	text-align: center;
 	color : #0000ff;
@@ -106,6 +114,14 @@
 	width: 150px;
 	height: 639px;
 	border: 1px white solid;	
+}
+
+#statsTeamPlayer2{
+	display: none;
+	position: absolute;
+	width: 150px;
+	height: 639px;
+	border: 1px white solid;
 }
 
 .selecUnitPlayer2{
