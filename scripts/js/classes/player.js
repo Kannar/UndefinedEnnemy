@@ -97,13 +97,17 @@ Player.prototype.onclick = function(x,y){
   var caseSelected = mouse.findCase(x,y);
   if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
     (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
+   console.log(caseSelected)
+caseSelected.x-=1;
    var enemy = this.targetSelected.checkEnnemiInRangeForPush(caseSelected);
+   this.targetSelected.pushSomeone(enemy);
    this.isDoingAttack = false;
   }
   if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize) && 
     (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
    var enemy = this.targetSelected.checkEnnemiInRange(caseSelected);
    if(enemy){
+   	console.log(caseSelected)
     this.targetSelected.attack(enemy);
     this.targetSelected.targetAvaible = [];
    }

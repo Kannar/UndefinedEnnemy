@@ -46,6 +46,7 @@ Heros.prototype.checkEnnemiInRange=function(caseClicked){
 	}
 }
 Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
+	console.log(caseClicked)
     for(var i=-this.attackRange;i<=this.attackRange;i++){
   //   	for(var k=0; k<this.parent.army.length;k++){
 	 //    	if((this.parent.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.army[k].pos.y==this.pos.y) || (this.parent.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.army[k].pos.x==this.pos.x))
@@ -90,6 +91,7 @@ Heros.prototype.chooseTarget=function(caseSelected){
 	for(var i =0;i<this.targetAvaible.length;i++){
 		if(caseSelected.x==this.targetAvaible[i].pos.x && 
 		   caseSelected.y==this.targetAvaible[i].pos.y){
+		   	console.log(this.targetAvaible);
 		   	return this.targetAvaible[i];
 		}
 	}
@@ -277,6 +279,7 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 Heros.prototype.pushSomeone = function(target){
 	var tmp=0;
 	var side;
+	console.log(target)
 	if(this.direction=="x"){
 		if(this.coefDirecteur>0)
 		{
@@ -403,7 +406,7 @@ var Thief = function(x,y,player,parent){
 	this.magicResist = 4;
 	this.accuracy = 5;
 	this.movePoint = 6;
-	this.attackRange=2;
+	this.attackRange=1;
 
 	this.loop = function(){
 		if(this.hasAttacked){
