@@ -73,6 +73,11 @@ var Map = function(matrice)
         {
             for (var j = mapParams.viewX; j < mapParams.nbTileX+mapParams.viewX; j++)
             {
+                context.strokeStyle = 'black';
+                context.strokeRect((j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,
+                    mapParams.tileSize,mapParams.tileSize,
+                    (j-mapParams.viewX)*mapParams.tileSize,(i-mapParams.viewY)*mapParams.tileSize,
+                    mapParams.tileSize,mapParams.tileSize);
                 context.drawImage(this.image,
                     (this.map['terrains'][i][j]-1)*mapParams.tileSize,0,
                     mapParams.tileSize,mapParams.tileSize,
