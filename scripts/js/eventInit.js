@@ -156,12 +156,13 @@ function eventInit(){
 
 
                             //On affiche la selection d'units
-                            $("#statsTeamPlayer1").slideToggle(200, function(){    //On cache la selec tile
+                            $("#Player1Part").slideToggle(200, function(){    //On cache la selec tile
 
                             });
-                            $("#statsTeamPlayer2").slideToggle(200, function(){    //On cache la selec tile
+                            $("#Player2Part").slideToggle(200, function(){    //On cache la selec tile
 
                             });
+
 
                             state = "IN_GAME";
                         }

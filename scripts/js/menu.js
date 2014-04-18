@@ -70,11 +70,11 @@ $(document).ready(function(){
         {
             for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
             {
-                document.getElementById(_i + "SpeTilePlayer1").style.border = "solid 0px white";
+                document.getElementById(_i + "SpeTilePlayer1").style.backgroundColor = "rgb(74, 40, 3)";
             }
 
 
-            this.style.border = "solid 1px white";    //Pour voir la selection
+            this.style.backgroundColor = "rgb(25, 250, 25)";    //Pour voir la selection
 
             var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
             currentTileType = {type: _typeName, player: "Player1", nameSlotTile: currentTileType.nameSlotTile};
