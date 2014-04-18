@@ -7,25 +7,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -47,25 +47,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -87,25 +87,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -127,25 +127,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -168,25 +168,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :4,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -208,25 +208,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 									},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -247,25 +247,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -287,25 +287,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -327,25 +327,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -367,25 +367,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -408,25 +408,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :4,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 										},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,
@@ -448,25 +448,25 @@ var animsConfig = {
 		currentFrame : 0,
 		currentAnimation :{
 								normal : {
-										fps :2,
+										fps :6,
 										nbFrame : 2,
 										nbRow : 0,
 										minFrame : 0
 										},
 								walk : {
-										fps :2,
+										fps :20,
 										nbFrame : 4,
 										nbRow : 1,
 										minFrame : 0
 										},
 								attack : {
-										fps :2,
+										fps :6,
 										nbFrame : 3,
 										nbRow : 2,
 										minFrame : 0
 									},
 								push : {
-									fps : 2,
+									fps : 6,
 									nbFrame : 3,
 									nbRow : 3,
 									minFrame : 0,

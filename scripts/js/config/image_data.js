@@ -23,7 +23,7 @@ var imgSrc = {
 	"tilesSheet" : "images/tiles/terrain_planche.jpg",
 	"boutonPush" : "images/bouton/boutonPush.png",
 	"boutonAttack" : "images/bouton/boutonAttack.png",
-	"fondDivCount" : "images/background/Interface_BASE.jpg"
+	"fondDivCount" : "images/background/Interface_BASE.jpg",
 	"tileRes": "images/Zones bonus malus/effet invulnerable.png",
 	"tileForceMe": "images/Zones bonus malus/effet melee.png",
 	"tileForceDist": "images/Zones bonus malus/effet arc.png",
