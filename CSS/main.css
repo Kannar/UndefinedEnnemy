@@ -1,0 +1,54 @@
+body  {
+
+margin:0;
+margin:0;
+background-image: url(../Media/background.png); 
+
+background-repeat: no-repeat; 
+background-attachment: fixed; 
+background-size: cover; 
+-moz-background-size: 100% 100%;     /* Gecko 1.9.2 (Firefox 3.6) */
+-o-background-size: 100% 100%;        /* Opera 9.5 */
+-webkit-background-size: 100% 100%;   /* Safari 3.0 */
+background-size: 100% ;           /* Gecko 2.0 (Firefox 4.0) > CSS3 */ 
+overflow:hidden;
+}
+
+#Titre{
+	background-image: url(../Media/logo_sans_fond.png); 
+	position: absolute;
+	width: 1122px;
+	height: 924px;
+	top: -30%;
+	left:-1000px;
+}
+
+#BoutonStart{
+	background-image: url(../Media/bouton_commencer.png); 
+	position: absolute;
+	width: 858px;
+	height: 660px;
+	top: 35%;
+	left: 7%;
+}
+
+#BoutonRegle{
+	background-image: url(../Media/btnregle.png); 
+	position: absolute;
+	background-repeat: no-repeat;
+	width: 858px;
+	height: 660px;
+	top: 50%;
+	left: 50%;
+}
+
+#logoIsart{
+	background-image: url(../Media/LogoIsartDigital.png); 
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 150px;
+	height: 100px;
+	top: 90%;
+	left: 5%;
+}
