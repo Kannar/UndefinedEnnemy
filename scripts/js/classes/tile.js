@@ -16,8 +16,10 @@ var Tile = function(params)
 
     this.render = function()
     {
-        context.fillStyle = "rgb(25, 250, 25)";
-        context.fillRect(this.pos.x*66, this.pos.y*66, 65, 65);
+        // context.fillStyle = "rgb(25, 250, 25)";
+        // context.fillRect(this.pos.x*66, this.pos.y*66, 65, 65);
+
+        context.drawImage(images[this.type.name], (this.pos.x)*65, (this.pos.y)*65);
     }
 
     this.update = function()
@@ -26,7 +28,8 @@ var Tile = function(params)
         this.pos.x = this.beginPos.x - mapParams.viewX;
         this.pos.y = this.beginPos.y - mapParams.viewY;
 
-        // this.render();
+        if((state === "SET_TILES") && (this.player === currentPlayerTurn))
+            this.render();
     }
 }
 

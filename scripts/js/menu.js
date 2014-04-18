@@ -124,7 +124,7 @@ $(document).ready(function(){
             var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
             currentTileType = {type: _typeName, player: "Player2", nameSlotTile: currentTileType.nameSlotTile};
 
-            document.getElementById(currentSlot).style.backgroundColor = "rgb(250, 250, 250)";  //Temporaire, normalement y mettre l'image de la case
+            document.getElementById(currentSlot).style.backgroundImage = "url('"+tileSkin[_typeName]+"')";//Image
         }
     });
 });

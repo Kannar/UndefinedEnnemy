@@ -57,6 +57,7 @@ var currentPlayerTurn;
 //Pose des cases
 var currentTileType;
 var stateSpecialTiles;
+var allSpeCases;
 //Selection et pose des unités
 var currentUnit = {id: "", obj: undefined};
 var player1Skins;
@@ -137,5 +138,5 @@ function startGame(){
         40: [gameObjects[2][0].scroll, "bot"]   //Scroll bas
     });
 
-    state = 'IN_GAME';
+    state = 'SET_TILES';
 }

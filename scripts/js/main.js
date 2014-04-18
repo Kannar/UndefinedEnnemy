@@ -166,4 +166,9 @@ function setTiles()
         gameObjects[2][i].constructMap(mouseVars.mapPosX,mouseVars.mapPosY);
         gameObjects[2][i].renderMap();
     }
+
+    for(var i=0; i<gameObjects[3].length; i++)
+    {
+        gameObjects[3][i].update();
+    }
 }

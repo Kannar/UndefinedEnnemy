@@ -24,9 +24,9 @@ Player.prototype.addOtherPlayer = function(otherPlayer){
 }
 
 Player.prototype.spawnHeros = function(){
-	 for (var i = 0; i < this.spawn.length; i++) {
-	 	this.army.push(new this.heros[i](this.spawn[i][0],this.spawn[i][1],this.name,this))
-	 };
+	 // for (var i = 0; i < this.spawn.length; i++) {
+	 // 	this.army.push(new this.heros[i](this.spawn[i][0],this.spawn[i][1],this.name,this))
+	 // };
 }
 
 //loop Player

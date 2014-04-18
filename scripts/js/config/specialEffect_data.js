@@ -3,6 +3,7 @@
 **************************************************/
 var specialEffect_data = {
     "resistance": {
+        name: "resistance",
         multiplicatorDgtTook: 2,
         onGoodEffect: function(target){
             target.variableEffects.invincible = true;
@@ -19,6 +20,7 @@ var specialEffect_data = {
         id: 2
     },
     "forceMelee": {
+        name: "forceMelee",
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Guerrier" || target.name === "Voleur" || target.name === "Dragon")
@@ -39,6 +41,7 @@ var specialEffect_data = {
         id: 3
     },
     "forceDist": {
+        name: "forceDist",
         multiplicatorDgtDealt: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Mage" || target.name === "Archer")
@@ -59,6 +62,7 @@ var specialEffect_data = {
         id: 4
     },
     "forceMag": {
+        name: "forceMag",
         multiplicatorDgtSpell: 1.5,
         onGoodEffect: function(target){
             if(target.name === "Mage" || target.name === "Priest")
@@ -79,6 +83,7 @@ var specialEffect_data = {
         id: 5
     },
     "hp": {
+        name: "hp",
         gainHp: 2,
         loseHp: 3,
         onGoodEffect: function(target){
@@ -96,6 +101,7 @@ var specialEffect_data = {
         id: 6
     },
     "atk": {
+        name: "atk",
         atkTurns: 2,
         onGoodEffect: function(target){
              target.variableEffects.atkTwice = true;
@@ -112,6 +118,7 @@ var specialEffect_data = {
         id: 7
     },
     "priorite": {
+        name: "priorite",
         onGoodEffect: function(target){
             target.variableEffects.firstToAtk = true;
         },
@@ -127,6 +134,7 @@ var specialEffect_data = {
         id: 8
     },
     "precision": {
+        name: "precision",
         gainAccuracy: 1.3,
         loseAccuracy: 1.4,
         onGoodEffect: function(target){

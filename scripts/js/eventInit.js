@@ -6,6 +6,8 @@ function eventInit(){
         {
             var _pos = mouse.findCase(e.clientX, e.clientY);
 
+            console.log("x:"+((_pos.x+mapParams.viewX)/65)+", y:"+((_pos.y+mapParams.viewY)/65));
+
             var _caseNb;
             var _newNb;
             if(currentPlayerTurn === "Player1")
@@ -24,9 +26,9 @@ function eventInit(){
             {
                 if(gameObjects[2][0].speTiles[_pos.y+mapParams.viewY][_pos.x+mapParams.viewX] == _caseNb)
                 {
-                    gameObjects[3].push(new Tile({x: _pos.x, y: _pos.y, type: specialEffect_data[currentTileType.type], player: currentTileType.player}));    //Posage de la case
+                    gameObjects[3].push(new Tile({x: _pos.x+mapParams.viewX, y: _pos.y+mapParams.viewY, type: specialEffect_data[currentTileType.type], player: currentTileType.player}));    //Posage de la case
 
-                    gameObjects[2][0].speTiles[_pos.y][_pos.x] = _newNb; //Une fois prise la case n'est plus dispo
+                    gameObjects[2][0].speTiles[_pos.y+mapParams.viewY][_pos.x+mapParams.viewX] = _newNb; //Une fois prise la case n'est plus dispo
 
                     $("#choiceTileType"+currentTileType.player).slideToggle(200, function(){    //On cache la selec tile
 

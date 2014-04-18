@@ -17,14 +17,14 @@ var imgSrc = {
 	"tilesSheet" : "images/tiles/terrain_planche.jpg",
 	"boutonPush" : "images/bouton/boutonPush.png",
 	"boutonAttack" : "images/bouton/boutonAttack.png",
-	"tileRes": "images/Zones bonus malus/effet invulnerable.png",
-	"tileForceMe": "images/Zones bonus malus/effet melee.png",
-	"tileForceDist": "images/Zones bonus malus/effet arc.png",
-	"tileForceMag": "images/Zones bonus malus/effet magie.png",
-	"tileRegen": "images/Zones bonus malus/effet regeneration.png",
-	"tileAtk": "images/Zones bonus malus/effet combat X2.png",
-	"tilePriorite": "images/Zones bonus malus/effet initiative.png",
-	"tilePrecision": "images/Zones bonus malus/effet prevoyance.png"
+	"resistance": "images/Zones bonus malus/effet invulnerable.png",
+	"forceMelee": "images/Zones bonus malus/effet melee.png",
+	"forceDist": "images/Zones bonus malus/effet arc.png",
+	"forceMag": "images/Zones bonus malus/effet magie.png",
+	"hp": "images/Zones bonus malus/effet regeneration.png",
+	"atk": "images/Zones bonus malus/effet combat X2.png",
+	"priorite": "images/Zones bonus malus/effet initiative.png",
+	"precision": "images/Zones bonus malus/effet prevoyance.png"
 };
 
 /********************************************
