@@ -107,6 +107,8 @@ function eventInit(){
                         if(gameObjects[0][0].army.length == 6)
                         {
                             currentPlayerTurn = "Player2";
+
+                            document.getElementById("Player2").style.backgroundColor = "rgb(250, 250, 250)";
                         }
                     }
 
@@ -139,11 +141,23 @@ function eventInit(){
                         {
                             currentPlayerTurn = "";
 
+                            document.getElementById("Player1").style.backgroundColor = "rgb(0, 0, 0)";
+                            document.getElementById("Player2").style.backgroundColor = "rgb(0, 0, 0)";
+
+                            //On cache la selction d'units
                             $("#selecUnitPlayer1").slideToggle(200, function(){    //On cache la selec tile
 
                             });
-
                             $("#selecUnitPlayer2").slideToggle(200, function(){    //On cache la selec tile
+
+                            });
+
+
+                            //On affiche la selection d'units
+                            $("#statsTeamPlayer1").slideToggle(200, function(){    //On cache la selec tile
+
+                            });
+                            $("#statsTeamPlayer2").slideToggle(200, function(){    //On cache la selec tile
 
                             });
 

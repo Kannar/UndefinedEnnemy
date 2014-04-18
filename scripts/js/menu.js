@@ -24,8 +24,20 @@ $(document).ready(function(){
     }
 
     currentPlayerTurn = "Player1"    //"player1" ou "player2"
+    document.getElementById("Player1").style.backgroundColor = "rgb(250, 250, 250)";
     var currentSlot = "";
     currentTileType = {type: undefined, player: "", nameSlotTile: ""};
+
+    var tileSkin = {
+        "resistance": "images/Zones bonus malus/effet invulnerable.png",
+        "forceMelee": "images/Zones bonus malus/effet melee.png",
+        "forceDist": "images/Zones bonus malus/effet arc.png",
+        "forceMag": "images/Zones bonus malus/effet magie.png",
+        "hp": "images/Zones bonus malus/effet regeneration.png",
+        "atk": "images/Zones bonus malus/effet combat X2.png",
+        "priorite": "images/Zones bonus malus/effet initiative.png",
+        "precision": "images/Zones bonus malus/effet prevoyance.png"
+    }
 
 //PLayer1
     $(".specialTilePlayer1").click(function(){
@@ -58,15 +70,18 @@ $(document).ready(function(){
         {
             for(var _i in specialEffect_data)   //On remet les case à vide au cas ou elle était déjà selectionné
             {
-                document.getElementById(_i + "SpeTilePlayer1").style.backgroundColor = "rgb(0, 0, 0)";
+                document.getElementById(_i + "SpeTilePlayer1").style.border = "solid 0px white";
             }
 
-            this.style.backgroundColor = "rgb(25, 250, 25)";    //Pour voir la selection
+
+            this.style.border = "solid 1px white";    //Pour voir la selection
 
             var _typeName = this.id.substring(this.id.length-14, -(this.id.length-14));
             currentTileType = {type: _typeName, player: "Player1", nameSlotTile: currentTileType.nameSlotTile};
 
-            document.getElementById(currentSlot).style.backgroundColor = "rgb(250, 250, 250)";  //Temporaire, normalement y mettre l'image de la case
+            console.log(currentSlot);
+
+            document.getElementById(currentSlot).style.backgroundImage = "url('"+tileSkin[_typeName]+"')";//Image
         }
     });
 
@@ -123,6 +138,7 @@ function confirmSetTiles(player)
         $("#specialTilePartPlayer1").slideToggle(200, function(){
 
         });
+        document.getElementById("Player2").style.backgroundColor = "rgb(250, 250, 250)";
     }
     else if(player === "Player2" && document.getElementById("confirmSpeTilePlayer2").style.backgroundColor == "rgb(25, 250, 25)")
     {
@@ -144,6 +160,8 @@ function confirmSetTiles(player)
         $("#selecUnitPlayer2").slideToggle(200, function(){    //On cache la selec tile
 
         });
+
+        document.getElementById("Player1").style.backgroundColor = "rgb(250, 250, 250)";
 
         currentPlayerTurn = "Player1";
         state = "SELEC_PERSO";
@@ -313,3 +331,18 @@ $(document).ready(function(){
         }
     });
 });
+
+/*********************************
+*
+*   Feedback etat team
+*
+*********************************/
+$(document).ready(function(){
+
+});
+
+//Une fois les teams build on assign des slots pour voir les stats
+function assignTeamStatSlot()
+{
+
+}
