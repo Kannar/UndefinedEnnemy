@@ -4,7 +4,9 @@ var Player = function(canvas,name,spawn,heros){
 	this.spawn = spawn;
 	this.heros = heros
 	document.getElementById(this.name).visible = true;
-	this.timerBox = document.getElementById('countdown');
+	this.logoBox = document.getElementById('countdown');
+	this.logoBoxLastChilde = false;
+	this.EndTurnBox = document.getElementById('EndTurnBox');
 	this.army = [];
 	this.spawnHeros();
 	this.status = '';
@@ -12,6 +14,7 @@ var Player = function(canvas,name,spawn,heros){
 	this.isSelecting = false;
 	this.targetSelected = false;
 	this.turn = false;
+	this.targetToAttack =false
 	this.turnTimer = 60; //secondes
 	this.actualTimer = 0;
 	this.lastUpdate;
@@ -72,6 +75,7 @@ Player.prototype.onclick = function(x,y){
      if(!this.army[i].isSelected && this.army[i].canBeSelected){
       this.army[i].selected();
       this.targetSelected = this.army[i];
+      this.changeDivBox(this.targetSelected);
      }
      else{
       this.army[i].deselected();
@@ -83,12 +87,13 @@ Player.prototype.onclick = function(x,y){
      this.targetSelected = false;
     }
    } 
-   else if(this.army[i].isSelected) {
-    if(this.army[i].CheckCase(caseSelected) == 'move'){
+ 	else if(this.army[i].isSelected) {
+    if(this.army[i].CheckCase(caseSelected).state == 'move'){
      this.army[i].move();
     }
-    if(this.army[i].CheckCase(caseSelected) == 'player'){
-     this.isDoingAttack = true;
+    if(this.army[i].CheckCase(caseSelected).state == 'player'){
+     this.isDoingAttack = true; 
+     this.targetToAttack = this.army[i].CheckCase(caseSelected).player;
     }
    }
   };
@@ -97,14 +102,20 @@ Player.prototype.onclick = function(x,y){
   var caseSelected = mouse.findCase(x,y);
   if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize && caseSelected.xoff<=this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2) && 
     (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
-   var enemy = this.targetSelected.checkEnnemiInRangeForPush(caseSelected);
-   this.isDoingAttack = false;
+   var enemy = this.targetSelected.checkEnnemiInRangeForPush(this.targetToAttack);
+   if(enemy)
+   {
+   	
+		console.log()
+	   this.targetSelected.pushSomeone(this.targetToAttack);
+	   this.isDoingAttack = false;
+	}
   }
   if( (caseSelected.xoff>this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.xoff<this.targetSelected.pos.x*mapParams.tileSize+mapParams.tileSize) && 
     (caseSelected.yoff>this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize/2 && caseSelected.yoff<this.targetSelected.pos.y*mapParams.tileSize+mapParams.tileSize) ){
-   var enemy = this.targetSelected.checkEnnemiInRange(caseSelected);
+   var enemy = this.targetSelected.checkEnnemiInRange(this.targetToAttack);
    if(enemy){
-    this.targetSelected.attack(enemy);
+    this.targetSelected.attack(this.targetToAttack);
     this.targetSelected.targetAvaible = [];
    }
    this.isDoingAttack=false;
@@ -124,8 +135,26 @@ Player.prototype.startTurn = function(){
 	}
 };
 
+Player.prototype.changeDivBox = function(player){
+	if(this.logoBoxLastChild){
+		this.logoBox.removeChild(this.logoBoxLastChild);
+		this.logoBoxLastChild = false;
+	}
+	var image = images[player.name+'logo'];
+	image.style.zIndex = 3;
+	image.style.position = 'absolute';
+	image.style.left = 0 + 'px';
+	image.style.top = 0 + 'px';
+	this.logoBox.appendChild(image);
+	this.logoBoxLastChild = image;
+}
+
 Player.prototype.stopTurn = function(){
-	this.turnTimer = 30;
+	this.turnTimer = 60;
+	if(this.logoBoxLastChild){
+		this.logoBox.removeChild(this.logoBoxLastChild);
+		this.logoBoxLastChild = false;
+	}
 	this.turn = false;
 	for (var i = 0; i < this.army.length; i++){
 		this.army[i].EndTurn();
@@ -138,5 +167,5 @@ Player.prototype.timerTurn = function(){
 	if(cd<0 && this.turn){
 		this.stopTurn();
 	}
-	this.timerBox.innerHTML = this.name+ " " +cd+" second left";
+	this.EndTurnBox.innerHTML = this.name+ " " +cd+" second left";
 };

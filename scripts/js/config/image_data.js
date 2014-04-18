@@ -14,6 +14,12 @@ var imgSrc = {
 	"PriestPlayer1" : "images/Heros/Priest2.png",
 	"MagePlayer2" : "images/Heros/Mage1.png",
 	"MagePlayer1" : "images/Heros/Mage2.png",
+	"Archerlogo" : "images/Logos/Archer_1.png",
+	"Thieflogo" : "images/Logos/Thief_1.png",
+	"Dragonlogo" : "images/Logos/Dragon_1.png",
+	"Knightlogo" : "images/Logos/Knight_1.png",
+	"Priestlogo" : "images/Logos/Priest_1.png",
+	"Magelogo" : "images/Logos/Mage_1.png",
 	"tilesSheet" : "images/tiles/terrain_planche.jpg",
 	"boutonPush" : "images/bouton/boutonPush.png",
 	"boutonAttack" : "images/bouton/boutonAttack.png",
@@ -24,7 +30,8 @@ var imgSrc = {
 	"hp": "images/Zones bonus malus/effet regeneration.png",
 	"atk": "images/Zones bonus malus/effet combat X2.png",
 	"priorite": "images/Zones bonus malus/effet initiative.png",
-	"precision": "images/Zones bonus malus/effet prevoyance.png"
+	"precision": "images/Zones bonus malus/effet prevoyance.png",
+	"fondDivCount" : "images/background/Interface_BASE.jpg"
 };
 
 /********************************************

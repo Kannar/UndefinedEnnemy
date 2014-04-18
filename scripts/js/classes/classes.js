@@ -21,10 +21,12 @@ var Heros = function(x,y,player){
 	this.config = animsConfig[this.name+'AnimConfig'+this.player];
 	this.config.frameWidth = this.image.width/this.config.nbFrameMax;
 	this.config.frameHeight = this.image.height/this.config.nbRows;
+	this.isPushed=false;
+	//Write Stuff here
 };
 Heros.prototype.constructor = Heros;
 
-Heros.prototype.checkEnnemiInRange=function(caseClicked){
+Heros.prototype.checkEnnemiInRange=function(target){
     for(var i=-this.attackRange;i<=this.attackRange;i++){
         for(var j=-this.attackRange;j<=this.attackRange;j++){
         	if(Math.abs(i)+Math.abs(j)<=this.attackRange){
@@ -39,12 +41,17 @@ Heros.prototype.checkEnnemiInRange=function(caseClicked){
             }
         }
     }
-    if(this.targetAvaible.length>0)
-    {
-	    return this.chooseTarget(caseClicked);
-	}
+	if(this.targetAvaible.length>0)
+	{
+		for (var i = this.targetAvaible.length - 1; i >= 0; i--) {
+			if (this.targetAvaible[i].pos.x == target.pos.x && this.targetAvaible[i].pos.y == target.pos.y){
+				return true;
+			}
+		};
+ 	}
+	return false;
 }
-Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
+Heros.prototype.checkEnnemiInRangeForPush=function(target){
     for(var i=-this.attackRange;i<=this.attackRange;i++){
   //   	for(var k=0; k<this.parent.army.length;k++){
 	 //    	if((this.parent.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.army[k].pos.y==this.pos.y) || (this.parent.army[k].pos.y==this.pos.y+i && i !=0 && this.parent.army[k].pos.x==this.pos.x))
@@ -54,7 +61,7 @@ Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
 		// 	}
 		// }
     	for(var k=0; k<this.parent.otherPlayer.army.length;k++){
-	    	if((this.parent.otherPlayer.army[k].pos.x==this.pos.x+i && i!=0 && this.parent.otherPlayer.army[k].pos.y==this.pos.y))
+	    	if((target.pos.x==this.pos.x+i && i!=0 && target.pos.y==this.pos.y))
 	    	{
 	    		if(i<0)
 	    		{
@@ -63,7 +70,7 @@ Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
 	    		else{
 	    			this.coefDirecteur=1;
 	    		}
-	    		this.direction="y";
+	    		this.direction="x";
 				this.targetAvaible.push(this.parent.otherPlayer.army[k]);
 	    		// console.log(this.parent.otherPlayer.army[k].pos.x,this.pos.x+i,this.parent.otherPlayer.army[k].pos.y,this.pos.y+i);
 			}
@@ -75,37 +82,43 @@ Heros.prototype.checkEnnemiInRangeForPush=function(caseClicked){
 	    		else{
 	    			this.coefDirecteur=1;
 	    		}
-	    		this.direction="x";
+	    		this.direction="y";
 	    		this.targetAvaible.push(this.parent.otherPlayer.army[k]);
 			}
 		}
     }
-    if(this.targetAvaible.length>0)
-    {
-	    return this.chooseTarget(caseClicked);
-	}
-}
-Heros.prototype.chooseTarget=function(caseSelected){
-	for(var i =0;i<this.targetAvaible.length;i++){
-		if(caseSelected.x==this.targetAvaible[i].pos.x && 
-		   caseSelected.y==this.targetAvaible[i].pos.y){
-		   	return this.targetAvaible[i];
-		}
-	}
+	if(this.targetAvaible.length>0)
+	{
+		for (var i = this.targetAvaible.length - 1; i >= 0; i--) {
+			if (this.targetAvaible[i].pos.x == target.pos.x && this.targetAvaible[i].pos.y == target.pos.y){
+				return true;
+			}
+		};
+ 	}
 	return false;
 }
+// Heros.prototype.chooseTarget=function(caseSelected){
+// 	for(var i =0;i<this.targetAvaible.length;i++){
+// 		if(caseSelected.x==this.targetAvaible[i].pos.x && 
+// 		   caseSelected.y==this.targetAvaible[i].pos.y){
+// 		   	console.log(this.targetAvaible);
+// 		   	return this.targetAvaible[i];
+// 		}
+// 	}
+// 	return false;
+// }
 
 Heros.prototype.CheckCase = function (caseClicked){
-	for (var i = 0; i < this.parent.otherPlayer.army.length; i++) {
-		enemy = this.parent.otherPlayer.army[i];
-		if (enemy.pos.x==caseClicked.x && enemy.pos.y==caseClicked.y){
-			return 'player';
-		}
-	};
-	if(checkTiles('collisions',caseClicked.x,caseClicked.y) == 0){
-		return 'move';
-	}
-	return false;
+ for (var i = 0; i < this.parent.otherPlayer.army.length; i++) {
+  enemy = this.parent.otherPlayer.army[i];
+  if (enemy.pos.x==caseClicked.x && enemy.pos.y==caseClicked.y){
+   return {state : 'player' , player : this.parent.otherPlayer.army[i]};
+  }
+ };
+ if(checkTiles('collisions',caseClicked.x,caseClicked.y) == 0){
+  return {state : 'move'};
+ }
+ return false;
 };
 //Contient toutes les variables relatives aux effets de cases
 Heros.prototype.variableEffects = {
@@ -303,69 +316,96 @@ Heros.prototype.attack = function(target){	//Target => unité adverse ou mob (ob
 					//Insert anim de prend chère
 			}
 		}
+		if(target.hp<0)
+		{
+			target.death(target.parent.army,target);
+			manageTiles('players',target.pos.x,target.pos.y,false);
+			manageTiles('collisions',target.pos.x,target.pos.y,false);
+		}
 	}
+	console.log(target.hp)
 	this.hasAttacked=true;
 };
 
 Heros.prototype.pushSomeone = function(target){
 	var tmp=0;
 	var side;
+	var outScreen=false;
+	var damageTmp;
+	console.log(target)
 	if(this.direction=="x"){
-		if(this.coefDirecteur>0)
+		if(target.pos.x+this.damage*this.coefDirecteur>mapParams.nbCaseMapX || target.pos.x+this.damage*this.coefDirecteur<0)
 		{
-			var marge =mapParams.nbCaseMapX-target.pos.x;
+			outScreen=true;
+			if(this.coefDirecteur>0)
+			{
+				damageTmp = mapParams.nbCaseMapX-target.pos.x;
+			}
+			else{
+				
+				damageTmp = target.pos.x;
+			}
+			console.log(damageTmp)
+			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(damageTmp*this.coefDirecteur),target.pos.y,"empty");
 		}
-		else{
-			var marge = target.pos.x;	
+		else
+		{
+			console.log(this.damage)
+			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(this.damage*this.coefDirecteur),target.pos.y,"empty");
 		}
-		console.log(marge);
-		var myPath=findPath(target.pos.x,target.pos.y,target.pos.x+(this.damage*this.coefDirecteur),target.pos.y,"empty");
 		side = mapParams.nbCaseMapX;
 	}
 	if(this.direction=="y"){
-		if(this.coefDirecteur>0)
+		if(target.pos.y+this.damage*this.coefDirecteur>mapParams.nbCaseMapY || target.pos.y+this.damage*this.coefDirecteur<0)
 		{
-			var marge =mapParams.nbCaseMapY-target.pos.y;
+			outScreen=true;
+			if(this.coefDirecteur>0)
+			{
+				damageTmp = mapParams.nbCaseMapY-target.pos.y;
+			}
+			else{
+				
+				damageTmp = target.pos.y;
+			}
+			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(damageTmp*this.coefDirecteur),"empty");
 		}
-		else{
-			var marge = target.pos.y;	
-		}
-		if(target.pos.y+((this.damage+marge)*this.coefDirecteur)<0)
-		{
-		console.log("toto")
-		var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(this.damage*this.coefDirecteur),"empty");
-		}
+		else
+			var myPath=findPath(target.pos.x,target.pos.y,target.pos.x,target.pos.y+(this.damage*this.coefDirecteur),"empty");
 		side = mapParams.nbCaseMapY;
 	}
 	if(myPath.length>0)
 	{
-			 // manageTiles('players',target.pos.x,target.pos.y,false);
-			 manageTiles('collisions',target.pos.x,target.pos.y,false);
+		manageTiles('players',target.pos.x,target.pos.y,false);
+		manageTiles('collisions',target.pos.x,target.pos.y,false);
 		for(var i =0;i<myPath.length;i++){
-				console.log(myPath)	
+						console.log("titi")
+			if(map.players[myPath[i][1]][myPath[i][0]]==1){
+				for(var j =0;j<target.parent.army.length;j++){
+					
+					if(target.parent.army[j].pos.x==myPath[i][0] && target.parent.army[j].pos.y==myPath[i][1]){
+						this.death(target.parent.army,target);
+					}
+				}
+			}
 			if(map.collisions[myPath[i][1]][myPath[i][0]] == 1)
 			{
 				console.log(myPath[i][1],myPath[i][0]);
 				tmp=myPath.length-i;
 				break;
 			}
-			// if(map.players[myPath[i][1]][myPath[i][0]]==1){
-			// 	for(var j =0;j<target.parent.army.length;j++){
-			// 		if(this.parent.army[j].x==myPath[i][0] && this.parent.army[j].y==myPath[i][1]){
-			// 			console.log("toto");
-			// 		}
-			// 	}
-			// }
-			// else{
-			// 	console.log(map.collisions[myPath[i][1]][myPath[i][0]]);	
-			// }
+
+			else{
+				// console.log(map.collisions[myPath[i][1]][myPath[i][0]]);	
+			}
 		}
 	}
 
-	target.pos[this.direction] += this.coefDirecteur*(this.damage-tmp); 
-	// 	manageTiles('players',target.pos.x,target.pos.y,true);
-	// manageTiles('collisions',target.pos.x,target.pos.y,true);
-	console.log(target.pos[this.direction],this.coefDirecteur,this.damage,this.coefDirecteur*(this.damage),tmp);
+	console.log(this.direction,this.coefDirecteur,this.damage,this.coefDirecteur*(this.damage),tmp);
+	if(outScreen)
+		target.pos[this.direction] += this.coefDirecteur*(damageTmp-tmp); 
+	else
+		target.pos[this.direction] += this.coefDirecteur*(this.damage-tmp); 
+		manageTiles('players',target.pos.x,target.pos.y,true);
 	this.hasAttacked=true;
 };
 
@@ -386,7 +426,17 @@ Heros.prototype.render = function(context){
 };
 
 //Attaque Hero
-
+Heros.prototype.death = function(targetArmy,target){
+	for(var i=0; i<targetArmy.length;i++){
+			console.log(target.id,targetArmy[i].id);
+		if(target.id==targetArmy[i].id)
+		{
+			targetArmy.splice(i,1);
+			i--;
+			break;
+		}
+	}
+}
 
 //==========================================
 //              CLASSE ARCHER              ||
@@ -395,6 +445,7 @@ var Archer = function(x,y,player,parent){
 	this.parent = parent;
 	this.name = 'Archer';
 	this.width = 66;
+	this.id=this.name+(Math.random()*200000>>0);
 	this.height = 66;
 	this.hp = 13;
 	this.damage = 5;
@@ -430,6 +481,7 @@ var Thief = function(x,y,player,parent){
 	this.name = 'Thief';
 	this.width = 66;
 	this.height = 66;
+	this.id=this.name+(Math.random()*200000>>0);
 	this.hp = 12;
 	this.damage = 4;
 	this.magic = 2;
@@ -437,7 +489,7 @@ var Thief = function(x,y,player,parent){
 	this.magicResist = 4;
 	this.accuracy = 5;
 	this.movePoint = 6;
-	this.attackRange=2;
+	this.attackRange=1;
 
 	this.loop = function(){
 		if(this.hasAttacked){
@@ -463,10 +515,11 @@ Thief.prototype.constructor = Thief;
 var Knight = function(x,y,player,parent){
 	this.parent = parent;
 	this.name = 'Knight';
+	this.id=this.name+(Math.random()*200000>>0);
 	this.width = 66;
 	this.height = 66;
 	this.hp = 20;
-	this.damage = 6;
+	this.damage = 2;
 	this.magic = 2;
 	this.Resist = 6;
 	this.magicResist = 5;
@@ -498,6 +551,7 @@ Knight.prototype.constructor = Knight;
 var Mage = function(x,y,player,parent){
 	this.parent = parent;
 	this.name = 'Mage';
+	this.id=this.name+(Math.random()*200000>>0);
 	this.width = 66;
 	this.height = 66;
 	this.hp = 13;
@@ -517,6 +571,11 @@ var Mage = function(x,y,player,parent){
 		if(this.isMoving){
 			this.move();
 		}
+		if(this.hp<=0)
+		{
+			console.log("toto")
+			this.death(this.parent.army,this)
+		}
 		this.findPath();
 	}
   	//Write Stuff
@@ -533,10 +592,11 @@ Mage.prototype.constructor = Mage;
 function Dragon(x,y,player,parent){
 	this.parent = parent;
 	this.name = 'Dragon';
+	this.id=this.name+(Math.random()*200000>>0);
 	this.width = 66;
 	this.height = 66;
 	this.hp = 20;
-	this.damage = 3;
+	this.damage = 25;
 	this.magic = 3;
 	this.Resist = 4;
 	this.magicResist = 4;
@@ -552,6 +612,7 @@ function Dragon(x,y,player,parent){
 		if(this.isMoving){
 			this.move();
 		}
+
 		this.findPath();
 	}
   	//Write Stuff
@@ -568,10 +629,11 @@ Dragon.prototype.constructor = Dragon;
 var Priest = function(x,y,player,parent){
 	this.parent = parent;
 	this.name = 'Priest';
+	this.id=this.name+(Math.random()*200000>>0);
 	this.width = 66;
 	this.height = 66;
 	this.hp = 10;
-	this.damage = 1;
+	this.damage = -1;
 	this.magic = 5;
 	this.Resist = 5;
 	this.magicResist = 5;

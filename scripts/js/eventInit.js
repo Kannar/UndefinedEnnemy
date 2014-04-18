@@ -250,23 +250,23 @@ function showCharRange(case1,range,attackRange){
             }
         }
     }
-    for(var i=-(range+attackRange);i<=(range+attackRange);i++)
-    {
-        for(var j=-(range+attackRange);j<=range+attackRange;j++)
-        {
-            if(Math.abs(i)+Math.abs(j)>range && Math.abs(i)+Math.abs(j)<=range+attackRange)
-            {
-                if(j+case1.y>=0 && j+case1.y<mapParams.nbCaseMapY)
-                {
-                    checkPath = findPath(case1.x, case1.y, i+case1.x,j+case1.y ,'specials');
-                    if(checkPath.length<=range+attackRange-1)
-                    {
-                        context.fillStyle="rgba(255,0,0,0.5)";
-                        context.fillRect((i+(case1.x-mapParams.viewX))*mapParams.tileSize,(j+case1.y-mapParams.viewY)*mapParams.tileSize,65,65);
-                    }
-                }
+    // for(var i=-(range+attackRange);i<=(range+attackRange);i++)
+    // {
+    //     for(var j=-(range+attackRange);j<=range+attackRange;j++)
+    //     {
+    //         if(Math.abs(i)+Math.abs(j)>range && Math.abs(i)+Math.abs(j)<=range+attackRange)
+    //         {
+    //             if(j+case1.y>=0 && j+case1.y<mapParams.nbCaseMapY)
+    //             {
+    //                 checkPath = findPath(case1.x, case1.y, i+case1.x,j+case1.y ,'specials');
+    //                 if(checkPath.length<=range+attackRange-1)
+    //                 {
+    //                     context.fillStyle="rgba(255,0,0,0.5)";
+    //                     context.fillRect((i+(case1.x-mapParams.viewX))*mapParams.tileSize,(j+case1.y-mapParams.viewY)*mapParams.tileSize,65,65);
+    //                 }
+    //             }
             
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 }
